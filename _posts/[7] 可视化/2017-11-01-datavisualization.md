@@ -46,6 +46,7 @@ sns.boxplot(data=df, x="day", y="total_bill", hue="sex", palette="PRGn")
 ```py
 import seaborn as sns
 df = sns.load_dataset("tips")
+
 sns.violinplot(data=df, palette="Set3", bw=.2, cut=3, linewidth=1)
 ```
 
@@ -57,6 +58,7 @@ sns.violinplot(data=df, palette="Set3", bw=.2, cut=3, linewidth=1)
 ```py
 import seaborn as sns
 df = sns.load_dataset("tips")
+
 sns.violinplot(data=df, x="day", y="total_bill", hue="sex", bw=.2, cut=3, linewidth=1, palette="PRGn")
 ```
 <img src='http://www.guofei.site/public/postimg/violinplot1.png'>  
