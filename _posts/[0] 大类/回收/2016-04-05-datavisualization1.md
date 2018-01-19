@@ -33,26 +33,6 @@ plt.show()
 |showfliers=False|是否显示离群点|
 |vert=False|变成横的box图|
 
-### sns.boxplot
-```py
-import seaborn as sns
-sns.set(style="ticks")
-
-# Load the example tips dataset
-tips = sns.load_dataset("tips")
-
-# Draw a nested boxplot to show bills by day and sex
-sns.boxplot(x="day", y="total_bill", hue="sex", data=tips, palette="PRGn")
-sns.despine(offset=10, trim=True)
-plot.show()
-```
-
-
-
-
-
-<img src='http://www.guofei.site/public/postimg/boxplot.png'>
-
 
 ### 小提琴图
 

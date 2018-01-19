@@ -20,7 +20,7 @@ sns.distplot
 ### box图
 sns.boxplot  
 <a href='http://seaborn.pydata.org/examples/grouped_boxplot.html' target="title7">官方示例</a>  
-
+[matplotlib版本示例](http://www.guofei.site/2016/04/05/datavisualization1.html#title0)  
 
 ```py
 import seaborn as sns
@@ -67,11 +67,11 @@ import seaborn as sns
 df = sns.load_dataset("tips")
 
 sns.violinplot(data=df, x="day", y="total_bill", hue="sex",split=True, bw=.2, cut=3, linewidth=1, palette="PRGn")
+#split=True
 ```
 
 
 <img src='http://www.guofei.site/public/postimg/violinplot2.png'>  
-
 
 
 ### qq图
