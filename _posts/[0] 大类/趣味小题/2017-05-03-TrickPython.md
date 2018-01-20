@@ -171,3 +171,85 @@ def g(x,y,z=1):
 
 say_hello_then_call(g,1,2,z=5)
 ```
+
+## or
+```py
+#如果事先不知道'a'是否是空值，这种写法非常简洁
+a='a' or None
+```
+
+## str综合题目1
+已知字符串 a = "aAsmr3idd4bgs7Dlsf9eAF",要求如下  
+1.1 请将a字符串的大写改为小写，小写改为大写。  
+```py
+a.swapcase()
+```
+
+1.2 请将a字符串的数字取出，并输出成一个新的字符串。
+```py
+x=[]
+for i in a:
+    if i.isdigit():
+        x.append(i)
+''.join(x)
+```
+更简洁的表示：
+```
+''.join([i for i in a if i.isdigit()])
+```
+1.3 请统计a字符串出现的每个字母的出现次数（忽略大小写，a与A是同一个字母），并输出成一个字典。 例 {'a':4,'b':2}  
+```py
+x3=dict()
+
+for i in a.upper():
+    if not i.isdigit():
+        if i in x3:
+            x3[i]+=1
+        else:x3[i]=1
+x3
+```
+更简洁的表示
+```py
+dict([(i,a.count(i)) for i in set(a) if not i.isdigit()])
+```
+1.4 请去除a字符串多次出现的字母，仅留最先出现的一个。例 'abcabb'，经过去除后，输出 'abc'
+```py
+x4=[]
+for i in a.upper():
+    if not i.isdigit():
+        if not i in x4:
+            x4.append(i)
+''.join(x4)
+```
+1.5 请将a字符串反转并输出。例：'abc'的反转是'cba'
+1.6 去除a字符串内的数字后，请将该字符串里的单词重新排序（a-z），并且重新输出一个排序后的字符 串。（保留大小写,a与A的顺序关系为：A在a前面。例：AaBb）
+```
+x6=[]
+for i in a:
+    if not i.isdigit():
+        x6.append(i)
+''.join(sorted(x6))
+```
+1.7 请判断 'boy'里出现的每一个字母，是否都出现在a字符串里。如果出现，则输出True，否则，则输 出False.
+```
+tag=True
+for i in 'boy':
+    if not i in a:
+        tag=False
+tag
+```
+用set更简单
+```
+set('boy').issubset(set(a))
+```
+
+1.9 输出a字符串出现频率最高的字母
+```
+x3=[(i,a.count(i)) for i in set(a) if not i.isdigit()]
+sorted(x3,key=lambda x: x[1],reverse=True)[0]
+```
+
+
+3.一文件的字节数为 102324123499123，请计算该文件按照kb与mb计算得到的大小。
+
+4.已知  a =  [1,2,3,6,8,9,10,14,17],请将该list转换为字符串，例如 '123689101417'.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】数据去重、替换、分组.
+title: 【pandas】去重、填充、排序.
 categories:
 tags: 1数据清洗
 keywords:
@@ -144,7 +144,8 @@ s_comma=s_list.str.join(',')
 s.str.extract('正则表达式')
 ```
 
-## sort
+## 排序
+### sort
 - sort_values按值排序
 - sort_index按index排序
 
@@ -153,7 +154,19 @@ df.sort_values(by=['w','z'],ascending=[False,True],inplace=True)
 df.sort_index(ascending=True,inplace=True)
 ```
 
-## rank
+### sorted
+sorted(iterable,key,reverse)可以对任何iterable的对象进行排序
+
+```
+a=['111','26','76','3']
+sorted(a,key=int)
+sorted(a,key=lambda x:int(x[0]))
+
+b=[{'a':4},{'b':2},{'c':3}]
+sorted(b,key=lambda x:x[1])
+```
+
+### rank
 
 返回排序的序号
 ```
