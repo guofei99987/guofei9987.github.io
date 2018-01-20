@@ -171,6 +171,9 @@ def g(x,y,z=1):
 
 say_hello_then_call(g,1,2,z=5)
 ```
+>args是一个tuple  
+kwargs是一个dict  
+
 
 ## or
 ```py
