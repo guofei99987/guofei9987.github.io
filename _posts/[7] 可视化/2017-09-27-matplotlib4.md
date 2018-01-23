@@ -8,7 +8,7 @@ description:
 ---
 
 ## 轻量级绘图方式
-也可以像Matlab那样简单快速的画图
+可以像Matlab那样，用对象句柄简单快速的画动图
 
 ```py
 import numpy as np
