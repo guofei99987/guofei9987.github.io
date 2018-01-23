@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【matplotlib】动画
-categories: 
+categories:
 tags: 7可视化
 keywords:
 description:
@@ -119,3 +119,27 @@ ani.save('test.mp4',fps=25)
 效果:  
 <video src="http://www.guofei.site/public/postimg2/matplotlib4_1.mp4" controls="controls">
 </video>
+
+
+## 轻量级绘图方式
+也可以像Matlab那样简单快速的画图
+
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+x = np.arange(-5, 5, 0.1)
+y = np.sin(x)
+line = ax.plot(x, y, 'b')
+
+plt.ion()  # 第一个重要的点
+p = plt.show() # 第二个重要的点
+for i in range(1000):
+    x = x[:-2]
+    y = y[:-2]
+    plt.setp(line, 'xdata', x, 'ydata', y) # 第三个重要的点
+
+    plt.pause(0.1) # 第四个重要的点
+```
