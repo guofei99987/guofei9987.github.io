@@ -142,4 +142,5 @@ for i in range(1000):
     plt.setp(line, 'xdata', x, 'ydata', y) # 第三个重要的点
 
     plt.pause(0.1) # 第四个重要的点
+    # ax.line.remove(lines[0]) #第五个重要的点：也可以删除一些lines
 ```
