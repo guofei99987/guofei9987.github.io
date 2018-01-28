@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【Python】【matplotlib】键鼠响应事件
-categories: 
+categories:
 tags: 7可视化
 keywords:
 description:
+order: 731
 ---
 
 ## 事件绑定fig.canvas.mpl_connect()

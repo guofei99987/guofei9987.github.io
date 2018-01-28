@@ -5,6 +5,7 @@ categories:
 tags: 7可视化
 keywords:
 description:
+order: 703
 ---
 全部都是matplotlib的官方案例
 ## plot_surface:面
