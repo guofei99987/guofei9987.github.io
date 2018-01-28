@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【matplotlib】绘图
+title: 【Python】【matplotlib】设置&多图&汉字
 categories:
 tags: 7可视化
 keywords:
@@ -134,11 +134,6 @@ plt.show()
 3. trans
 
 ## 多图表&多子图
-
-- plt.figure(1)可以转换当前的画布
-- plt.sca(ax1)转换到指定的axes
-
-
 ```py
 # 一个案例
 import matplotlib.pyplot as plt
@@ -146,27 +141,23 @@ import numpy as np
 
 x = np.linspace(0, 10, 10)
 
-plt.figure(1)
-ax1_211 = plt.subplot(221)
-ax1_212 = plt.subplot(223)
-ax1_122 = plt.subplot(122)
+f1=plt.figure(1)
+ax1_211 = f1.add_subplot(221)
+ax1_212 = f1.add_subplot(223)
+ax1_122 = f1.add_subplot(122)
 
-plt.figure(2)
-ax2_211 = plt.subplot(211)
-ax2_212 = plt.subplot(212)
+f2=plt.figure(2)
+ax2_211 = f2.add_subplot(211)
+ax2_212 = f2.add_subplot(212)
 
-plt.sca(ax1_211)
-plt.plot(x, np.sin(x))
-plt.sca(ax1_212)
-plt.plot(x, np.cos(x))
-plt.sca(ax1_122)
-plt.plot(x, x)
 
-plt.sca(ax2_211)
-plt.plot(x, x)
-plt.plot(x, -x)
-plt.sca(ax2_212)
-plt.plot(x, np.sin(x))
+ax1_211.plot(x, np.sin(x))
+ax1_212.plot(x, np.cos(x))
+ax1_122.plot(x, x)
+
+ax2_211.plot(x, x)
+ax2_211.plot(x, -x)
+ax2_212.plot(x, np.sin(x))
 
 plt.show()
 ```
