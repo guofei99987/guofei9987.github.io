@@ -13,6 +13,8 @@ order: 431
 随机序列
 :  按时间排序与的一组随机变量  
 $..., X_1, X_2, ..., X_t,...$  
+
+
 观察值序列  
 : $x_1, x_2, ..., x_t$  
 
@@ -80,6 +82,32 @@ $Cov(Y_t,Y_s)=Cov(Y_{t+h},Y_{s+h})=\gamma_{t-s}$
 ### 自相关图
 自相关系数很快衰减到0，说明序列平稳。  
 如果自相关系数一直很高，或者自相关系数出现周期性，或者自相关系数先递减后递增，说明序列不平稳。  
+
+```py
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+plot_acf(ts, lags=31, ax=ax1)
+```
+详细内容[看这里](http://www.guofei.site/StatisticsBlog/arma.html)
+
+
+除了看图外，statsmodels.tsa.stattools.acf可以方便地给出有关统计量, [官方文档](http://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.acf.html)  
+```py
+statsmodels.tsa.stattools.acf(x, unbiased=False, nlags=40, qstat=False, fft=False, alpha=None, missing='none')[source]
+# x : array,Time series data
+
+# unbiased : bool, If True, then denominators for autocovariance are n-k, otherwise n
+
+# nlags: int, optional, Number of lags to return autocorrelation for.
+
+# qstat : bool, optional If True, returns the Ljung-Box q statistic for each autocorrelation coefficient. See q_stat for more information.
+
+# fft : bool, optional. If True, computes the ACF via FFT.
+
+# alpha : scalar, optional. If a number is given, the confidence intervals for the given level are returned.
+
+# missing : str, optional. A string in [‘none’, ‘raise’, ‘conservative’, ‘drop’] specifying how the NaNs are to be treated.
+```
+
 ### DF检验
 Dickey-Fuller（DF），Augmented Dickey-Fuller test（ADF）  
 
@@ -145,16 +173,18 @@ $DX_t=\gamma(0)=0$
 
 
 #### 2. 假设
-$H_0: \rho_1=\rho_2=...=\rho_m=0,\forall m\geq 1$  
-
+序列是白噪声过程，$H_0: \rho_1=\rho_2=...=\rho_m=0,\forall m\geq 1$  
+(因为期数有限，所以只计算前m个相关系数)  
 #### 3. 构造统计量
 - **Q统计量**  
 $Q=n\sum\limits_{k=1}^m \hat\rho_k^2 \sim \chi^2(n)$  
-(因为期数有限，所以只计算前m个相关系数)  
 - **LB统计量**  
 $LB=n(n+2)\sum\limits_{k=1}^m (\dfrac{\hat\rho_k^2}{n-k})\sim\chi^2(m)$  
-(对于小样本的表现也良好)
+(对于小样本的表现也良好)  
+Ljung-Box q statistic
 
 
 #### 4. 判别原则
 $p<\alpha$,证明可以拒绝原假设，认为不是白噪声过程
+
+**代码实现见于上文acf，只需要设定qstat=True**
