@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】去重、填充、排序.
 categories:
-tags: 1数据清洗
+tags: 1数据准备
 keywords:
 description:
 order: 103
