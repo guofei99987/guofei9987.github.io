@@ -34,8 +34,8 @@ description:
 
 相互转化：  
 - float --> datetime: datetime.datetime.fromtimestamp( float )
-- datetime --> str: datetime.strftime(format, datetime)
-- str --> datetime: datetime.strptime(str, format)
+- datetime --> str: datetime.datetime.strftime(format, datetime)
+- str --> datetime: datetime.datetime.strptime(str, format)
 
 
 ## datatime
