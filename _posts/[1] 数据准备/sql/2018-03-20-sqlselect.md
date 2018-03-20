@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SQL语法速查.
+title: 【SQL】select专题.
 categories:
 tags: 1数据准备
 keywords:
@@ -9,145 +9,7 @@ order: 140
 ---
 
 
-## 一、操作Database
 
-### 创建数据库
-```
-CREATE DATABASE 数据库名 [其他选项];
-```
-例如：
-```
-CREATE DATABASE example_1;
-```
-
-### 显示数据库
-```
-SHOW DATABASES ;
-```
-### 删除数据库
-```
-DROP DATABASE example_1;
-```
-### 选择数据库
-```
-USE example;
-```
-
-## 二、操作Table
-### 建表
-```
-CREATE TABLE 表名称(属性名 数据类型[约束条件]，属性名 数据类型[约束条件]);
-```
- 例子：
-```
-CREATE TABLE `fund_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
- `product_alias` varchar(64) NOT NULL DEFAULT '',
- `datetimes` varchar(64) NOT NULL DEFAULT '',
- `datas` varchar(64) NOT NULL DEFAULT '',
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=691865 DEFAULT CHARSET=utf8;
-```
-
-#### 根据已有的表建新表
-```
-create table tab_new like tab_old
-create table tab_new as select col1,col2… from tab_old definition only
-```
-### 显示表
-```
-show tables;
-```
-
-### 修改表名
-```
-alter table 旧表名 rename 新表名;
-```
-
-## 三、操作列
-### 显示列
-```
-desc 表名;
-describe 表名;
-```
-
-### 修改列属性
-```
-alter table 表名 modify 列名 新数据类型;
-```
-
-### 修改列名/列属性
-```
-alter table 表名 change 旧列名 新列名 新数据类型;
-```
-
-### 增加列
-```
-alter table 表名 add 列名 数据类型 [(first) after 列名2];
-```
-
-### 修改列顺序
-```
-alter table 表名 modify 列名1 数据类型 (first) after 列名2;
-```
-
-### 删除列
-```
-alter table 表名 drop 列名1;
-```
-
-
-### 设置外键
-```
-alter table 表名1  add constraint  键名  foreign key (id) references 主表 (id);
-```
-
-## 四、操作table中的数据
-
-### 插入数据
-```
-insert [into] 表名 [(列名1, 列名2, 列名3, ...)] values (值1, 值2, 值3, ...);
-```
-例1：
-```
-insert into students values(NULL, "王刚", "男", 20, "13811371377");
-```
-例2：有时只需要插入部分数据
-```
-insert into students (name, sex, age) values("王刚", "男", 21);
-```
-例3：插入select出的数据
-```
-insert into table_name1(field1,field2,...,fieldn)
-    select(field1,field2,...fieldn)
-        from table_name2
-            where ...
-```
-### 变更数据
-```
-update 表名称 set 列名1=取值1，列名2=取值2 where ...
-```
-
-### 删除数据
-```
-delete from 表名称 where...
-```
-
-例子：
-删除id为2的行:
-```
-delete from students where id=2;
-```
-删除所有年龄小于21岁的数据:
-```
-delete from students where age<20;
-```
-删除表中的所有数据:
-```
-delete from students;
-```
-
-## 五、SELECT
 基本用法是：
 ```
 select 列名称 from 表名称 [查询条件];
@@ -169,7 +31,7 @@ is null            is not null
 条件1 and 条件2 and 条件3
 条件1 or 条件2 or 条件3
 ```
-### distinct
+## distinct
 选出不一样的
 ```
 select distinct 列名 from…
@@ -186,7 +48,7 @@ contains：CONTAINS( 字段1, '"HEIBEI province" OR beijing' )
 CONTAINS(*,'beijing')
 ）
 ```
-### group by
+## group by
 查询顺序：  
 1. 先执行where
 2. 然后把筛选后的数据group，执行聚合函数
@@ -203,7 +65,7 @@ count([distinct|all] 字段1)      sum   avg   max   min
 select 列名 as 显示列名 where...
 ```
 
-### UNION
+## UNION
 两个表并到一起，并且删掉重复内容
 ```
 select field1,field2,...,from tablename1
@@ -222,7 +84,7 @@ INTERSECT ALL表示不删除重复行。
 注：差集和交集也可以用in来实现  
 
 
-### 连接
+## 连接
 
 - 笛卡尔积（CARTESIAN PRODUCT）  
 - 内连接（INNER JOIN）：在笛卡尔积中，保留匹配的，舍去不匹配的。  
@@ -256,14 +118,14 @@ select e.empno,e.ename employeename,e.sal,e.job,l.ename loadername,d.dname,d.loc
     where  e.mgr=l.empno and l.deptno=d.deptno;
 ```
 
-#### 外连接
+### 外连接
 内连接中的```join```改为```left|right|full [outer] join```即可
 
-#### 超级分组和移动函数
+### 超级分组和移动函数
 grouping sets 没看太懂，https://www.cnblogs.com/woodytu/p/4685959.html  
 rollup和cube，这里写的比较好 https://www.cnblogs.com/dyufei/archive/2009/11/12/2573974.html  
 over
-### 子查询
+## 子查询
 单行子查询
 ```
 select enamel,sal,job
@@ -451,7 +313,3 @@ xor(异或)
 <<
 >>
 ```
-
-## 参考文献
-mySQL从入门到精通  
-https://wenku.baidu.com/view/f7f6e6dcd1f34693daef3e8b.html
