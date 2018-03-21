@@ -1,6 +1,6 @@
 ---
 layout: post
-title: sqlalchemy.
+title: sqlAlchemy.
 categories:
 tags: 1数据准备
 keywords:
@@ -8,7 +8,35 @@ description:
 order: 140
 ---
 
-## 与pandas的交互
+## 方式1：query方式
+```py
+from sqlalchemy import create_engine
+engine=create_engine("sqlite:///:memory:", echo=True)
+```
+
+```py
+engine.execute("create table users(userid char(10), username char(50))")
+resultProxy=engine.execute("insert into users (userid,username) values('user1','tony')")
+
+
+resultProxy=engine.execute("select * from users")
+resultProxy.fetchall()
+resultProxy.fetchmany()
+resultProxy.fetchone()
+resultProxy.first()
+resultProxy.scalar()# 可以返回一个标量查询的值
+
+resultProxy.close()# resultProxy 用完之后, 需要close
+
+
+resultProxy.rowcount  #return rows affected by an UPDATE or DELETE statement
+resultProxy.returns_rows  #True if this ResultProxy returns rows.
+```
+
+
+
+
+## 方式2：借助pandas
 
 生成实验用的数据
 ```py
@@ -36,7 +64,7 @@ pd.read_sql(sql='select * from tablename where e>:value', con=engine, params={'v
 ```
 
 
-## ORM
+## 方式3：ORM
 
 ### step1：创建基类
 ```py
@@ -83,8 +111,8 @@ user = session.query(User).filter(User.id=='5').one()
 ```
 
 
-### 创建连接方法一览
-#### 1. sqlite
+## 创建连接方法一览
+### 1. sqlite
 ```py
 # database URL 形式是 sqlite://<nohostname>/<path>
 engine = create_engine('sqlite:///foo.db')
@@ -100,7 +128,7 @@ engine = create_engine(r'sqlite:///C:\path\to\foo.db')
 engine = create_engine('sqlite://')
 engine = create_engine('sqlite:///:memory:')
 ```
-#### 2. postgresql
+### 2. postgresql
 ```py
 # 默认情况(即使用psycopg2)
 engine = create_engine('postgresql://scott:tiger@localhost/mydatabase')
@@ -111,7 +139,7 @@ engine = create_engine('postgresql+psycopg2://scott:tiger@localhost/mydatabase')
 # 使用pg8000
 engine = create_engine('postgresql+pg8000://scott:tiger@localhost/mydatabase')
 ```
-#### 3. MySQL
+### 3. MySQL
 ```py
 # 默认情况（即使用mysql-python）
 engine = create_engine('mysql://scott:tiger@localhost/foo')
@@ -126,14 +154,14 @@ engine = create_engine('mysql+mysqlconnector://scott:tiger@localhost/foo')
 engine = create_engine('mysql+oursql://scott:tiger@localhost/foo')
 ```
 
-#### 4. Oracle
+### 4. Oracle
 ```py
 ＃ 默认情况（即使用cx_oracle）
 engine = create_engine('oracle://scott:tiger@127.0.0.1:1521/sidname')
 # 使用cx_oracle
 engine = create_engine('oracle+cx_oracle://scott:tiger@tnsname')
 ```
-#### 5. Microsoft SQL Server
+### 5. Microsoft SQL Server
 ```py
 # 使用pyodbc
 engine = create_engine('mssql+pyodbc://scott:tiger@mydsn')
