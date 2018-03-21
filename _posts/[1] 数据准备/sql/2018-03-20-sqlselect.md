@@ -31,34 +31,33 @@ is null            is not null
 条件1 and 条件2 and 条件3
 条件1 or 条件2 or 条件3
 ```
-## distinct
-选出不一样的
-```
-select distinct 列名 from…
-select 字段1，group_concat(字段2) from 表1  group by 字段1
-select 字段1，count(字段1 from 表1 group by  字段1
-…with rollup  最后加一行总计
-```
+## 执行顺序
+1. 先连接from后的数据源(若有join，则先执行on后条件，再连接数据源)。
+2. 执行where条件
+3. 执行group by
+4. 执行having
+5. 执行order by
+6. 最后select 输出结果。
 
-(只用于where的)
-```
-（is null：字段1 is null
-is missing：字段1 is missing
-contains：CONTAINS( 字段1, '"HEIBEI province" OR beijing' )
-CONTAINS(*,'beijing')
-）
-```
+
+
+
 ## group by
-查询顺序：  
-1. 先执行where
-2. 然后把筛选后的数据group，执行聚合函数
-3. 最后用having筛选一次
-
 
 group by 相关的汇总函数
-```
+```sql
 count([distinct|all] 字段1)      sum   avg   max   min
+count(*),计算包含null行数
+count(a),计算不包含a位null的行数
+
+max, min, sum,avg
+var_pop, var_samp 方差和样本方差
+stddev_pop, stddev_samp 偏差和样本偏差
+covar_pop(col1,col2), vovar_samp 协方差和样本协方差
+corr(col1,col2) 相关系数
+count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
 ```
+
 
 给出名字
 ```
@@ -84,7 +83,7 @@ INTERSECT ALL表示不删除重复行。
 注：差集和交集也可以用in来实现  
 
 
-## 连接
+## join
 
 - 笛卡尔积（CARTESIAN PRODUCT）  
 - 内连接（INNER JOIN）：在笛卡尔积中，保留匹配的，舍去不匹配的。  
@@ -99,27 +98,33 @@ INTERSECT ALL表示不删除重复行。
 - 交叉连接
 
 
-```
+```sql
 select field1 ,field2 ... ,fieldn
-    from join_tablename1 inner join join_tablename2【inner join join_tablenamen】
-    on joincondition;
+from join_tablename1
+inner join join_tablename2【inner join join_tablenamen】
+on joincondition;
 ```
 
 三重内连接+别名
-```
+```sql
 select e.empno,e.ename employeename,e.sal,e.job,l.ename loadername,d.dname,d.loc
-    from t_employee e inner join t_tmployee l on e.mgr=l.empno
-                inner join t_dept d on l.deptno=d.deptno;
+from t_employee e
+inner join t_tmployee l
+on e.mgr=l.empno
+inner join
+t_dept d
+on l.deptno=d.deptno;
 ```
+
 以上可以用where的形式实现(更简单)
 ```
 select e.empno,e.ename employeename,e.sal,e.job,l.ename loadername,d.dname,d.loc
-    from t_employee e ,t_tmployee l ,t_dept d
-    where  e.mgr=l.empno and l.deptno=d.deptno;
+from t_employee e ,t_tmployee l ,t_dept d
+where  e.mgr=l.empno and l.deptno=d.deptno;
 ```
 
 ### 外连接
-内连接中的```join```改为```left|right|full [outer] join```即可
+内连接中的`join`改为`left|right|full [outer] join`即可
 
 ### 超级分组和移动函数
 grouping sets 没看太懂，https://www.cnblogs.com/woodytu/p/4685959.html  
@@ -195,6 +200,16 @@ case
     else     e_wage*1.05
 end
 ```
+
+### 函数1
+```
+distinct 字段1
+is null：字段1 is null
+is missing：字段1 is missing
+contains：CONTAINS( 字段1, '"HEIBEI province" OR beijing' )
+CONTAINS(*,'beijing')
+```
+
 ### 类型转化函数
 
 ```
@@ -257,18 +272,7 @@ truncate(arg1,arg2):截断arg1，arg2是位数，如果arg2是负数，则保留
 e(),pi() 常数e和常数pi
 ```
 
-### 聚合函数
-```sql
-count(*),计算包含null行数
-count(a),计算不包含a位null的行数
 
-max, min, sum,avg
-var_pop, var_samp 方差和样本方差
-stddev_pop, stddev_samp 偏差和样本偏差
-covar_pop(col1,col2), vovar_samp 协方差和样本协方差
-corr(col1,col2) 相关系数
-count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
-```
 
 ### 算术运算符
 同C
@@ -285,11 +289,13 @@ A^B 按位异或
 ```
 
 ### 比较运算符
-全部都输出逻辑结果
+输出逻辑结果
 ```
+=
+A<=>B
 >
 <
-!=
+!=，<>
 >=
 <=
 betwen and

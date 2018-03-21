@@ -172,4 +172,5 @@ engine = create_engine('mssql+pymssql://scott:tiger@hostname:port/dbname')
 
 ## 参考文献
 http://blog.csdn.net/billvsme/article/details/50197197  
-https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0014021031294178f993c85204e4d1b81ab032070641ce5000
+https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0014021031294178f993c85204e4d1b81ab032070641ce5000  
+http://blog.csdn.net/MMX/article/details/48064109
