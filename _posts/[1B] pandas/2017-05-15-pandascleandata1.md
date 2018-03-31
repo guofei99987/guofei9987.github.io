@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】读入与读出.
 categories:
-tags: 1数据准备
+tags: [1B]pandas
 keywords:
 description:
 order: 101
