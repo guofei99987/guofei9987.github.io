@@ -2,7 +2,7 @@
 layout: post
 title: 数据清洗方法.
 categories:
-tags: [1B]pandas
+tags: 1B_Pandas
 keywords:
 description:
 order: 100

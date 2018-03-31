@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】时间序列
 categories:
-tags: [1B]pandas
+tags: 1B_Pandas
 keywords:
 description:
 order: 107
