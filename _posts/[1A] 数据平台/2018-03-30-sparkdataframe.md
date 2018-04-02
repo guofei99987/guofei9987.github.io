@@ -116,5 +116,30 @@ a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 2. agg,apply 在2.3版本中的使用
 
 
+## UEF
+```py
+hiveCtx.registerFunction("stringLengthString", lambda x: len(x))
+
+hiveCtx.sql('select id,stringLengthString(col1) from tmp.tmp_hive_table')
+df1.selectExpr('id','stringLengthString(col1)')
+
+
+# 这个在pyspark 2.3才能用，还没试过：
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+df = spark.createDataFrame(
+    [(1, 1.0), (1, 2.0), (2, 3.0), (2, 5.0), (2, 10.0)],
+    ("id", "v"))
+
+@pandas_udf("id long, v double", PandasUDFType.GROUPED_MAP)
+def substract_mean(pdf):
+    # pdf is a pandas.DataFrame
+    v = pdf.v
+    return pdf.assign(v=v - v.mean())
+
+df.groupby("id").apply(substract_mean).show()
+# 参考： http://spark.apache.org/docs/latest/sql-programming-guide.html
+```
+
 ## 参考文献
 https://blog.csdn.net/wy250229163/article/details/52354278
