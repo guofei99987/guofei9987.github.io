@@ -15,7 +15,7 @@ order: 710
 ## 一些例子
 ```py
 import matplotlib.pyplot as plt
-fig=plt.figure()
+fig=plt.figure(1)
 ax=fig.add_subplot(111)
 
 rect=plt.Rectangle((0.2,0.75),0.4,0.15,color='k',alpha=0.3)
@@ -41,31 +41,27 @@ fig,ax=plt.subplots(3,2,sharex=True)
 # ax是一个3*2的list，存放各个子图的axes对象
 ```
 
-## 各个对象
-
-plt.figure()  
-
-先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
-
-它们之间的关系参照这段代码:  
+## 对象之间的关系
 ```py
-f.axes[0].lines[0]
+fig1=plt.figure(1)  
+# 先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
+
+fig1=plt.gcf()#get current figure
+axes1=plt.gca()#get current axes
+
+fig1.axes[0].lines[0]
+
+
+# get & set
+axes1=plt.getp(fig1,'axes')[0]
+lines1=plt.getp(axes1,'lines')[0]
+
+plt.setp(fig.axes[0].lines[0],'color','g')
 ```
-
-
-获取的方法1
-```py
-f=plt.gcf()#get current figure
-a=plt.gca()#get current axes
+取所有属性:
 ```
-
-获取的方法2
-```py
-f=plt.gcf()
-a=plt.getp(f,'axes')[0]
-l=plt.getp(f,'lines')[0]
+plt.setp(plt.gcf())
 ```
-
 ### 共有属性
 这些对象共有的一些属性：  
 
@@ -87,11 +83,6 @@ l=plt.getp(f,'lines')[0]
 
 ## figure
 
-```py
-f=plt.gcf()
-f=plt.figure(1)
-```
-
 figure的类型是：
 ```py
 <class 'matplotlib.figure.Figure'>
@@ -100,6 +91,8 @@ figure的类型是：
 figure下的属性（用plt.getp(f)获取）
 
 ```py
+plt.getp(fig)
+
 agg_filter = None
 alpha = None
 animated = False

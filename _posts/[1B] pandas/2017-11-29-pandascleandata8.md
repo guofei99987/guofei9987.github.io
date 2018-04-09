@@ -19,6 +19,10 @@ from datetime import datetime
 values=[2,5,7,10,12]
 dates=[datetime(2017,5,i) for i in values]
 ts=pd.DataFrame(values,index=dates)
+
+# 另一种方法（把index从str转为timestamp即可）
+df=pd.DataFrame([1,2,3],index=['2017-05-02', '2017-05-03', '2017-05-04'])
+df.index=pd.to_datetime(df.index)
 ```
 
 ## 读取
