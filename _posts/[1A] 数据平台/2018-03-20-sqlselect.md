@@ -10,7 +10,7 @@ order: 170
 
 
 
-基本用法是：
+## select
 ```
 select 列名称 from 表名称 [查询条件];
 ```
@@ -26,7 +26,7 @@ order by  列名 asc/desc;
 ```
 in（值1，值2）      not in语句
 between 取值1 and 取值2      not between and
-like ‘字符串’（通配符：%表示多个字符或0个，_表示单个字符）
+like '字符串' （通配符：%表示多个字符或0个，_表示单个字符,[charlist]字符列中的任意单一字符,[^charlist]不在字符列中的任意单一字符）
 is null            is not null
 条件1 and 条件2 and 条件3
 条件1 or 条件2 or 条件3
@@ -434,4 +434,8 @@ select * from app.app_temp_test where row_number(id)<=1;
 
 ## 参考文献
 
-https://www.cnblogs.com/liuxuewen/archive/2012/03/12/2392644.html
+https://www.cnblogs.com/liuxuewen/archive/2012/03/12/2392644.html  
+[w2school:SQL教程](http://www.w3school.com.cn/sql/)  
+[SQL字符串函数](https://www.cnblogs.com/vofill/p/6806962.html)  
+[Hive字符串操作](https://www.cnblogs.com/iiwen/p/5611761.html)  
+[Hive日期格式转换用法](http://blog.csdn.net/lichangzai/article/details/19406215)
