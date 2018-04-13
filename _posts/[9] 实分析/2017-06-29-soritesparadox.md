@@ -2,10 +2,10 @@
 layout: post
 title: 【逻辑学】连锁悖论、真值度、超赋值理论与认知主义.
 categories:
-tags: 9实分析
+tags: 9代数与分析
 keywords:
 description:
-order: 980
+order: 98001
 ---
 
 参考文献：北京大学哲学课----悖论：思维的魔方https://www.coursera.org/

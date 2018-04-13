@@ -34,8 +34,15 @@ description:
 
 相互转化：  
 - float --> datetime: datetime.datetime.fromtimestamp( float )
-- datetime --> str: datetime.datetime.strftime(format, datetime)
+- datetime --> str:
+```py
+datetime.datetime.strftime(now,'%Y-%m-%d')
+now.strftime('%Y-%m-%d')
+```
 - str --> datetime: datetime.datetime.strptime(str, format)
+```py
+datetime.datetime.strptime('2018-02-03','%Y-%m-%d')
+```
 
 
 ## datatime
