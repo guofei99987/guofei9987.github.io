@@ -135,10 +135,17 @@ $\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+\varepsilon_t$
 问题转化为检验$\gamma=0$  
 
 ### ADF检验
-DF检验只适合一阶自相关的情况。  
+DF检验只适合一阶自相关的情况。也就是假设$\varepsilon_t$没有自相关性，但实际数据大多不满足此假设，所以改进到ADF检验  
 ADF（augmented Dickey-Fuller test,增广的迪基-福勒检验法）检验适合`高阶自相关`的情况  
 
-ADF检验有三种形式：  
+
+ADF检验的三种基本模型：
+$\Delta y_t=\gamma y_{t-1}+u_t$  
+$\Delta y_t=\alpha+\gamma y_{t-1}+u_t$  
+$\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+u_t$  
+其中$u_t$是一个平稳过程，允许$u_t$存在自相关性，如此ADF检验变为如下形式：
+
+
 $\Delta y_t=\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
 $\Delta y_t=\alpha+\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
 $\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
