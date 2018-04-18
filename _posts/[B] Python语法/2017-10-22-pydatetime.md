@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【datetime】时间的介绍.
+title: 【Python】【datetime】时间
 categories:
 tags: Python语法
 keywords:
