@@ -1,36 +1,14 @@
 ---
 layout: post
-title: 【统计时序】平稳性.
+title: 【统计时序2】平稳性.
 categories:
 tags: 4统计学
 keywords:
 description:
-order: 440
+order: 442
 ---
 
-## 基本概念
-### 定义
-随机序列
-:  按时间排序与的一组随机变量  
-$..., X_1, X_2, ..., X_t,...$  
-
-
-观察值序列  
-: $x_1, x_2, ..., x_t$  
-
-
-我们的目的是 **通过观察值序列，去推断随机序列的性质** 。  
-### 概率分布族
-$F_{t_1,t_2,...,t_m}(x_1,x_2,...,x_m)$
-
-### 特征统计量
-均值$u_t=EX_t=\int_{-\infty}^{+\infty}xdF_t(x)$  
-方差$DX_t=\int_{-\infty}^{+\infty}(x-u_t)dF_t(x)$  
-自协方差$\gamma(t,s)=E(X_t-u_t)(X_s-u_s)$  
-自相关系数$\rho(t,s)=\dfrac{\gamma(t,s)}{\sqrt{DX_t DX_s}}$  
-
-
-## 时间序列的平稳性
+## 平稳性的定义
 
 ### 严平稳过程
 

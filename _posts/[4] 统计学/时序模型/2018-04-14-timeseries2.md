@@ -5,7 +5,7 @@ categories:
 tags: 4统计学
 keywords:
 description:
-order: 430
+order: 450
 ---
 
 对于不平稳的时序数据，一种思路是转化为平稳数据，也就是分解出趋势性、季节性、随机性  
