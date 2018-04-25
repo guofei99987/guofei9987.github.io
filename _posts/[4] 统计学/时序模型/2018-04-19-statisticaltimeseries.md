@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【统计时序1】基本工具
+title: 【统计时序1】工具
 categories:
 tags: 4统计学
 keywords:
