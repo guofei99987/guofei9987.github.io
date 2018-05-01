@@ -8,7 +8,7 @@ description:
 order: 431
 ---
 
-先看此知识体系
+先看此知识体系：  
 
 ![描述时序](https://raw.githubusercontent.com/guofei9987/StatisticsBlog/master/%E9%99%84%E4%BB%B6/%E6%8F%8F%E8%BF%B0%E6%97%B6%E5%BA%8F.png)
 
@@ -191,6 +191,8 @@ $$\hat Y{t+1}= \dfrac{\sum\limits_{i=1}^T \alpha_i Y_i}{\sum\limits_{i=1}^T \alp
 内容见于[【描述时序】指数平滑法.](http://www.guofei.site/2017/07/08/exponentialsmoothing.html)
 
 ## 2. 季节模型
+季节周期数的识别：看自相关图，如果有季节性，那么自相关图也会显现出一定的周期性，看哪个nlag对应的自相关系数比较大，从而识别出季节数。  
+(如果趋势性明显，就不能用这种方法了。)  
 
 
 
