@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Python】运行效率研究.
-categories:
-tags: Python语法
+categories: 趣文
+tags:
 keywords:
 description:
 order: 1111
