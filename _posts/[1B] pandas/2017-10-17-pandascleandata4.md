@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】index&colums修改.
 categories:
-tags: 1数据准备
+tags: 1B_Pandas
 keywords:
 description:
 order: 104

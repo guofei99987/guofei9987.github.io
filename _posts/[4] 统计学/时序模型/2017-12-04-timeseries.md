@@ -1,36 +1,14 @@
 ---
 layout: post
-title: 【统计时序】平稳性.
+title: 【统计时序2】平稳性.
 categories:
 tags: 4统计学
 keywords:
 description:
-order: 431
+order: 442
 ---
 
-## 基本概念
-### 定义
-随机序列
-:  按时间排序与的一组随机变量  
-$..., X_1, X_2, ..., X_t,...$  
-
-
-观察值序列  
-: $x_1, x_2, ..., x_t$  
-
-
-我们的目的是 **通过观察值序列，去推断随机序列的性质** 。  
-### 概率分布族
-$F_{t_1,t_2,...,t_m}(x_1,x_2,...,x_m)$
-
-### 特征统计量
-均值$u_t=EX_t=\int_{-\infty}^{+\infty}xdF_t(x)$  
-方差$DX_t=\int_{-\infty}^{+\infty}(x-u_t)dF_t(x)$  
-自协方差$\gamma(t,s)=E(X_t-u_t)(X_s-u_s)$  
-自相关系数$\rho(t,s)=\dfrac{\gamma(t,s)}{\sqrt{DX_t DX_s}}$  
-
-
-## 时间序列的平稳性
+## 平稳性的定义
 
 ### 严平稳过程
 
@@ -135,10 +113,17 @@ $\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+\varepsilon_t$
 问题转化为检验$\gamma=0$  
 
 ### ADF检验
-DF检验只适合一阶自相关的情况。  
+DF检验只适合一阶自相关的情况。也就是假设$\varepsilon_t$没有自相关性，但实际数据大多不满足此假设，所以改进到ADF检验  
 ADF（augmented Dickey-Fuller test,增广的迪基-福勒检验法）检验适合`高阶自相关`的情况  
 
-ADF检验有三种形式：  
+
+ADF检验的三种基本模型：
+$\Delta y_t=\gamma y_{t-1}+u_t$  
+$\Delta y_t=\alpha+\gamma y_{t-1}+u_t$  
+$\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+u_t$  
+其中$u_t$是一个平稳过程，允许$u_t$存在自相关性，如此ADF检验变为如下形式：
+
+
 $\Delta y_t=\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
 $\Delta y_t=\alpha+\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
 $\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  

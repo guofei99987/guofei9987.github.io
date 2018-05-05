@@ -5,7 +5,7 @@ categories:
 tags: 4统计学
 keywords:
 description:
-order: 431
+order: 432
 ---
 
 指数平滑法（Exponential Smoothing，ES）是常用的趋势预测方法。  
@@ -49,8 +49,18 @@ $m>0$为预测超前期数
 ### Holt-Winter no seasonal
 与Brown单一参数线性指数平滑很相似，其思路是，不对预测值进行二次平滑，而是对原序列的趋势进行平滑  
 
+
+迭代：  
 $S_t=\alpha Y_t+(1-\alpha)(S_{t-1}+b_{t-1})$    
 $b_t=\beta (S_t-S_{t-1})+(1-\beta)b_{t-1}$  
+
+
+初始值：  
+$S_0=Y_1$  
+$b_0=(Y_{n+1}-x_1)/n$  
+
+
+预测：  
 $F_{t+m}=S_t+b_t m$
 
 ## 三次指数平滑法

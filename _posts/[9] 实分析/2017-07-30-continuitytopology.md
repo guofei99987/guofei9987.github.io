@@ -2,10 +2,10 @@
 layout: post
 title: 【Real analysis(5)】连续性与拓扑
 categories:
-tags: 9实分析
+tags: 9代数与分析
 keywords:
 description:
-order: 905
+order: 90205
 ---
 
 函数的连续性也可以有拓扑含义。

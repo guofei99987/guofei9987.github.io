@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【datetime】时间的介绍.
+title: 【Python】【datetime】时间
 categories:
 tags: Python语法
 keywords:
@@ -19,7 +19,7 @@ description:
     - %d： 2位数日
     - %H： 24进制小时。%I：12进制小时
     - %M： 2位数分钟
-    - %S： （秒，可以是60和61，表示闰秒）
+    - %S： （秒，可以是60和61，表示闰秒），%S.%f精确到毫秒
     - %a周几（简称） %A周几（全称）， %w：周几，0代表周日。%u：周几，7代表周日。
     - %W一年中的第几周，每年第一个周一之前的几天认为是“第0周”， %U一年中的第几周，每年第一个周日之前的几天认为是“第0周”
     - %j 一年中的第几天，范围是001-366
@@ -34,8 +34,15 @@ description:
 
 相互转化：  
 - float --> datetime: datetime.datetime.fromtimestamp( float )
-- datetime --> str: datetime.strftime(format, datetime)
-- str --> datetime: datetime.strptime(str, format)
+- datetime --> str:
+```py
+datetime.datetime.strftime(now,'%Y-%m-%d')
+now.strftime('%Y-%m-%d')
+```
+- str --> datetime: datetime.datetime.strptime(str, format)
+```py
+datetime.datetime.strptime('2018-02-03','%Y-%m-%d')
+```
 
 
 ## datatime

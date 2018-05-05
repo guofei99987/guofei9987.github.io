@@ -12,10 +12,10 @@ order: 710
 不用面向对象方式画图，优点在于代码简单，缺点在于画多图和多子图附带各种标注时，代码很乱。  
 当然，更复杂和标注清晰的图，大部分需求场景是成熟的可视化展示，这种情况下用echart更好。  
 
-## 一个例子
+## 一些例子
 ```py
 import matplotlib.pyplot as plt
-fig=plt.figure()
+fig=plt.figure(1)
 ax=fig.add_subplot(111)
 
 rect=plt.Rectangle((0.2,0.75),0.4,0.15,color='k',alpha=0.3)
@@ -27,31 +27,41 @@ ax.add_patch(circ)
 ax.add_patch(pgon)
 plt.show()
 ```
-## 各个对象
 
-plt.figure()  
-
-先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
-
-它们之间的关系参照这段代码:  
 ```py
-f.axes[0].lines[0]
+import matplotlib.pyplot as plt
+plt.plot([0,1,2,3,4,5],[0,1,2,3,4,5])
+plt.xticks([3,4,5],['abcd','bcde','cdef'],rotation=30)
+plt.show()
 ```
 
 
-获取的方法1
 ```py
-f=plt.gcf()#get current figure
-a=plt.gca()#get current axes
+fig,ax=plt.subplots(3,2,sharex=True)
+# ax是一个3*2的list，存放各个子图的axes对象
 ```
 
-获取的方法2
+## 对象之间的关系
 ```py
-f=plt.gcf()
-a=plt.getp(f,'axes')[0]
-l=plt.getp(f,'lines')[0]
-```
+fig1=plt.figure(1)  
+# 先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
 
+fig1=plt.gcf()#get current figure
+axes1=plt.gca()#get current axes
+
+fig1.axes[0].lines[0]
+
+
+# get & set
+axes1=plt.getp(fig1,'axes')[0]
+lines1=plt.getp(axes1,'lines')[0]
+
+plt.setp(fig.axes[0].lines[0],'color','g')
+```
+取所有属性:
+```
+plt.setp(plt.gcf())
+```
 ### 共有属性
 这些对象共有的一些属性：  
 
@@ -73,11 +83,6 @@ l=plt.getp(f,'lines')[0]
 
 ## figure
 
-```py
-f=plt.gcf()
-f=plt.figure(1)
-```
-
 figure的类型是：
 ```py
 <class 'matplotlib.figure.Figure'>
@@ -86,6 +91,8 @@ figure的类型是：
 figure下的属性（用plt.getp(f)获取）
 
 ```py
+plt.getp(fig)
+
 agg_filter = None
 alpha = None
 animated = False
