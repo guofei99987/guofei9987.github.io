@@ -232,12 +232,14 @@ regex.finditer(text)  #迭代器
 \oN or \o{N}\  ASCII码表
 \xN or \x{N}
 ```
+
+
 6. 量词  
 ```
-(expr)*-----匹配任意多个(或0个)字符
-(expr)?-----0或1次
-(expr)+-----1次以上
-(expr){m,n}-----m次以上，n次以下
-(expr){m,}-------m次以上
-(expr){n}---------n次
+(expr)* #匹配任意多个(或0个)字符
+(expr)? #0或1次
+(expr)+ #1次以上
+(expr){m,n} #m次以上，n次以下
+(expr){m,} #m次以上
+(expr){n} #n次
 ```
