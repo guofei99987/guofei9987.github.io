@@ -40,6 +40,11 @@ chr(97)  #ascii码转字符
 ```py
 str(obj) 得到obj的字符串描述
 int(x) 转换成一个integer
+round(x)# 也是转换成int
+round(x,0) #截取相应的位数，返回float
+math.trunc#  向0取整
+math.ceil
+math.floor
 ```
 
 
@@ -51,7 +56,7 @@ float信息：
 import sys
 sys.float_info
 ```
-？？？ 不清楚具体的信息，搜一下
+
 ### 复数类型
 虚数部分用j或J表示，例如：  
 ```python

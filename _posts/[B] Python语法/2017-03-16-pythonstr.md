@@ -60,12 +60,17 @@ len('abc')
 'aaabc'.index('bc')  #找到则返回序号，找不到则引发ValueError
 'aaabc'.find('bc')  #找到则返回第一个的序号，找不到则返回-1，'aaabc'.find('a',1)数字表示从第几个开始找
 'aaabc'.replace('bc','x')  #替换指定字符
+
 'aaabc'.upper(),'aaabC'.lower()  #转大写/转小写
+a.swapcase() ##大写转为小写，同时小写转为大写
 'aaabc'.capitalize()  #首字母大写
 
 ','.join(list('abc'))  #前面的字符也可以为空，这时相当于对字符串做加号
 'a,b,c'.split(',')    #按','分割，并返回<list>。如果后面的参数为空，按照空格分割
+
 '  \n a,b, c '.strip()   #去两边的空格与换行,strip,lstrip,rstrip
+'abc! '.strip('a') #去掉指定字符
+
 'abc'.ljust(5) , 'abc'.rjust(5)  #填充空格使其达到指定长度
 
 
@@ -76,7 +81,8 @@ str()  返回数字对应的字符串
 
 ```
 
-## format()方法
+## 格式化方法
+### format()方法
 
 ```python
 x="{1}{2}:计算机的CPU占用了{0}%。"
@@ -95,7 +101,7 @@ print(x.format(10,"2016-12-31","python"))
 1. b:二进制，c:整数对应的unicode字符，d:整数十进制，o八进制，x小写十六进制，X大写十六进制
 2. e:小写的科学计数法，E:大写科学计数法，f浮点形式，%浮点数的百分形式
 
-## 格式化方式
+### %
 ```py
 "%(date)s %(name)s:计算机的CPU占用了%(data)s 。"%{'data':'10','date':"2016-12-31",'name':"python"}
 ```
@@ -108,6 +114,16 @@ string.split()#按空格分割,返回<list>
 string.split("a")#按a分割,返回<list>
 string.replace("o","a")#把string中的o替换成a
 ```
+
+### join
+```py
+','.join(list('abc'))
+```
+
+
+
+
+
 ## 编码问题
 ```py
 str(1)#数字转字符
@@ -196,12 +212,10 @@ c[aeiou]+t + 表示多次重复
 \r 回车符
 \e Escape
 \c 某些在正则表达式中有语法功能或特殊意义的字符c，要用\c来匹配，例如句号
-```  
+```
 
 5. 范围表达式  
 ```
-\w,\s和\d——范围表达式
-
 \w 相当于[a-zA-Z0-9_];
 \W相当于[^a-zA-Z0-9_]；
 
