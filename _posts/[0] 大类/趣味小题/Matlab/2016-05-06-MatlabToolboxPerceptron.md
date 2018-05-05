@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Matlab工具箱】感知机
-categories:
-tags: Matlab
+categories: 趣文
+tags: 
 keywords:
 description:
 ---
