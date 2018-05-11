@@ -20,7 +20,7 @@ description:
 import pandas as pd
 import scipy.stats as stats
 df=pd.DataFrame(stats.norm.rvs(loc=0,scale=1,size=120).reshape(-1,3),columns=list('abc'))
-df.loc[:,'c']=(df.loc[:,'c']>0)*1#c这一列换成离散值
+df.loc[:,'c']=(df.loc[:,'c']>0)*1 #c这一列换成离散值
 ```
 
 ## 置信区间

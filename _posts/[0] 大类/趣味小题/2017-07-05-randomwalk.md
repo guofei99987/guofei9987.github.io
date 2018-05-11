@@ -20,8 +20,8 @@ description:
 
 ```py
 import numpy as np
-nwalks=5000#5000次模拟实验
-nsteps=1000#走1000步
+nwalks=5000 #5000次模拟实验
+nsteps=1000 #走1000步
 steps=np.random.choice([-1,1],size=(nwalks,nsteps))
 
 walks=steps.cumsum(1)#每个时间点的所在位置

@@ -154,10 +154,10 @@ out:
 ```py
 df.to_clipboard到剪切板上
 to_panel
-to_period# 把时间序列数据，变成频率数据
+to_period # 把时间序列数据，变成频率数据
 to_latex
 to_html
 to_string
-to_pickle# 存到内存中
+to_pickle # 存到内存中
 to_sql
 ```

@@ -16,7 +16,7 @@ print df['two'].idxmax()  #idxmin取最小
 
 ## 描述性统计
 ```python
-df.describe(include='all').T#T表示转置，为了美观
+df.describe(include='all').T #T表示转置，为了美观
 ```
 - 用include='all'，表示对字符串也描述。对分类变量计算unique个数等等
 

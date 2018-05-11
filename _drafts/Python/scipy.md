@@ -4,8 +4,8 @@
 
 ```py
 from scipy import constants
-constants.c#真空光速
-constants.h#普朗克常亮
+constants.c #真空光速
+constants.h #普朗克常亮
 ```
 
 ### 常数2

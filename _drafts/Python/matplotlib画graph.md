@@ -49,7 +49,7 @@ if __name__ == '__main__':
     rv = uniform(loc=0, scale=1)
     V = {i: rv.rvs(size=2) for i in V_name}
     n = len(V)
-    E_noweight = rv.rvs(size=(n, n)) > 0.8#对于无向图来说，这应该是个对称阵，这里省略了
+    E_noweight = rv.rvs(size=(n, n)) > 0.8 #对于无向图来说，这应该是个对称阵，这里省略了
     print(E_noweight)
     print(V2E(V, E_noweight))
     plot_G(V, E_noweight)
@@ -67,7 +67,7 @@ V_name = range(5)
 rv = uniform(loc=0, scale=1)
 V = {i: rv.rvs(size=2) for i in V_name}
 n = len(V)
-E_noweight = rv.rvs(size=(n, n)) > 0.8#对于无向图来说，这应该是个对称阵，这里懒得改了，你按有向图来理解也没毛病
+E_noweight = rv.rvs(size=(n, n)) > 0.8 #对于无向图来说，这应该是个对称阵，这里懒得改了，你按有向图来理解也没毛病
 print(E_noweight)
 print(graph_plotter.V2E(V, E_noweight))
 graph_plotter.plot_G(V, E_noweight)

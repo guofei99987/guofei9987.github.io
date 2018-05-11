@@ -226,11 +226,11 @@ tree.export_graphviz(clf,out_file="tree.doc"  )#输出到doc
 import graphviz
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-dot_data = tree.export_graphviz(clf, out_file=None,feature_names=dataset.feature_names,  class_names=dataset.target_names,filled=True, rounded=True,special_characters=True)#参数是配置颜色等
+dot_data = tree.export_graphviz(clf, out_file=None,feature_names=dataset.feature_names,  class_names=dataset.target_names,filled=True, rounded=True,special_characters=True) #参数是配置颜色等
 graph = graphviz.Source(dot_data)
 graph.view('hehe.pdf')
 graph.save('abc.pdf')
-graph#在jupyter中有用
+graph #在jupyter中有用
 ```
 
 结果：  

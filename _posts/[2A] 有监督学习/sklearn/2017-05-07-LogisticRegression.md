@@ -65,7 +65,7 @@ data=pd.DataFrame(data)
 mask = (data.iloc[:, 0] + 0.5* data.iloc[:, 1])<0
 data['y']=mask*1
 
-data1 = data[data.iloc[:, 2] == 1]#为了画图，两类不同颜色
+data1 = data[data.iloc[:, 2] == 1] #为了画图，两类不同颜色
 data2 = data[data.iloc[:, 2] == 0]
 plt.plot(data1.iloc[:, 0], data1.iloc[:, 1], '.')
 plt.plot(data2.iloc[:, 0], data2.iloc[:, 1], '.')
@@ -76,7 +76,7 @@ plt.show()
 
 迭代求解：  
 ```py
-alpha = 0.001# 步长
+alpha = 0.001 # 步长
 step = 500   # 总共的迭代次数
 m, n = data.shape
 weights = np.ones((n, 1))
@@ -141,9 +141,9 @@ clf.predict_proba(dataset.data)#判断属于各个类别的概率
 clf.score(dataset.data,dataset.target)#准确率
 
 
-clf.coef_#系数
-clf.intercept_#截距
-clf.n_iter_#迭代次数
+clf.coef_ #系数
+clf.intercept_ #截距
+clf.n_iter_ #迭代次数
 ```
 
 ## 备注
