@@ -171,24 +171,35 @@ string.whitespace
 step1：编译一个可重用的regex对象
 ```py
 import re
-regex=re.compile('\s+')
+regex=re.compile('\s+') #就是一个regex对象
 ```
-step2：使用
+step2：使用regex对象
 
 ```py
 text='a\n b \t  c'
 regex.split(text) #返回list
 
 regex.findall(text) #返回list
-regex.finditer(text)  #迭代器
-regex.match(text) # 返回布尔值
+regex.finditer(text)  #迭代器,存放的是<SRE_Match object>
+m = regex.match(text) # 返回<SRE_Match object>
 ```
 
+step3：使用'SRE_Match'对象
+
+
 ### 正则表达式的写法
+```py
+m.start() # 返回起始位置
+m.end() # 返回结束位置(不包含该位置的字符).
+
+m.span() #返回一个tuple表示(m.start(), m.end())
+
+```
+
 
 1.  句点符号  
 ```
-'.' # 如果句号没在[]中出现，表示匹配任意一个（只有一个）字符（包括空格）。
+'.' # 如果句号没在[]中出现，表示匹配任意一个（只有一个）字符（包括空格，但除去换行符）。
 ```
 2. 方括号符号
 ```  
@@ -196,10 +207,16 @@ regex.match(text) # 返回布尔值
 ^表示取反，例如[^abc]表示除了a,b,c之外的所有字符  
 + 表示多次重复c[aeiou]+t  
 ```
-3.  方括号中的连接符  
+3.  范围表达式
 ```
  '[c1-c2]' ——匹配从字符c1开始到字符c2结束的字母序列（按字母表中的顺序）中的任意一个。
 例如，[a-zA-Z]表示英文字母，[0-9]表示任意数字  
+\w 相当于[a-zA-Z0-9_]
+\W 相当于[^a-zA-Z0-9_]
+\s 相当于[\t\f\n\r]
+\S 相当于[^\t\f\n\r]
+\d 相当于[0-9]
+\D 相当于[^0-9]
 ```
 4. 转义符  
 ```
@@ -220,12 +237,7 @@ regex.match(text) # 返回布尔值
 ```
 5. 范围表达式  
 ```
-\w 相当于[a-zA-Z0-9_];
-\W 相当于[^a-zA-Z0-9_]；
-\s 相当于[\t\f\n\r]；
-\S 相当于[^\t\f\n\r]；
-\d 相当于[0-9]；
-\D 相当于[^0-9]。
+
 \oN or \o{N}\  ASCII码表
 \xN or \x{N}
 ```
@@ -234,7 +246,7 @@ regex.match(text) # 返回布尔值
 (expr)* #匹配任意多个(或0个)字符
 (expr)? #0或1次
 (expr)+ #1次以上
-(expr){m,n} #m次以上，n次以下
+(expr){m,n} #m次以上，n次以下。例如ab{1,3}c,可以匹配abc,abbc,abbbc
 (expr){m,} #m次以上
 (expr){n} #n次
 ```
