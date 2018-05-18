@@ -385,11 +385,11 @@ function() OVER([partition_clause]  order_by_clause)
 
 ### over部分
 ```
-over（order by col1）：对查询的整个数据范围内的数据，按照字段col1排序
-over（partition by col2）：按照字段col2分组，统计每个组内的数据
-over（partition by col2 order by col1）：按照字段col2分组，每个分组内按照字段col1排序
-over（order by col3 range between 2 preceding and 2 following）：窗口范围为当前行数据幅度减2加2后的范围内的 ---- 按列值控制窗口大小
-over（order by col3 rows between 2 preceding and 2 following）：窗口范围为当前行前后各移动2行 ---- 按行数控制窗口大小
+over(order by col1)：对查询的整个数据范围内的数据，按照字段col1排序
+over(partition by col2)：按照字段col2分组，统计每个组内的数据
+over(partition by col2 order by col1)：按照字段col2分组，每个分组内按照字段col1排序
+over(order by col3 range between 2 preceding and 2 following)：窗口范围为当前行数据幅度减2加2后的范围内的 ---- 按列值控制窗口大小
+over(order by col3 rows between 2 preceding and 2 following)：窗口范围为当前行前后各移动2行 ---- 按行数控制窗口大小
 ```
 
 关键字解释：

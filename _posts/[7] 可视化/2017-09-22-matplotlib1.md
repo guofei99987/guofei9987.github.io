@@ -12,11 +12,47 @@ order: 710
 不用面向对象方式画图，优点在于代码简单，缺点在于画多图和多子图附带各种标注时，代码很乱。  
 当然，更复杂和标注清晰的图，大部分需求场景是成熟的可视化展示，这种情况下用echart更好。  
 
-## 一些例子
+## 示例
+
+### 示例1：plot
 ```py
 import matplotlib.pyplot as plt
+fig,ax=plt.subplots(1,1)
+ax.plot([0,1,2,3,4,5],[0,1,4,9,16,25],label='$y=x^2$')
+plt.legend()
+# label可以是LaTeX公式
+
+plt.xticks([3,4,5],['abcd','bcde','cdef'],rotation=30)
+# 把指定数字替换成文字
+
+plt.ylim(-5,30)
+# 改变显示范围
+
+plt.xlabel('Time(s)')
+plt.ylabel('Volt')
+plt.title('Pyplot')
+
+
+plt.show()
+```
+
+![matplotlib](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/matplotlib.png?raw=true)
+
+
+
+另一种取fig和ax的方法
+```py
 fig=plt.figure(1)
 ax=fig.add_subplot(111)
+```
+
+
+### 示例2：方块
+```py
+import matplotlib.pyplot as plt
+fig,ax=plt.subplots(1,1,sharex=True)
+# fig,ax=plt.subplots(3,2)，ax是一个3*2的list，存放各个子图的axes对象
+
 
 rect=plt.Rectangle((0.2,0.75),0.4,0.15,color='k',alpha=0.3)
 circ=plt.Circle((0.7,0.2),0.15,color='b',alpha=0.3)
@@ -28,18 +64,11 @@ ax.add_patch(pgon)
 plt.show()
 ```
 
-```py
-import matplotlib.pyplot as plt
-plt.plot([0,1,2,3,4,5],[0,1,2,3,4,5])
-plt.xticks([3,4,5],['abcd','bcde','cdef'],rotation=30)
-plt.show()
-```
 
 
-```py
-fig,ax=plt.subplots(3,2,sharex=True)
-# ax是一个3*2的list，存放各个子图的axes对象
-```
+
+
+
 
 ## 对象之间的关系
 ```py
