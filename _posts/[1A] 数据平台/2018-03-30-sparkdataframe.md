@@ -11,26 +11,36 @@ DataFrame的生成见于另一篇文章
 DataFrame转RDD后也有一系列的使用技巧，见于另一篇文章  
 
 这里介绍DataFrame的操作
-
-## 1. Action
-show操作
+## 基本操作
+### 导入所需包
 ```py
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
+```
+
+### show
+```
+#没用了
 df.head(5) #类似RDD，返回一个list，里面多个Row
 df.take(5) #类似RDD，效果同head
 df.collect() #多个Row组成的list
-df.limit(5) #取前5行，不同的是，是transformation
+df.first() #返回一个Row
+```
 
+```py
+
+df.limit(5) #取前5行，不同的是，是transformation
 df.show() #返回20条数据
 df.show(30) #返回30条数据
-
-df.first() #返回一个Row
 
 
 df.describe() #返回统计值，是一个action，但返回的是DataFrame
 df.describe('col1','col2') #返回指定字段的统计值
 
-
+df.columns #返回一个list，内容是列名
+df.dtypes
 ```
+
 
 ## 查询
 
@@ -42,19 +52,44 @@ df.filter(df.col1>5)
 df.select('col1','col2') # 取指定列,返回RDD
 df.selectExpr('col1 as id','col2*2 as col2_value')
 ```
-## drop
+
+## 数据清洗类操作
+### drop
 ```py
 df.drop('col1','col2')
 ```
 
-## order
+### 去重
+```py
+df.distinct() #返回一个去重的DataFrame
+df.dropDuplicates()
+df.dropDuplicates(subset=['col1','col2'])
+
+
+df.dropna(how='any', thresh=None, subset=None)
+# thresh 是一个阈值，例如，thresh=3，代表一行的缺失值达到3个以上时，移除这一行
+
+df.fillna(0)
+```
+
+例子:一个数据表，可能重复的数据'id'这个字段也不一样，那么要去重就只能在除id字段以外的所有字段中去重，这么写：
+```py
+df.dropDuplicates(subset=[i for i in df.columns if i != 'id'])
+
+```
+
+
+## 统计分析类操作
+### order
 ```py
 df.orderBy(['col1','col2'],ascending=[0,1])
 ```
-## 列名
+### 分位数
 ```py
-df.columns #返回一个list，内容是列名
-df.dtypes
+df.approxQuantile('col1',[0.25,0.75],0.05) # 返回一个list，大小与第二个参数相同，表示分位数。
+# 第一个参数是列名，第二个参数是分位数，第三个参数是准确度，设定为0时代价巨大
+
+df.corr('pv','uv') # 相关系数，目前只支持两个字段，只支持Person相关系数
 ```
 
 ## groupby
@@ -68,7 +103,7 @@ df.groupby('col1').max('col2','col3')
 # agg
 df.groupby('col1').agg({'col2':'mean'})
 ```
-2018年2月22日，pyspark 2.3 上线，对udf和agg，apply等有巨大的改进  
+
 
 一下是相关网站：  
 http://spark.apache.org/docs/2.1.1/api/python/index.html  
@@ -76,16 +111,8 @@ https://databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.h
 http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData    
 https://blog.csdn.net/dabokele/article/details/52802150  
 https://blog.csdn.net/sparkexpert/article/details/51042970
-## 去重
-```py
-df.distinct() #返回一个去重的DataFrame
-df.dropDuplicates()
-df.dropDuplicates(['col1','col2'])
 
 
-df.dropna(how='any', thresh=None, subset=None)
-
-```
 
 ## 合并操作
 
@@ -111,16 +138,12 @@ a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 
 
 
-## 待解决的问题
-1. df.select()，df.filter() 可以筛选行，那么能不能传入udf，实现高级筛选
-2. agg,apply 在2.3版本中的使用
-
 
 ## UEF
 ```py
-hiveCtx.registerFunction("stringLengthString", lambda x: len(x))
+spark.registerFunction("stringLengthString", lambda x: len(x))
 
-hiveCtx.sql('select id,stringLengthString(col1) from tmp.tmp_hive_table')
+spark.sql('select id,stringLengthString(col1) from tmp.tmp_hive_table')
 df1.selectExpr('id','stringLengthString(col1)')
 
 
@@ -140,6 +163,14 @@ def substract_mean(pdf):
 df.groupby("id").apply(substract_mean).show()
 # 参考： http://spark.apache.org/docs/latest/sql-programming-guide.html
 ```
+
+## funs
+增添一列递增、唯一（但不连续）的数字
+```py
+import pyspark.sql.functions as fn
+df_abnormal_id=df1.select(fn.monotonically_increasing_id().alias('id'),'*')
+```
+
 
 ## 参考文献
 https://blog.csdn.net/wy250229163/article/details/52354278

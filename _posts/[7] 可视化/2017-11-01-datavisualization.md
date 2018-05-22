@@ -204,6 +204,36 @@ plt.show()
 <img src='http://www.guofei.site/public/postimg/clustermap2.png'>   
 
 
+
+
+## 常用自定义画图
+
+一种回归并画图的例子
+
+```py
+# 导入包与数据
+import pandas as pd
+from statsmodels.sandbox.regression.predstd import wls_prediction_std
+import matplotlib.pyplot as plt
+import numpy as np
+df=pd.DataFrame(np.random.rand(200).reshape(-1,2),columns=['x','resid'])
+df.loc[:,'y']=2*df.loc[:,'x']+0.5*df.loc[:,'resid']+1
+
+# 建模
+import statsmodels.formula.api as smf
+lm_s = smf.ols(formula='y ~ x', data=df).fit()
+
+# 画图
+prstd, iv_l, iv_u = wls_prediction_std(lm_s)
+fig, ax = plt.subplots()
+ax.plot(df.x, df.y, 'o', label="data")
+ax.plot(df.x, lm_s.fittedvalues, 'r-', label="OLS")
+ax.plot(df.x, iv_u, 'b--')
+ax.plot(df.x, iv_l, 'b--')
+ax.legend(loc='best')
+plt.title('R2={a:.2f},y={b:.3f}x+{c:.3f}'.format(a=lm_s.rsquared,b=lm_s.params[0],c=lm_s.params[1]))
+plt.show()
+```
 ## 参考文献
 [^violinplot]:  http://seaborn.pydata.org/generated/seaborn.violinplot.html  
 
