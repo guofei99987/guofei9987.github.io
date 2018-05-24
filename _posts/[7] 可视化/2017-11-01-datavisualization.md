@@ -234,6 +234,10 @@ ax.legend(loc='best')
 plt.title('R2={a:.2f},y={b:.3f}x+{c:.3f}'.format(a=lm_s.rsquared,b=lm_s.params[0],c=lm_s.params[1]))
 plt.show()
 ```
+
+![regression_plot](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/regression_plot.png?raw=true)
+
+
 ## 参考文献
 [^violinplot]:  http://seaborn.pydata.org/generated/seaborn.violinplot.html  
 

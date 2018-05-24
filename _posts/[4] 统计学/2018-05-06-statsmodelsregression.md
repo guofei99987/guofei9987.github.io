@@ -211,8 +211,6 @@ table = sm.stats.anova_lm(moore_lm, typ=2) # Type 2 ANOVA DataFrame
 
 
 
-![regression_plot](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/regression_plot.png?raw=true)
-
 
 
 

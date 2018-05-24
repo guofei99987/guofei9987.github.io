@@ -102,7 +102,7 @@ del obj['k1']           # 自动触发执行 __delitem__
 ```
 
 
-参考文献：
+参考文献：  
 http://python.jobbole.com/82023/  
 
 http://python.jobbole.com/83747/  

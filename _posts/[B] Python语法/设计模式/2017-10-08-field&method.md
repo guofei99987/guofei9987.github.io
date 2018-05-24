@@ -63,22 +63,21 @@ class D(C):
         print(self.PublicStatic)
         #print(self.__PrivateStatic)#报错，子类不能访问父类的私有字段
         print(self.PublicDynamic)
-        #print(self.__PrivateDynamic)报错，
+        #print(self.__PrivateDynamic)报错，之类不能访问父类的私有字段
 
-#C.PublicStatic         # 类访问
-#C.__PrivateStatic#报错，只有类内可以访问
-#C.PublicDynamic
+# C.PublicStatic         # 类可以访问公有字段
+# C.__PrivateStatic # 报错，只有类内可以访问私有字段，
+# C.PublicDynamic # 报错，动态字段属于对象，而不是类
 
-#obj = C()
-#obj.func()     # 类内部可以访问
-#obj.PublicStatic#报错，动态字段不属于类
-#obj.__PrivateStatic#报错，只有类内可以访问
-#obj.PublicDynamic
-#obj.__PrivateDynamic#报错，只有类内可以访问
+# obj = C()
+# obj.func()     # 类内部可以访问
+# obj.PublicStatic # 静态字段属于类，对象也可以访问
+# obj.PublicDynamic # 动态字段属于对象，对象可以访问，但类不能
+# obj.__PrivateStatic#报错，只有类内可以访问
+# obj.__PrivateDynamic#报错，只有类内可以访问
 
 obj_son = D()
 obj_son.show() # 派生类中可以访问
-#obj
 
 ```
 
@@ -127,7 +126,6 @@ Foo.class_func()
 Foo.static_func()
 ```
 
-### 属性
 
 ### 经典类-装饰器型属性
 ```py
