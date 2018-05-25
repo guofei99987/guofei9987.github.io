@@ -175,55 +175,44 @@ for key,df_group in df.groupby(['w','x'])['z','y']:
 
 ### agg()
 
-数据准备  
 ```py
 import pandas as pd
 import numpy as np
-df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
-df.loc[:,'w']=[0,0,1,1]
-df.groupby('w').agg('count')
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+df.a=(df.a>0.5)*1
+df.b=(df.b>0.5)*1
+
+# 对所有列做多个agg
+df.groupby('a')['d','e'].agg([np.sum,np.mean,np.min,np.max])
+
+# 对每个列做不同的agg
+df.groupby(['a','b']).agg({'c':'mean','d':np.std,'e':lambda x:x.mean(),'e':func})
 ```
 
-后接自定函数
-```py
-df.groupby('w').agg(func)
-```
-func是一个函数，接收每个group每列的Series对象,输出一个数，  
-
-后接函数  
-```py
-df.groupby('w')[['z','y']].agg([np.sum,np.mean,np.min,np.max])
-```
+后接
+- 常用函数('count','sum'...)
+- np函数 (np.max, np.min, np.sum, np.mean, np.median, np.std, np.std, np.size)
+- 自定义函数(func,lambda表达式)
 
 
-后接自定义函数，输入时每个group的每个列作为Series，返回一个数  
-func不能接受Series时，会尝试接受分组DataFrame，并输出一个数，或者一行数   
+后接自定义函数时，该自定义函数输入时每个group的每个列作为Series，返回一个数  
+func接受Series报错时，会尝试接受分组DataFrame，并输出一个数，或者一行数   
 示例：  
 ```py
 df.groupby('w').agg(lambda dd: dd.loc[(dd.z+dd.y).idxmax()])
 ```
 
-- np.max, np.min, np.sum
-- np.mean,  np.median, np.std, np.std
-- 'count', np.size
-
 #### agg()命名
 可以手动给agg后的每列命名
 ```py
-import pandas as pd
-import numpy as np
-df=pd.DataFrame(np.arange(32).reshape(-1,4),columns=list('wxyz'))
-df.loc[:,'w']=[0,0,1,1,0,1,0,1]
-df.groupby('w').agg([('one','mean'),('two','std')]) #两列不再以mean, std命名，而是改成'one', 'two'
-df.groupby('w').agg({'x':'mean','y':'count'}) #每列求不一样的统计量
-```
-也可以批量命名
-```py
-df.groupby('w').mean().add_prefix('mean_of_')
+df.groupby('a').agg([('one','mean'),('two','std')]) #两列不再以mean, std命名，而是改成'one', 'two'
+df.groupby('a').mean().add_prefix('mean_of_') # 批量命名
 ```
 ### transfrom()
 
-同agg(),func接受每个group的Series，如果不能接受接受Series时，会尝试接受分组DataFrame，
+效果同agg(),func接受每个group的Series，如果不能接受接受Series时，会尝试接受分组DataFrame，
 
 例如，下面用一行代码做到了分组标准化
 
@@ -254,4 +243,36 @@ df.groupby('col1').apply(func,n=1,b=3) # n=1, b=3是func的输入
 
 ```py
 creditcard_exp.groupby('gender')['avg_exp'].describe()
+```
+
+## 非groupby的agg
+### agg
+```py
+import pandas as pd
+import numpy as np
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+
+def func(data):
+    return data.max()
+
+df.agg([np.mean,func]) # 此例返回2行，一行mean，一行func
+# func接受每一列作为Series，返回一个数字
+
+df.agg({'a':func}) # 对指定列做func，与上一条有个区别，func可以返回多组数字，这种情况下，func返回的多组数字是这条语句返回的多行
+```
+
+### transform
+```py
+import pandas as pd
+import numpy as np
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+
+def func(data):
+    return data+1
+
+df.transform({'a':func,'b':func}) # func需要接受df每一列作为Series，返回同样大小的Series
 ```

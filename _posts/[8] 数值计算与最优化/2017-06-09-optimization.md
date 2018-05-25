@@ -5,6 +5,7 @@ categories:
 tags: 8数值计算与最优化
 keywords:
 description:
+order: 701
 ---
 
 
@@ -25,21 +26,23 @@ g_j(x) \leq 0
 
 ## 凸集分离定理  
 
-### 凸集的定义  
-凸集的定义：  
-$X \subset R^n$是一个凸集，当且仅当：  
+
+凸集
+:    $X \subset R^n$是一个凸集，当且仅当：  
 $$\forall x_1,x_2 \in X,\forall \alpha\in[0,1]$$,都有,  
-$$\alpha x_1+(1-\alpha)x_2 \in X$$
+$$\alpha x_1+(1-\alpha)x_2 \in X$$  
 
-### 超平面的定义
 
-超平面是这样的点集：   
-$$X=\{ x \mid c^Tx=z\}$$
 
-### 支撑超平面
+超平面
+:    超平面是这样的点集$$X=\{ x \mid c^Tx=z\}$$
 
-X是凸集，$c^Tx=0$ 是一个超平面。  
+
+
+支撑超平面
+:    X是凸集，$c^Tx=0$ 是一个超平面。  
 如果X的边界点上某个点在超平面上，X所有点在超平面的某一侧，那么称超平面$c^Tx=0$为凸集X的支撑超平面  
+
 
 另外，边界点的定义：如果点P的任一邻域内既含有属于E的点，又含有不属于E的点，则称P为E的边界点。  
 
@@ -69,9 +72,7 @@ $$G(x)=\nabla^2 f(x) =\left [ \begin{array}{ccc}
 \end{array}\right ]$$  
 
 
-<br>
-<br>
-列举一些凸函数的例子：  
+### 凸函数的例子
 - 线性函数和仿射函数
 - 最大值函数
 - 幂函数
@@ -79,6 +80,7 @@ $$G(x)=\nabla^2 f(x) =\left [ \begin{array}{ccc}
 - 指数和的对数$f(x)=\log(exp(x_1)+exp(x_2)+...+exp(x_n))$
 - 几何平均$f(x)=(\prod\limits_{i=1}^n x_i)^1/n$
 - 范数
+
 
 ## 线性方程组：迭代求解法
 $$Ax=b$$
