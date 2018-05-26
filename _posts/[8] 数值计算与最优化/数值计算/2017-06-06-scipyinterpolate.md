@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【插值】scipy.interpolate.
-categories: 
+categories:
 tags: 8数值计算与最优化
 keywords:
 description:
+order: 7512
 ---
 
 ## interp1d

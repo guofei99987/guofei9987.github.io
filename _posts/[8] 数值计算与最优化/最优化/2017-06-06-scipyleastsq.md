@@ -5,6 +5,7 @@ categories:
 tags: 8数值计算与最优化
 keywords:
 description:
+order: 7301
 ---
 
 ## 常见的曲线拟合

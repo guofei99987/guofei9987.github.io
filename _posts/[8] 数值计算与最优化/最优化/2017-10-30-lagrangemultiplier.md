@@ -1,21 +1,22 @@
 ---
 layout: post
-title: 【最优化】拉格朗日乘子法.
+title: 【约束非线性优化】拉格朗日乘子法与KKT条件.
 categories:
 tags: 8数值计算与最优化
 keywords:
 description:
-order: 720
+order: 7200
 ---
 
 拉格朗日乘子法（Lagrange Multiplier)是解决有约束条件的优化问题的重要方法  
 
 
 ## 问题
-问题的一般形式：  
+回忆非线性最优化的问题表达形式
 ### 无约束优化问题
+$\min f(x)$  
+[另一篇文章]
 
-$\min f(x)$
 
 ### 等式约束优化问题
 $\min f(x)$,   
@@ -31,6 +32,7 @@ $h_i(x) = 0; i =1, ..., n $
 
 常用KKT条件
 
+## 等式约束优化问题
 ## 一个看似可行的方案
 
 考察这样的问题：  

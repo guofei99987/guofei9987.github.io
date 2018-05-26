@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【解方程】scipy.optimize.solve.
-categories: 
+categories:
 tags: 8数值计算与最优化
 keywords:
 description:
+order: 7510
 ---
 ### fsolve求方程的解
 如果要求解方程：  

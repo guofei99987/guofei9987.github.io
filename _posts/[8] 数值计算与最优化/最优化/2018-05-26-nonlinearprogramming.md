@@ -1,103 +1,22 @@
 ---
 layout: post
-title: 【最优化】理论篇.
+title: 【非线性无约束最优化】理论.
 categories:
 tags: 8数值计算与最优化
 keywords:
 description:
-order: 701
+order: 7001
 ---
 
 
-## 数学描述
-最优化的一般形式：
 
-$$minf(x)$$  
-$$s.t. \left \{ \begin{array}{ccc}
-h_i(x)=0\\
-g_j(x) \leq 0
-\end{array} \right.$$  
-
-
-- 若f,h,g都是线性函数，称为线性规划
-- 若其中任意一个是非线性函数，称为非线性规划
-- 若f是二次函数，h，g是线性函数，称为二次规划
-- 若f是向量函数，称为多目标规划  
-
-## 凸集分离定理  
-
-
-凸集
-:    $X \subset R^n$是一个凸集，当且仅当：  
-$$\forall x_1,x_2 \in X,\forall \alpha\in[0,1]$$,都有,  
-$$\alpha x_1+(1-\alpha)x_2 \in X$$  
-
-
-
-超平面
-:    超平面是这样的点集$$X=\{ x \mid c^Tx=z\}$$
-
-
-
-支撑超平面
-:    X是凸集，$c^Tx=0$ 是一个超平面。  
-如果X的边界点上某个点在超平面上，X所有点在超平面的某一侧，那么称超平面$c^Tx=0$为凸集X的支撑超平面  
-
-
-另外，边界点的定义：如果点P的任一邻域内既含有属于E的点，又含有不属于E的点，则称P为E的边界点。  
-
-### 凸集分离定理
-
-如果两个凸集没有交集，那么就可以用超平面将其隔开。  
-
-## 凸函数
-
-$f$是定义在凸集$C$上的函数，  
-如果$\forall x_1,x_2 \in C,\alpha \in [0,1]$,都有  
-$f(\alpha x_1+(1-\alpha)x_2) \leq f(\alpha x_1)+ f((1-\alpha)x_2)$  
-那么$f$是凸函数
-
-### 凸函数的判定
-1. 凸函数的线性组合也是凸函数。  
-如果$f_1,f_2,...f_k$是凸函数，那么$\phi(x)=\sum\limits_{i=1}^k \lambda_i f_i (x)$也是凸函数
-2. 如果凸集$D \subset R^n$内，$f(x)$可微，则$f(x)$是D内的凸函数的充分必要条件是，$\forall x,y\in D$,   
-$f(y) \geq f(x)+ \nabla f(x)^T (y-x)$  
-3. 如果凸集$D \subset R^n$内，$f(x)$二阶可微，则$f(x)$是D内的凸函数的充分必要条件是，$\forall x\in D$,   
-$f(x)$的Hesse矩阵半正定。  
-$$G(x)=\nabla^2 f(x) =\left [ \begin{array}{ccc}
-\dfrac{\partial^2 f}{\partial x_1^2}&\dfrac{\partial^2 f}{\partial x_1 \partial x_2}&...&\dfrac{\partial^2 f}{\partial x_1 \partial x_n}\\
-\dfrac{\partial^2 f}{\partial x_1 x_2}&\dfrac{\partial^2 f}{\partial x_2^2}&...&\dfrac{\partial^2 f}{\partial x_2 \partial x_n}\\
-...&...&...&...\\
-\dfrac{\partial^2 f}{\partial x_n \partial x_1}&\dfrac{\partial^2 f}{\partial x_n \partial x_2}&...&\dfrac{\partial^2 f}{\partial x_n^2}
-\end{array}\right ]$$  
-
-
-### 凸函数的例子
-- 线性函数和仿射函数
-- 最大值函数
-- 幂函数
-- 对数函数
-- 指数和的对数$f(x)=\log(exp(x_1)+exp(x_2)+...+exp(x_n))$
-- 几何平均$f(x)=(\prod\limits_{i=1}^n x_i)^1/n$
-- 范数
-
-
-## 线性方程组：迭代求解法
-$$Ax=b$$
-线性代数给出的解法是高斯消元法。  
-然而，当矩阵$A$极大时，高斯消元的算法复杂度非常高。  
-迭代法：  
-$$x=Bx+f$$
-任意给出$x_0$,就可以迭代求解。  
-实验发现，收敛速度很快。  
-当然，对于某些系数，也有可能算法不收敛。  
 
 ## 一维搜索算法
 
 ### 平分法
 适用于一维、单峰、可微的情况
 1. 找到初始区间[a,b]  
-$x_0$为初始点，$\Delta x$是步长。如果$f'(x_0)<0$,则$x_1=x_0+\Delta x$.如果$f'(x_1)<0$,那么$x_2=x_1+\Delta x$.一直做下去，直到$f(x_n)>0$
+$x_0$为初始点，$\Delta x$是步长。如果$f'(x_0)<0$,则$x_1=x_0+\Delta x$.如果$f'(x_1)<0$,那么$x_2=x_1+\Delta x$.一直做下去，直到$f(x_n)>0$  
 
 2. 迭代寻优  
 $x_0=(a+b)/2$.如果$f(x_0)>0$,区间为$[a,x_0]$.如果$f(x_0)<0$,区间为$[x_0,b]$.
@@ -152,24 +71,69 @@ step5: k=k+1，转到3
 
 ### 共轭梯度法
 前提：二阶可微  
+思路：共轭梯度法用于二次函数。也可以推广到一般函数时，认为局部是二次函数。  
+
+
+Q-共轭
+:    $p_i Q p_j =0$叫做$p_i,p_j$是 **Q-共轭** 的  
+
+
+目标函数为二次函数$f(x)=\dfrac{1}{2}x^T Qx+b^Tx+c$，其中Q为实对称矩阵，$x=(x_1,...,x_n)^T$  
+那么可以找到一组基$$\{ p_1,p_2,...p_n\}$$，这组基两两 **Q-共轭**  
+在这组基下，$f(x)$转化为这个形式$f(x)=f_1(x_1)+f_2(x_2)+...+f_n(x_n)$  
+对于这个形式，只需要沿着每个坐标轴进行一次一维搜索，就可以找到全局最优解（总共n次搜索）  
+整个算法围绕如何找到这一组基展开  
+
+
+算法如下  
+**step1**：任选一个初始点$x^{(1)}\in R^n$,令$p_1=-\nabla f(x^{(1)}), k=1$  
+**step2**：若$\nabla f(x^{(k)})=0$，算法终止；否则  
+$x^{(k+1)}=x^{(k)}+\alpha_k p_k$  
+$\alpha_k=\dfrac{-p_k^T \nabla f(x^{(k)})}{p_k^T Q p_k}$  
+$p_{k+1}=-\nabla f(x^{(k+1)})+\lambda_kp_k$  
+$\lambda_k=\dfrac{p_k^T Q\nabla f(x^{(k+1)})}{p_k^T Q p_k}$  
+**step3**：k=k+1，返回step2  
+
+
+可以证明，以上算法得到的$p_1,p_2,...p_n$两两Q-共轭，因此迭代n次后，一定得到最优解。  
+
+
+对于一般二阶可谓函数$f(x)$，在每个局部  
+$f(x) \thickapprox f(x^{(x)})^T(x-x^{(k)})+\dfrac{1}{2}(x-x^{(k)})\nabla^2 f(x^{(k)})(x-x^{(k)})$  
+用Hesse矩阵来作为二次函数中的Q是合理的。  
+进一步说，Hesse矩阵计算量巨大，考虑进一步优化，幸运的是这个成立：$\lambda_k=\dfrac{\mid\mid \nabla f(x^{(k+1)})\mid\mid^2}{\mid\mid \nabla f(x^{(k)})\mid\mid^2}$  
+
+
+算法如下  
+**step1**：任选一个初始点$x^{(1)}\in R^n$,令$d_1=-\nabla f(x^{(1)}), k=1$  
+**step2**：若$\nabla f(x^{(k)})=0$，算法终止；否则  
+$x^{(k+1)}=x^{(k)}+\alpha_k d_k$  
+$\alpha_k=\arg\min f(x^{(k)}+\alpha d_k)$  
+$d_{k+1}=-\nabla f(x^{(k+1)})+\lambda_kd_k$  
+$\lambda_k=\dfrac{\mid\mid \nabla f(x^{(k+1)})\mid\mid^2}{\mid\mid \nabla f(x^{(k)})\mid\mid^2}$  
+**step3**：k=k+1，返回step2  
+
+
 
 目标函数是二次函数时，用共轭方向作为搜索方向。  
 一般的二阶可微函数，局部近似视为二次函数，用共轭方向作为搜索。  
 
-### 牛顿法和拟牛顿法
+## 牛顿法
+
 牛顿法(Newton method)和拟牛顿法(quasi Newton method), 优点是收敛速度快。  
 牛顿法每一步需要求解Hesse矩阵的逆矩阵。  
 拟牛顿法用正定矩阵近似Hesse矩阵的逆矩阵，进一步简化了运算。  
 
 ### 牛顿法
+特点：
+- 需要知道一阶导数和二阶导数。   
+- 牛顿法收敛速度非常快。  
+- 如果二阶梯度不正定，可能不收敛  
 
-需要知道一阶导数和二阶导数。   
-牛顿法收敛速度非常快。  
-如果二阶梯度不正定，可能不收敛  
 
-
-二阶可微函数，局部近似视为二次函数，搜索方向和大小可以立即用解析式确定。  
-反复迭代。  
+原理：  
+- 二阶可微函数，局部近似视为二次函数，搜索方向和大小可以立即用解析式确定。  
+- 反复迭代。  
 
 
 考虑无约束最优化问题$\min\limits_{x\in E_n} f(x)$  
@@ -177,6 +141,8 @@ step5: k=k+1，转到3
 
 
 二阶泰勒展开：$f(x)=f(x_k)+g^T(x_k)(x-x_k)+1/2 (x-x_k)^T H(x_k)(x-x_k)$  
+两边求一阶导数，$\nabla f(x)=H(x_k)(x-x_k)+g^T(x_k)$  
+根据最优性条件$\nabla f(x)=0$,得出$x^* - x_k = -Q^{-1}b$  
 
 
 利用极小值的必要条件$\nabla f(x)=0$，推出  
@@ -189,7 +155,7 @@ $x=x_k-H^{-1}(x_k)g(x_k)$
 算法流程：  
 输入：$f(x), g(x)=\nabla f(x), H(x)$，精度要求$\varepsilon$  
 step1: 取初始点$x_0, k=0$  
-step2: 计算$g_k=g(x_k)$，if $\mid \mid g_k \mid \mid<\varepsilon$:$x^* =x_k$,停止运算
+step2: 计算$g_k=g(x_k)$，if $\mid \mid g_k \mid \mid<\varepsilon$ : $x^* =x_k$,停止运算  
 step3：计算$H_k=H(x_k)$，求$p_k$，使得$H_kp_k=-g_k$  
 step4: $x_{k+1}=x_k+p_k$  
 step5: $k=k+1$转到2

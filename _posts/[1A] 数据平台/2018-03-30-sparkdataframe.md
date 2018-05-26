@@ -96,12 +96,23 @@ df.corr('pv','uv') # 相关系数，目前只支持两个字段，只支持Perso
 ```py
 df.groupby('col1') # 返回一个GroupedData对象，可以对这个对象进行很多操作
 
-#例如：
+#例1
 df.groupby('col1').max('col2','col3')
 # min,sum,mean,count
+df.groupBy('col1').max() # 不加参数就是对所有列做同样的操作
 
-# agg
-df.groupby('col1').agg({'col2':'mean'})
+
+# agg1:默认函数
+df.groupby('col1').agg({'col2':'mean','col3':'sum'}) # 似乎不能与F混用
+# agg2：F中的函数
+from pyspark.sql import functions as F
+df.groupBy('col1').agg(F.countDistinct('col2'))
+# agg3：自定义函数
+## agg3_1：udf左右于被 groupBy 的列，一一映射就有意义
+spark.udf.register('udf_func1',lambda x:x+1)
+df.groupBy('a').agg({'a':'udf_func1','b':'std'})
+## agg3_2：udf作用于普通列（还不知道如何实现）
+
 ```
 
 
@@ -141,7 +152,7 @@ a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 
 ## UEF
 ```py
-spark.registerFunction("stringLengthString", lambda x: len(x))
+spark.udf.register("stringLengthString", lambda x: len(x))
 
 spark.sql('select id,stringLengthString(col1) from tmp.tmp_hive_table')
 df1.selectExpr('id','stringLengthString(col1)')

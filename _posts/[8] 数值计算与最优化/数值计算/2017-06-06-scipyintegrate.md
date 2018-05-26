@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【数值积分】scipy.integrate.
-categories: 
+categories:
 tags: 8数值计算与最优化
 keywords:
 description:
+order: 7512
 ---
 
 ## 定积分
