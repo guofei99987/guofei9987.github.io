@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【约束非线性优化】拉格朗日乘子法与KKT条件.
+title: 【约束非线性优化】拉格朗日法与KKT.
 categories:
 tags: 8数值计算与最优化
 keywords:
 description:
-order: 7200
+order: 7210
 ---
 
 拉格朗日乘子法（Lagrange Multiplier)是解决有约束条件的优化问题的重要方法  
@@ -15,14 +15,14 @@ order: 7200
 回忆非线性最优化的问题表达形式
 ### 无约束优化问题
 $\min f(x)$  
-[另一篇文章]
+[另一篇文章](http://www.guofei.site/2018/05/26/nonlinearprogramming.html)中给出了几种方法，分别是对一维问题的搜索法、梯度下降法（和变种）、牛顿法（和变种）  
 
 
 ### 等式约束优化问题
 $\min f(x)$,   
 s.t. $h_i(x) = 0; i =1, ..., n $  
 
-可以用拉格朗日乘子法解决  
+用拉格朗日乘子法解决（本文内容）  
 
 ### 不等式约束优化问题
 
@@ -30,10 +30,10 @@ $\min f(x)$,
 s.t. $g_i(x) <= 0; i =1, ..., n$  
 $h_i(x) = 0; i =1, ..., n $  
 
-常用KKT条件
+常用KKT条件（本文内容）
 
-## 等式约束优化问题
-## 一个看似可行的方案
+## 拉格朗日乘子法
+### 一个看似可行的方案
 
 考察这样的问题：  
 目标函数$f(x)=f(x_1,x_2,...x_{m+p})$  
@@ -70,23 +70,23 @@ $\phi((x_1,...,x_m)=f(x_1,...,x_m,\psi_1 (x_1,x_2,...x_m),...,\psi_p (x_1,x_2,..
 
 **然而，显示的解出约束变量几乎是不可能的**  
 
-## 拉格朗日乘子法
+### 拉格朗日乘子法的内容
 
 引入辅助函数  
-$F(x,\lambda)=f(x)+\sum_{r=1}^p \lambda_r g_r(x)$  
+$F(x,\lambda)=f(x)+\sum\limits_{r=1}^p \lambda_r g_r(x)$  
 其中，$x=(x_1,...x_{m+p})$  
 
 
 如果a是极值，那么存在$\lambda$，使得$(a,\lambda)$是$F(x,\lambda)$的临界点  
-也就是说$$\left \{ \begin{array}{ccc}
+也就是说$$\left \{ \begin{array}{l}
 \dfrac{\partial F}{\partial x_k}=0\\
-\dfrac{\partial F}{\partial x_k}=g_r=0\\
+\dfrac{\partial F}{\partial \lambda_r}=g_r=0\\
 \end{array}\right.$$  
 
-### 证明提要  
+### 拉格朗日乘子法的证明
 
 
-#### （必要条件）  
+#### 必要条件
 
 用到(1-1)式  
 $\phi((x_1,...,x_m)=f(x_1,...,x_m,\psi_1 (x_1,x_2,...x_m),...,\psi_p (x_1,x_2,...x_m))$在a取临界点  
@@ -107,10 +107,10 @@ $\dfrac{\partial f}{\partial x_i}+\sum\limits_{r=1}^p \lambda_r \dfrac{\partial 
 
 (1-3)与(1-4)就是拉格朗日条件。  
 
-#### (充分条件)
+#### 充分条件
 $a+h,a$在可行域上M，$g(a+h)-g(a)=0$二阶展开，带入$f(a+h)-f(a)$后，可以找到取极值的条件。  
 
-## Lagrange对偶性
+### Lagrange对偶性
 
 从上面知道，对于优化问题：  
 $\min f(x)$,   
@@ -129,7 +129,53 @@ $h_i(x) = 0; i =1, ..., n $
 -->
 
 
+## 不等式约束:KKT条件
+$\min f(x)$,   
+s.t. $$\begin{array}{l}
+h_j(x) = 0; j =1, ..., p\\
+g_i(x) \leq 0; k =1, ..., q\end{array}$$  
+
+
+定义拉格朗日函数  $L(X,\lambda,u)=f(X)+\sum\limits_{j=1}^p\lambda_jh_j(X)+\sum\limits_{k=1}^q u_kg_k(X)$  
+
+
+KKT条件  
+$$\begin{array}{lcr}
+\dfrac{\partial L}{\partial X}\mid_{X=X^* }=0&&(1)\\
+\lambda_j\neq0,&j=1,2,...,p&(2)\\
+u_k\geq ,0&k=1,2,...q&(3)\\
+u_kg(X^* )=0,&k=1,2,...q&(4)\\
+h_j(X^* )=0,&j=1,2,...,p&(5)\\
+g_k(X^* )\leq 0&k=1,2,...,q&(6)
+\end{array}$$
+
+
+KKT条件的解释  
+(1)是对拉格朗日函数取极值时候带来的一个必要条件，  
+(2)是拉格朗日系数约束（同等式情况），  
+(3)是不等式约束情况，保证L(x,λ,u)<=f(x)  
+(4)是互补松弛条件，  
+(5)、(6)是原约束条件。  
+**KKT条件是最优解的必要条件，当原问题是凸问题时，KKT条件也是充分条件**  
+
+
+## 罚函数法
+对于原问题：  
+$\min f(x)$,   
+s.t. $$\begin{array}{l}
+h_j(x) = 0; j =1, ..., p\\
+g_i(x) \leq 0; k =1, ..., q\end{array}$$  
+
+
+转化为
+$F(x)=f(x)+\sigma P(x)$  
+其中，罚函数$P(x)=\sum\limits_{j=1}^p \mid h_j(x) \mid^\beta+\sum\limits_{k=1}^q[max(0,-g_k(x))]^\alpha$  
+其中$\alpha, \beta>0$，通常$\alpha=\beta=2$  
+
+
+
 ## 参考资料
 
-
-http://www.jianshu.com/p/96db9a1d16e9
+https://blog.csdn.net/johnnyconstantine/article/details/46335763  
+http://www.jianshu.com/p/96db9a1d16e9  
+http://www.cnblogs.com/zhangchaoyang/articles/2726873.html
