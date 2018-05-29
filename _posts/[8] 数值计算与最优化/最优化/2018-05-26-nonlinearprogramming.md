@@ -171,3 +171,12 @@ Broyden算法
 
 ### 修正牛顿法
 如果二阶梯度不正定，牛顿法可能不收敛，为解决这个问题，引入修正牛顿法。  
+
+
+## 参考资料
+施光燕：《最优化方法》，高等教育出版社  
+龚纯：《Matlab最优化计算》，电子工业出版社  
+David R. Anderson ：《数据、模型与决策--管理科学篇》，机械工业出版社  
+https://blog.csdn.net/johnnyconstantine/article/details/46335763  
+http://www.jianshu.com/p/96db9a1d16e9  
+http://www.cnblogs.com/zhangchaoyang/articles/2726873.html  

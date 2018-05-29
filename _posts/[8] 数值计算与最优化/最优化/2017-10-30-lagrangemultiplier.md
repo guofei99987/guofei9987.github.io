@@ -160,6 +160,7 @@ KKT条件的解释
 
 
 ## 罚函数法
+### 外点法
 对于原问题：  
 $\min f(x)$,   
 s.t. $$\begin{array}{l}
@@ -171,11 +172,24 @@ g_i(x) \leq 0; k =1, ..., q\end{array}$$
 $F(x)=f(x)+\sigma P(x)$  
 其中，罚函数$P(x)=\sum\limits_{j=1}^p \mid h_j(x) \mid^\beta+\sum\limits_{k=1}^q[max(0,-g_k(x))]^\alpha$  
 其中$\alpha, \beta>0$，通常$\alpha=\beta=2$  
+### 内点法
+**适用于只有不等式约束的问题**  
+$\min f(x)$  
+s.t. $g_i(x)\geq 0 , i=1,2,...,m$  
 
 
+定义状态函数$G(x,r)=f(x)+rB(x)$  
+其中，x接近D的边界时，$B(x)\to +\infty$  
+通常形式是$B(x)=\sum\limits_{i=1}^m \dfrac{1}{g_i(x)},B(x)=-\sum\limits_{i=1}^m \log g_i(x)$  
+r是一个很小的正数，便可以保证当x接近D边界$G(x,r)\to +\infty$，当x在D内$G(x,r) \thickapprox f(x)$  
+
+
+问题转化为求解$\min G(x,r)$
 
 ## 参考资料
-
+施光燕：《最优化方法》，高等教育出版社  
+龚纯：《Matlab最优化计算》，电子工业出版社  
+David R. Anderson ：《数据、模型与决策--管理科学篇》，机械工业出版社  
 https://blog.csdn.net/johnnyconstantine/article/details/46335763  
 http://www.jianshu.com/p/96db9a1d16e9  
-http://www.cnblogs.com/zhangchaoyang/articles/2726873.html
+http://www.cnblogs.com/zhangchaoyang/articles/2726873.html  
