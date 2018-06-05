@@ -9,8 +9,7 @@ order: 7005
 ---
 
 ## 定义问题
-
-Canonical form（标准型）：  
+线性规划（Liner Programing）的标准型（Canonical form）：  
 $\min z=\sum\limits_{j=1}^n c_j x_j$  
 s.t.  
 $$\left \{ \begin{array}{ccc}
@@ -57,6 +56,27 @@ y_j'' \geq 0
 ## 大M法
 单纯形法的改进
 ## 对偶单纯形法
+
+## 对偶问题
+原问题：
+$\min z=c^Tx$  
+s.t. $Ax\geq b$  
+$x\geq 0$  
+
+
+对应的对偶问题时  
+$\max v=b^Ty$  
+s.t. $A^Ty\leq c$  
+$y\geq 0$  
+
+### 对偶的性质
+TH1：  
+**对偶问题的对偶问题是原问题**
+
+
+TH2：（弱对偶定理）  
+x是原问题的可行解，y是对偶问题的可行解，那么  
+$z=c^Tx\geq v=y^Tb$  
 
 
 ## 参考文献

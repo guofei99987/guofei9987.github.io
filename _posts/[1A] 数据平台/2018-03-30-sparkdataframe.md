@@ -19,16 +19,12 @@ spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate(
 ```
 
 ### show
-```
-#没用了
-df.head(5) #类似RDD，返回一个list，里面多个Row
-df.take(5) #类似RDD，效果同head
-df.collect() #多个Row组成的list
-df.first() #返回一个Row
-```
-
 ```py
-
+# 注释部分用的少
+# df.head(5) #类似RDD，返回一个list，里面多个Row
+# df.take(5) #类似RDD，效果同head
+# df.collect() #多个Row组成的list
+# df.first() #返回一个Row
 df.limit(5) #取前5行，不同的是，是transformation
 df.show() #返回20条数据
 df.show(30) #返回30条数据
@@ -39,13 +35,17 @@ df.describe('col1','col2') #返回指定字段的统计值
 
 df.columns #返回一个list，内容是列名
 df.dtypes
+
+
+df.drop('col1','col2') # 删除某些列
+df.withColumnRenamed('col1','col1_new') # 给指定列改名
 ```
 
 
 ## 查询
 
 ```py
-df.where('col1=1 and col2="abc"') #是transformation，返回RDD
+# df.where('col1=1 and col2="abc"') #是transformation，返回RDD
 df.filter('col1=1 and col2="abc"') #与where效果完全相同
 df.filter(df.col1>5)
 
@@ -54,13 +54,8 @@ df.selectExpr('col1 as id','col2*2 as col2_value')
 ```
 
 ## 数据清洗类操作
-### drop
 ```py
-df.drop('col1','col2')
-```
-
-### 去重
-```py
+# 去重
 df.distinct() #返回一个去重的DataFrame
 df.dropDuplicates()
 df.dropDuplicates(subset=['col1','col2'])
@@ -112,6 +107,12 @@ df.groupBy('col1').agg(F.countDistinct('col2'))
 spark.udf.register('udf_func1',lambda x:x+1)
 df.groupBy('a').agg({'a':'udf_func1','b':'std'})
 ## agg3_2：udf作用于普通列（还不知道如何实现）
+
+```
+### 非groupby下的agg
+
+```py
+df1.agg({'col1':'max','col2':'min'}) # 返回1行2列的 DataFrame
 
 ```
 
