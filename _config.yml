@@ -17,7 +17,7 @@ author:
 title: 郭飞的博客
 description: My personal blog
 url: http://www.guofei.site
-rss_url: /pages/atom.xml
+# rss_url: /pages/atom.xml
 
 # gavatar头像及Favicon
 gavatar: /public/img/unicorn.png
@@ -35,18 +35,8 @@ disqus:
 # 主题设置，自动激活某个标签
 active: tags
 
-# 首页除了最新文章外显示分类
-cates:
-  - 机器学习
-  - 智能算法
-
 # 中文本地化
 locals:
   tags: 模型
   about: 我
   trythis: 数据清洗
-
-# 试试tag次序化
-order:
-  first: 数据清洗
-  second: 可视化

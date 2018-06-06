@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【KernelPCA】理论与实现.
+title: 【KernelPCA】理论与实现
 categories:
 tags: 3无监督学习
 keywords:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【matplotlib】设置&多图&汉字
+title: 【matplotlib】设置&多图&汉字
 categories:
 tags: 7可视化
 keywords:

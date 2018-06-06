@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 简单的算法题小试.
-categories: 
+title: 简单的算法题小试
+categories:
 tags: 5经典算法
 keywords:
 description:
+order: 590
 ---
 
 阅读本文需要前提知识：  

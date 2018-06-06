@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】index&colums修改.
+title: 【pandas】index&colums相关
 categories:
 tags: 1B_Pandas
 keywords:

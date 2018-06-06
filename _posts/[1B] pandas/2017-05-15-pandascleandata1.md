@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】读入与读出.
+title: 【pandas】读入与读出
 categories:
 tags: 1B_Pandas
 keywords:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【回归分析】理论与实现.
+title: 【回归分析】理论与实现
 categories:
 tags: 4统计学
 keywords:

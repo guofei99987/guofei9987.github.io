@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】描述统计&简单作图.
+title: 【pandas】描述统计&简单作图
 categories:
 tags: 1B_Pandas
 keywords:

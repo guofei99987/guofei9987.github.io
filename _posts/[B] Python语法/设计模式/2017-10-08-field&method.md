@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python】【面向对象】字段&方法.
+title: 【Python】【面向对象】字段&方法
 categories:
 tags: Python语法
 keywords:
 description:
-order: 1102
+order: 1002
 ---
 
 ## 字段

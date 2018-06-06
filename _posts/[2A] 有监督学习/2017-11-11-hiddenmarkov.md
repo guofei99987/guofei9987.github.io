@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【HMM】理论篇.
+title: 【HMM】理论篇
 categories:
 tags: 2A有监督学习
 keywords:

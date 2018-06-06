@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【matplotlib】面向对象方式绘图
+title: 【Python】【matplotlib】面向对象绘图
 categories:
 tags: 7可视化
 keywords:

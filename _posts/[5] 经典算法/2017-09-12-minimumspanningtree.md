@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 【Python】【最小生成树问题】Prim算法和Kruskal算法.
-categories: 
+title: 【最小生成树问题】Prim和Kruskal.
+categories:
 tags: 5经典算法
 keywords:
 description:
+order: 530
 ---
 
 ## 问题介绍

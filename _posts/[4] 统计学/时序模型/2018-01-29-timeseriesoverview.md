@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【时间序列】总览.
+title: 【时间序列】总览
 categories:
 tags: 4统计学
 keywords:

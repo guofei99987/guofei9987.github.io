@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【统计时序2】平稳性.
+title: 【统计时序2】平稳性
 categories:
 tags: 4统计学
 keywords:

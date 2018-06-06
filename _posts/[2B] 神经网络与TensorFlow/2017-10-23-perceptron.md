@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【感知机】理论简介.
+title: 【感知机】理论简介
 categories:
 tags: 2B神经网络与TF
 keywords:

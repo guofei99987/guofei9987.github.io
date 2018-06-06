@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Naive Bayes】理论与实现.
+title: 【Naive Bayes】理论与实现
 categories:
 tags: 2A有监督学习
 keywords:

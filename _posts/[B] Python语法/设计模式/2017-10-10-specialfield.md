@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python】【面向对象】类的特殊成员.
+title: 【Python】【面向对象】类的特殊成员
 categories:
 tags: Python语法
 keywords:
 description:
-order: 1103
+order: 1003
 ---
 
 

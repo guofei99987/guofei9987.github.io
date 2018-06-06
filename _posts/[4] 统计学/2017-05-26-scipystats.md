@@ -1,6 +1,6 @@
 ---
 layout: post
-title: scipy的stats库.
+title: scipy的stats库
 categories:
 tags: 4统计学
 keywords:

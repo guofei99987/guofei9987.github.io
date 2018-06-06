@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【描述时序】趋势、季节和随机性.
+title: 【描述时序】趋势、季节和随机性
 categories:
 tags: 4统计学
 keywords:

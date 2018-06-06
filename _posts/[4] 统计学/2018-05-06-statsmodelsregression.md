@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【statsmodels】回归专题（进阶）(补全中).
+title: 【statsmodels】回归专题（进阶）(补全中)
 categories:
 tags: 4统计学
 keywords:

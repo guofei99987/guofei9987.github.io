@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】数据筛选.
+title: 【pandas】数据筛选
 categories:
 tags: 1B_Pandas
 keywords:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【统计推断】理论与实现.
+title: 【统计推断】理论与实现
 categories:
 tags: 4统计学
 keywords:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 常见统计分布(2).
+title: 常见统计分布(2)
 categories:
 tags: 4统计学
 keywords:

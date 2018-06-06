@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】合并数据表.
+title: 【pandas】合并数据表
 categories:
 tags: 1B_Pandas
 keywords:

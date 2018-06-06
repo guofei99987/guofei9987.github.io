@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】去重、填充、排序.
+title: 【pandas】去重、填充、排序
 categories:
 tags: 1B_Pandas
 keywords:
