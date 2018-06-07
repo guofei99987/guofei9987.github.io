@@ -5,7 +5,7 @@ categories:
 tags: 9代数与分析
 keywords:
 description:
-order: 92301
+order: 92401
 ---
 
 虽然大多数微分方程很难找到解析解，但某些特殊的微分方程还是可以找到解析解的

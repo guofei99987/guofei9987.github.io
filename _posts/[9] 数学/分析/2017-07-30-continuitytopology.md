@@ -5,7 +5,7 @@ categories:
 tags: 9代数与分析
 keywords:
 description:
-order: 90205
+order: 92205
 ---
 
 函数的连续性也可以有拓扑含义。
