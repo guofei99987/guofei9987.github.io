@@ -229,3 +229,7 @@ $\hat Y=(a+bt)+f_i$
 $f_i$的定义同季节交乘趋向模型，$f_i=\dfrac{Y_i+Y_{i+T}+...+F_{i+(m-1)T}}{m}$  
 
 与季节交乘趋向模型的区别似乎是乘法模型和加法模型的区别？这个存疑  
+
+
+## Python实现
+<iframe src="http://www.guofei.site/StatisticsBlog/arma.html" width="100%" height="3600em" marginwidth="10%"></iframe>
