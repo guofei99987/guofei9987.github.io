@@ -51,18 +51,19 @@ $|x+y|\leq|x|+|y|$
 
 
 ## 解析延拓
-指数函数  
+**指数函数**  
 $e^{x+iy}=e^x(\cos y+i\sin y)$  
 
 
-对数函数  
+**对数函数**  
 $Ln z=\ln \mid z\mid +iArg z=\ln \mid z\mid +i\arg z +2k\pi$  
 也可以记为:  
 $\ln z=\ln \mid z\mid +i\arg z$  
 $Ln z=\ln z+ 2k\pi i$  
 注意$Ln z^n \neq n Ln z$
 
-幂函数  
+
+**幂函数**  
 $z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$  
 1. 当$a$是整数时，只有1中可能取值
 2. 当$a$是有理数$q/p$时，有p种可能值
@@ -72,7 +73,7 @@ $z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$
 ($2^{\sqrt 2}$有1个实数值和无穷个复数值)
 
 
-三角函数  
+**三角函数**  
 $e^{ix}=\cos x+i\sin x,e^{-ix}=\cos x-i\sin x$,可以得到  
 $\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$  
 
@@ -154,8 +155,26 @@ $\int_Cf(z)dz=\int_C(u+vi)(dx+idy)=\int_C udx-vdy+i\int_Cvdx+udy$
 C是一条闭曲线，$f(z)$在以C为边界的有界闭区域D上解析，那么  
 $\int_C f(z)dz=0$  
 **推论**  
-$f(x)$在单连通区域D内解析，AB两点之间两条路径$L_1,L_2\subset D$,D是  
+$f(x)$在单连通区域D内解析，AB两点之间两条路径$L_1,L_2\subset D$，有  
 $\int_{C_1}f(z)dz=\int_{C_2}dz$  
+
+
+**TH**（柯西积分公式）  
+$f(z)$在简单闭曲线C所围成的区域D内解析，在$D\cup C$上连续，$z_0$是D内任意一点，则  
+$f(z_0)=\dfrac{1}{2\pi i}\oint_C\dfrac{f(z)}{z-z_0}dz$  
+**推论1**（平均值公式）  
+$f(z)$在$\mid z-z_0\mid<R$内解析，在$\mid z-z_0\mid=R$内连续，那么  
+$f(z)=\dfrac{1}{\pi}\int_0^{2\pi}f(z_0+Re^{i\theta})d\theta$  
+**推论2**  
+$f(z_0)$在由闭曲线$C_1,C_2$围城的二连域内解析，并在$C_1,C_2$上连续，$C_2$在$C_1$内部，$Z_0$为D内一点，则  
+$f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint_{C_2}\dfrac{f(z)}{z-z_0}dz$  
+
+
+
+
+
+
+
 
 
 
@@ -164,7 +183,7 @@ $\int_{C_1}f(z)dz=\int_{C_2}dz$
 
 ## 直线方程
 
-- $z_1*\bar z_2=z_2*\bar z_1=x_1*x_2+y_1*y_2$
+- $z_1\cdot\bar z_2=z_2\cdot\bar z_1=x_1\cdot x_2+y_1\cdot y_2$
  这是一种內积的表示形式
 
 -  $real(B*\bar z)=-C/2$
