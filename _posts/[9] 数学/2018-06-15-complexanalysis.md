@@ -40,12 +40,131 @@ $|x+y|\leq|x|+|y|$
 边界
 :    全部 **边界点** 的集合  
 
+连通的
+:    如果E内任意两点，都可以用折线连接起来，且折线上的点都属于E，那么称E为 **连通的**
+
+开区域
+:    连通的开集称为 **开区域**
+
+闭区域
+:    开区域与其边界的并集，称为 **闭区域**  
+
+
+## 解析延拓
+指数函数  
+$e^{x+iy}=e^x(\cos y+i\sin y)$  
+
+
+对数函数  
+$Ln z=\ln \mid z\mid +iArg z=\ln \mid z\mid +i\arg z +2k\pi$  
+也可以记为:  
+$\ln z=\ln \mid z\mid +i\arg z$  
+$Ln z=\ln z+ 2k\pi i$  
+注意$Ln z^n \neq n Ln z$
+
+幂函数  
+$z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$  
+1. 当$a$是整数时，只有1中可能取值
+2. 当$a$是有理数$q/p$时，有p种可能值
+3. 当$a$是无理数或复数时，有无穷多个值
+
+
+($2^{\sqrt 2}$有1个实数值和无穷个复数值)
+
+
+三角函数  
+$e^{ix}=\cos x+i\sin x,e^{-ix}=\cos x-i\sin x$,可以得到  
+$\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$  
+
+
+## 极限与导数
+### 极限
+**定义**  
+$\forall \varepsilon>0,\exists \delta(\varepsilon)$使得$\forall z,0<\mid z-z_0\mid<\delta$，都满足$\mid f(z) -A\mid<\varepsilon$  
+A就是$f(z)$在$z\to z_0$的极限，记做$\lim\limits_{z\to z_0}f(z)=A$  
+
+
+**TH**  
+若$\lim\limits_{z\to z_0}f(z)=A$，那么$\lim\limits_{z\to z_0}\mid f(z)\mid=\mid A\mid$  
+
+
+
+
+
+**补充定义**  
+$\lim\limits_{z\to \infty}f(z)=A,\lim\limits_{z\to z_0}f(z)=\infty,\lim\limits_{z\to \infty}f(z)=\infty$  
+沿用原定义，并且注意取到无穷大的所有邻域，而不是沿某个方向趋近。  
+
+
+**TH**  
+若$\lim\limits_{z\to z_0}f(z)=A,\lim\limits_{z\to z_0}g(z)=B$  
+那么，  
+$\lim\limits_{z\to z_0} [f(z) \pm g(z)]=A\pm B$  
+$\lim\limits_{z\to z_0} [f(z) \cdot g(z)]=A\cdot B$  
+$\lim\limits_{z\to z_0} [f(z) / g(z)]=A/ B ,(B\neq 0)$  
+
+### 连续
+$\lim\limits_{z\to z_0}f(z)=f(z_0)$叫做在$z_0$ **连续**  
+$f(z)$在一个区域D内处处连续，叫做在D内连续  
+
+**TH**  
+连续函数的和、差、积、商、复合都连续  
+
+
+$\lim\limits_{z\to z_0}\dfrac{f(z)-f(z_0)}{z-z_0}$存在，则称为 **可导**，记为$f'(z_0)$  
+
+
+**TH**  
+$[f(z)\pm g(z)]'=f'(z)\pm g'(z)$  
+$[f(z)\cdot g(z)]'=f'(z)\cdot g'(z)$  
+$[\dfrac{f(z)}{g(z)}]'=\dfrac{f'(z)g(z)-f(z)g'(z)}{g^2(z)}$  
+
+**TH**  
+前提$f(z)=u(x,y)+iv(x,y)$在$z_0$有聚点  
+$f(z)$有极限的 **充分必要条件** 是$u,v$有极限  
+$f(z)$有连续的 **充分必要条件** 是$u,v$连续  
+$f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$  
+
+
+### 解析
+解析定义为在邻域内处处可导
+1. 可导未必解析
+2. 区域内可导$\Longleftrightarrow$解析
+3. 不存在这种情况：只在一点解析，而在其邻域内都不解析
+
+
+根据上文可导的充要条件和解析的定义，解析的充要条件是：  
+在区域D内，$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$  
+
+
+调和函数
+:    如果实变函数$h(x,y)$在区域D内具有连续的二阶偏导数，并且慢速 **拉普拉斯方程** $h_{xx}(x,y)+h_{yy}(x,y)=0$  
+称$h(x,y)$是D内的 **调和函数**。  
+
+
+**TH**  
+如果$f(x,y)=u(x,y)+iv(x,y)$在D内解析，那么$u(x,y),v(x,y)$都是 **调和函数**。  
+
+
+## 积分
+$S_n=\sum f(\xi_k)\Delta z_k$,记为$\int_C f(z)dz$  
+$\int_Cf(z)dz=\int_C(u+vi)(dx+idy)=\int_C udx-vdy+i\int_Cvdx+udy$  
+
+**TH**  
+C是一条闭曲线，$f(z)$在以C为边界的有界闭区域D上解析，那么  
+$\int_C f(z)dz=0$  
+**推论**  
+$f(x)$在单连通区域D内解析，AB两点之间两条路径$L_1,L_2\subset D$,D是  
+$\int_{C_1}f(z)dz=\int_{C_2}dz$  
+
+
+
 --------------------------------------------------------------
 
 
 ## 直线方程
 
-- $z_1*\overline{z_2}=z_2*\overline{z_1}=x_1*x_2+y_1*y_2$
+- $z_1*\bar z_2=z_2*\bar z_1=x_1*x_2+y_1*y_2$
  这是一种內积的表示形式
 
 -  $real(B*\bar z)=-C/2$
