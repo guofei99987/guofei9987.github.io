@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 复变函数
+title: 【复变函数】极限、微积分、解析
 categories:
 tags: 9代数与分析
 keywords:
@@ -198,3 +198,9 @@ $f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint
 
 - $Az\overline z+\overline B z+B \overline z +C=0$
  其中-B是圆心，AC是实数 。若A=0， $B \overline B-C$ 是半径
+
+
+## 参考资料
+李红：《复变函数与积分变换》高等教育出版社  
+“十五”国家规划教材《复变函数与积分变换》高等教育出版社  
+钟玉泉：《复变函数论》高等教育出版社  
