@@ -2,7 +2,7 @@
 layout: post
 title: 简单的算法题小试
 categories:
-tags: 5经典算法
+tags: 5数据机构与算法
 keywords:
 description:
 order: 590
