@@ -1,20 +1,24 @@
 ---
 layout: post
-title: 【Python数据结构】数据结构实战
+title: 【Python数据结构2】堆栈、队列
 categories:
-tags: 5数据机构与算法
+tags: 5数据结构与算法
 keywords:
 description:
 order: 551
 ---
 
-这一部分是我刷LeetCode的感想（限于数据结构和算法部分），刷完的题目见于这个[GitHub库](https://github.com/guofei9987/leetcode_python)
+
+
 ## list实现栈和队列
 我们知道，list天然地适合做 Stack，即尾部入，尾部出。  
 我们又知道 list 删除头部的元素是极为低效的，解决方法是很简单，只要增加一个指向头部的指针即可，。  
 
-### 先进先出
-题目灵感来自[题目](https://leetcode.com/problems/baseball-game/discuss/119575/Python-4-liner),我给出的解答见于[这里](https://github.com/guofei9987/leetcode_python/blob/master/%5B682%5D%5BBaseball%20Game%5D%5BEasy%5D.py)  
+### 堆栈（先进先出表）
+
+
+### 队列
+题目灵感来自[LeetCode题目](https://leetcode.com/problems/baseball-game/discuss/119575/Python-4-liner),我给出的解答见于[这里](https://github.com/guofei9987/leetcode_python/blob/master/%5B682%5D%5BBaseball%20Game%5D%5BEasy%5D.py)  
 
 例子：
 ```python

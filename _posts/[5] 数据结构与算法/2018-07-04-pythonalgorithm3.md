@@ -2,7 +2,7 @@
 layout: post
 title: 【Python数据结构】tree
 categories:
-tags: 5数据机构与算法
+tags: 5数据结构与算法
 keywords:
 description:
 order: 551
