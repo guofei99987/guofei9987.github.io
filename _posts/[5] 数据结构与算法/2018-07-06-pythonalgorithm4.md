@@ -36,3 +36,19 @@ def binarySearch(nums, target):
 - Termination: `left > right`
 - Searching Left: `right = mid-1`
 - Searching Right: `left = mid+1`
+
+
+## 第二种
+- Initial Condition: `left = 0, right = length`
+- Termination: `left == right`
+- Searching Left: `right = mid`
+- Searching Right: `left = mid+1`
+
+
+
+## 第三种
+
+- Initial Condition: `left = 0, right = length-1`
+- Termination: `left + 1 == right`
+- Searching Left: `right = mid`
+- Searching Right: `left = mid`

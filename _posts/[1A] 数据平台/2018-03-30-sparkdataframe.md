@@ -153,10 +153,17 @@ a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 
 ## UEF
 ```py
+# 每一列都使用一次UEF
 spark.udf.register("stringLengthString", lambda x: len(x))
-
 spark.sql('select id,stringLengthString(col1) from tmp.tmp_hive_table')
 df1.selectExpr('id','stringLengthString(col1)')
+
+
+# 更清晰的写法
+def func(x):
+    return x + 1
+spark.udf.register('func',func)
+df.selectExpr('func(a)')
 
 
 # 这个在pyspark 2.3才能用，还没试过：
