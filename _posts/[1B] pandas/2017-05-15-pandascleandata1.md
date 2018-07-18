@@ -161,3 +161,10 @@ to_string
 to_pickle # 存到内存中
 to_sql
 ```
+
+## pd.set_option
+
+```py
+pd.set_option('display.max_columns',5000)
+pd.set_option('display.width',100000)
+```

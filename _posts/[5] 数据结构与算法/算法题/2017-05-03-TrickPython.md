@@ -1,11 +1,16 @@
 ---
 layout: post
-title: 【Python】【算法小题集】1
-categories: 趣文
-tags:
+title: 【Python】【算法题集1】
+categories:
+tags: 5数据结构与算法
 keywords:
 description:
+order: 580
 ---
+
+- 入门级题目：[【Python】【算法题集1】](http://www.guofei.site/2017/05/03/TrickPython.html)
+- 《编程之美》中的题目：[【Python】【算法题集2】](http://www.guofei.site/2017/08/28/someproblems.html)
+- LeetCode上的题目：[【Python】【算法题集3】](http://www.guofei.site/2018/07/05/pythonalgorithma.html) 
 
 ## 1
 问题：从40个数中随机选取30个。要求等概率，无放回抽样  
@@ -22,7 +27,7 @@ for i in mask:
         break
 nums[mask>i]
 ```
-以上代码没用用到高级命令，用Matlab等其它语言实现相同目的时，可以拿来作为借鉴，Python有更好的解决方案：  
+Python有更好的解决方案：  
 ```py
 import numpy as np
 nums=np.random.randint(5,50,size=40)
@@ -226,7 +231,7 @@ for i in a.upper():
 ```
 1.5 请将a字符串反转并输出。例：'abc'的反转是'cba'
 1.6 去除a字符串内的数字后，请将该字符串里的单词重新排序（a-z），并且重新输出一个排序后的字符 串。（保留大小写,a与A的顺序关系为：A在a前面。例：AaBb）
-```
+```py
 x6=[]
 for i in a:
     if not i.isdigit():
@@ -234,7 +239,7 @@ for i in a:
 ''.join(sorted(x6))
 ```
 1.7 请判断 'boy'里出现的每一个字母，是否都出现在a字符串里。如果出现，则输出True，否则，则输 出False.
-```
+```py
 tag=True
 for i in 'boy':
     if not i in a:

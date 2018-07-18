@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 简单的算法题小试
+title: 【Python】【算法题集2】
 categories:
 tags: 5数据结构与算法
 keywords:
@@ -8,13 +8,10 @@ description:
 order: 590
 ---
 
-阅读本文需要前提知识：  
-Python基本语法  
 
-阅读文本的目的：  
-本文是一些极其简单的算法题目，你可以想想自己怎么编程实现，对照本文中的一些简单的编程技巧，例如int(a)==a。如果你有更好的实现方法，请点击上面的邮箱符号告诉我。O(∩ _ ∩)O  
-
-
+- 入门级题目：[【Python】【算法题集1】](http://www.guofei.site/2017/05/03/TrickPython.html)
+- 《编程之美》中的题目：[【Python】【算法题集2】](http://www.guofei.site/2017/08/28/someproblems.html)
+- LeetCode上的题目：[【Python】【算法题集3】](http://www.guofei.site/2018/07/05/pythonalgorithma.html) 
 
 
 ## 连续整数和问题
