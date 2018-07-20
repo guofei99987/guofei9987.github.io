@@ -26,3 +26,8 @@ https://leetcode.com/problems/find-the-duplicate-number/solution/
 https://leetcode.com/explore/learn/card/binary-search/135/template-iii/945/
 
 使用Python的 sorted ，其time complexity 是O(log(n))
+
+
+## 160. Intersection of Two Linked Lists
+把 two pointer technique 用到极致了
+https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1215/discuss/49798/Concise-python-code-with-comments/156662

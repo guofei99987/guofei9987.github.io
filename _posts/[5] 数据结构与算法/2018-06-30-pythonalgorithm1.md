@@ -144,11 +144,40 @@ class MyLinkedList:
         return nlist
 ```
 
-### 单链表的应用1
+### Two Pointer Technique
 [Two Pointer Technique](https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/)  
 1. Two pointers starts at different position: one starts at the beginning while another starts at the end;
 2. Two pointers are moved at different speed: one is faster while another one might be slower.
 
+
+一个来自 LeetCode的案例 [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/)
+```py
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        if head is None:
+            return False
+        fast=head
+        slow=head
+        while True:
+            if (fast is None) or (slow is None):
+                return False
+            if (fast.next is None) or (fast.next.next is None) or (slow.next is None):
+                return False
+            fast=fast.next.next
+            slow=slow.next
+            if fast is slow:
+                return True
+```
 
 ### 反转单链表
 ```py
