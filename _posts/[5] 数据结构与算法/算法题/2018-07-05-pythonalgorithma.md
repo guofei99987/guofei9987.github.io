@@ -30,4 +30,6 @@ https://leetcode.com/explore/learn/card/binary-search/135/template-iii/945/
 
 ## 160. Intersection of Two Linked Lists
 把 two pointer technique 用到极致了
-https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1215/discuss/49798/Concise-python-code-with-comments/156662
+https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1215/discuss/49798/Concise-python-code-with-comments/156662  
+
+另一个巧妙使用 two pointer technique 的题目 ([142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/description/))

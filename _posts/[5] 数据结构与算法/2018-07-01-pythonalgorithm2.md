@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python数据结构2】堆栈、队列
+title: 【Python数据结构2】Queue & Stack
 categories:
 tags: 5数据结构与算法
 keywords:
@@ -22,7 +22,7 @@ order: 551
 
 例子：
 ```python
-input_queue=[1,2,3,4,5]
+input_queue=[1,2,3,4,5]    
 stack=[2,1]
 pointer=0
 for i in input_queue:
@@ -33,4 +33,11 @@ for i in input_queue:
 
 # 事实上，因为可以使用stack[-1],stack[-2]这些命令，所以 pointer 这个变量往往不必定义
 # 会有内存浪费，定期清理即可，参考代码： stack=stack[pointer:]
+```
+
+
+## Circular Queue
+用list来模拟Cirular Queue
+```py
+num_list[i%len_list]
 ```
