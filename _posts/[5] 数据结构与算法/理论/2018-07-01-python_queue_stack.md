@@ -5,7 +5,7 @@ categories:
 tags: 5数据结构与算法
 keywords:
 description:
-order: 551
+order: 552
 ---
 
 
@@ -41,3 +41,7 @@ for i in input_queue:
 ```py
 num_list[i%len_list]
 ```
+
+
+## 案例
+[200. Number of Islands](https://leetcode.com/problems/number-of-islands/description/)  

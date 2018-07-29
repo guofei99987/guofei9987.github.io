@@ -11,8 +11,8 @@ order: 1011
 `os.system` 在使用上有一定的局限性，因此，用 `subprocess` 来代替
 
 ## 1. subprocess.call
-```
-subprocess.call(args, *, stdin=None, stdout=None, stderr=None, shell=False)
+```py
+subprocess.call(args, *, stdin=None, stdout=None, stderr=None, shell=False) # 返回int
 ```
 1.1 参数args描述了子进程中需要执行的命令；
 
@@ -29,7 +29,7 @@ ret = subprocess.call(cmd, shell=True)
 1.3 如果子进程不需要进行交互,就可以使用该函数来创建
 ## 2. subprocess.check_call
 ```py
-subprocess.check_call(args, *, stdin=None, stdout=None, stderr=None, shell=False)
+subprocess.check_call(args, *, stdin=None, stdout=None, stderr=None, shell=False) # 返回int
 ```
 2.1 check_call()与call()唯一的区别在于返回值。如果args执行之后的返回值为0，那么check_all返回0；如果返回值不为0，那么将raise出来一个CalledProcessError
 ```py
@@ -40,7 +40,7 @@ ret = subprocess.check_call(cmd2, shell=True)
 
 ## 3. subprocess.check_output
 ```py
-subprocess.check_output(args, *, stdin=None, stderr=None, shell=False, universal_newlines=False)
+subprocess.check_output(args, *, stdin=None, stderr=None, shell=False, universal_newlines=False) # 返回str，内容是命令所输出的字符串
 ```
 3.1 子进程执行args中的命令，并将其输出形成字符串返回  
 
@@ -48,13 +48,20 @@ subprocess.check_output(args, *, stdin=None, stderr=None, shell=False, universal
 ```py
 cmd1 = ['exit 1'] # 将会报错
 cmd2 = ['ls', '-l'] # 不会报错，因为返回的是0
-ret = subprocess.check_output(cmd2, shell=True) 
+ret = subprocess.check_output(cmd2, shell=True)
 ```
 ## 4. subprocess.Popen
 
 ```py
-class subprocess.Popen(args, bufsize=0, executable=None, stdin=None, stdout=None, stderr=None, preexec_fn=None, close_fds=False, shell=False, cwd=None, env=None, universal_newlines=False, startupinfo=None, creationflags=0)
+class subprocess.Popen(args, bufsize=0, executable=None, stdin=None, stdout=None, stderr=None, preexec_fn=None, close_fds=False, shell=False, cwd=None, env=None, universal_newlines=False, startupinfo=None, creationflags=0) # 返回一个对象，可以对这个对象继续操作
+# args 字符串或列表
+# bufsize 0：无缓冲。正整数：缓冲大小。负：系统默认缓冲（一般是全缓冲）
+# shell Unix下，相当于args前面添加了'/bin/sh' '-c'  windows下，相当于添加'cmd.exe /c'
+# env 设置环境变量
+# universal_newlines 各种换行符统一处理成'\n'
 ```
+
+
 4.2 Popen对象创建后，主程序不会自动等待子进程完成。我们必须调用对象的wait()方法，父进程才会等待 (也就是阻塞block)
 
 4.3 Popen中封装的其他函数：
@@ -81,4 +88,5 @@ class subprocess.Popen(args, bufsize=0, executable=None, stdin=None, stdout=None
 
 4.3.11 Popen.returncode：获取进程的返回值。如果进程还没有结束，返回None
 ## 参考文献
-https://blog.csdn.net/yuchen1986/article/details/22059873
+https://blog.csdn.net/yuchen1986/article/details/22059873  
+https://www.cnblogs.com/zhoug2020/p/5079407.html
