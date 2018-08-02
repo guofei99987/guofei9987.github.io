@@ -14,10 +14,14 @@ order: 552
 我们知道，list天然地适合做 Stack，即尾部入，尾部出。  
 我们又知道 list 删除头部的元素是极为低效的，解决方法是很简单，只要增加一个指向头部的指针即可，。  
 
-### 堆栈（先进先出表）
 
 
-### 队列
+## queue 介绍
+一种 first-in-first-out (FIFO) 算法
+### queue 案例1
+queue的一种典型应用场景是Breadth-first Search (BFS)
+
+### queue 案例2
 题目灵感来自[LeetCode题目](https://leetcode.com/problems/baseball-game/discuss/119575/Python-4-liner),我给出的解答见于[这里](https://github.com/guofei9987/leetcode_python/blob/master/%5B682%5D%5BBaseball%20Game%5D%5BEasy%5D.py)  
 
 例子：
@@ -42,6 +46,10 @@ for i in input_queue:
 num_list[i%len_list]
 ```
 
+### stack
+Last-in-first-out Data Structure（先进先出表）
 
+### 案例1
+深度优先搜索 Depth-First Search (DFS)
 ## 案例
 [200. Number of Islands](https://leetcode.com/problems/number-of-islands/description/)  
