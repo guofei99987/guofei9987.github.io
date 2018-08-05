@@ -64,3 +64,17 @@ class Solution(object):
         trv(root)
         return [nodes[struct][0] for struct in nodes if len(nodes[struct]) > 1]
 ```
+
+## 3
+https://leetcode.com/problems/4sum-ii/description/
+
+O(n^4)问题，用O(n^2)来解决
+```py
+def fourSumCount(self, A, B, C, D):
+    AB = collections.Counter(a+b for a in A for b in B)
+    return sum(AB[-c-d] for c in C for d in D)
+```
+
+
+## Trie
+A Trie is a special form of a Nary tree

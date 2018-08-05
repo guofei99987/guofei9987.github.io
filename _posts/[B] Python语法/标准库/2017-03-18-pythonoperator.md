@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python】运算符.
+title: 【Python标准库】运算符.
 categories:
 tags: Python语法
 keywords:
 description:
-order: 1124
+order: 1202
 ---
 
 

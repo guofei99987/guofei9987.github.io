@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python】基本数据类型.
+title: 【Python标准库】基本数据类型.
 categories:
 tags: Python语法
 keywords:
 description:
-order: 1121
+order: 1201
 ---
 
 ## 数字类型  
@@ -29,7 +29,7 @@ int('1') #字符转数字
 long(x) #转换成一个long interger
 float(x) #转换成一个浮点数
 complex(x) #转换成复数
-int('51',base=14) #把base进制表示字符串，转为指定进制
+int('51',base=14) #把base进制表示字符串，转为十进制
 bin(x)   #把整数x变成二进制的字符串
 oct(x)   #把整数x变成八进制表示的字符串
 hex(x)   #把整数x变成十六进制表示的字符串
@@ -153,6 +153,7 @@ helloString[::-1]
 <list>.insert(i,x) #在i位置插入x
 
 del x[1]           #直接删除
+del x[::-2]
 <list>.remove(x)  #删除list中第一次出现的元素x，如果没找到会抛出异常
 <list>.pop(i)     #返回list中第i个元素，并从list中删除，如果不给参数，指的是最后一个
 
@@ -241,7 +242,7 @@ for k in my_dict.items():print(k)#k是tuple,里面放着一对key-value;my_dict.
 for key,value in my_dict.items():print(key,value)
 ```
 ### 操作符
-```
+```py
 -
 <
 >

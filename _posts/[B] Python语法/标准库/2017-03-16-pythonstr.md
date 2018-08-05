@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python】【str】字符串.
+title: 【Python标准库】【str】字符串.
 categories:
 tags: Python语法
 keywords:
 description:
-order: 1122
+order: 1203
 ---
 
 
@@ -62,8 +62,8 @@ len('abc')
 'aaabc'.replace('bc','x')  #替换指定字符
 
 'aaabc'.upper(),'aaabC'.lower()  #转大写/转小写
-a.swapcase() ##大写转为小写，同时小写转为大写
-'aaabc'.capitalize()  #首字母大写
+a.swapcase() # 返回一个字符串，大写转为小写，同时小写转为大写
+'aaabc'.capitalize()  # 返回首字母大写的字符串
 
 ','.join(list('abc'))  #前面的字符也可以为空，这时相当于对字符串做加号
 'a,b,c'.split(',')    #按','分割，并返回<list>。如果后面的参数为空，按照空格分割
@@ -71,7 +71,7 @@ a.swapcase() ##大写转为小写，同时小写转为大写
 '  \n a,b, c '.strip()   #去两边的空格与换行,strip,lstrip,rstrip
 'abc! '.strip('a') #去掉指定字符
 
-'abc'.ljust(5) , 'abc'.rjust(5)  #填充空格使其达到指定长度
+'abc'.ljust(5) , 'abc'.rjust(5) ,'abc'.center(10)  # 填充空格使其达到指定长度
 
 
 for <var> in <string>
