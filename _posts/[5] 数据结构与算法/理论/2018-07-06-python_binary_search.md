@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python数据结构】Binary Search
+title: 【Python数据结构3】Binary Search
 categories:
 tags: 5数据结构与算法
 keywords:
 description:
-order: 551
+order: 553
 ---
 
 ## 我总结的一般写法

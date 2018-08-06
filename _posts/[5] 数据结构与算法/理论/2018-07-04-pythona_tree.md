@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【Python数据结构】tree
+title: 【Python数据结构4】Tree
 categories:
 tags: 5数据结构与算法
 keywords:
 description:
-order: 551
+order: 554
 ---
 ## 定义二叉树
 
@@ -31,12 +31,14 @@ class TreeNode(object):
         :return:
         打印二叉树，凹入表示法。原理是RDL遍历，旋转90度看
         '''
-        if self.right is not None:
-            self.right.printtree(i + 1)
+        tree_str=''
+        if self.right:
+            tree_str+=self.right.printtree(i + 1)
         if self.val:
-            print('    ' * i + '-' * 3, self.val)
+            tree_str+=('    ' * i + '-' * 3+str(self.val)+'\n')
         if self.left:
-            self.left.printtree(i + 1)
+            tree_str+=self.left.printtree(i + 1)
+        return tree_str
 
     def PreOrder(self, list_num=[]):  # DLR
         list_num.append(self.val)
@@ -72,6 +74,23 @@ class TreeNode(object):
             self.right.find_track(num, track_str + ' ->right-> ')
 ```
 
+其它写法
+```py
+class Solution:
+    def inorder(self, root):  # LDR
+        return [] if (root is None) else self.inorder(root.left) + [root.val] + self.inorder(root.right)
+
+    def preorder(self, root):  # DLR
+        return [] if (root is None) else [root.val] + self.preorder(root.left) + self.preorder(root.right)
+
+    def postorder(self, root):  # LRD
+        return [] if (root is None) else self.inorder(root.left) + self.inorder(root.right) + [root.val]
+
+    def isValidBST(self,root):
+        inorder=self.inorder(root)
+        return inorder==list(sorted(set(inorder)))
+```
+
 ## 常用函数
 - 顺序存储转链式存储
 - 链式存储转顺序存储（尚未实现）
@@ -103,8 +122,25 @@ tree.find_track(4)
 ```
 
 ### 另一种实现
-这个来自[leetCode](https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python)  
+这个来自[leetCode](https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python)，做了一定的改造  
 ```py
+def list2tree2(nums):
+  # 与我写的 list2tree 的区别是：对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点，而是跳过，因此更加节省空间。
+    if not nums:
+        return None
+    nodes = [None if val is None else TreeNode(val)
+             for val in nums]
+    kids = nodes[::-1]
+    root = kids.pop()
+    for node in nodes:
+        if node:
+            if kids: node.left = kids.pop()
+            if kids: node.right = kids.pop()
+    return root
+
+
+# LeetCode官方版本
+# deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
 def deserialize(string):
     if string == '{}':
         return None
@@ -120,38 +156,35 @@ def deserialize(string):
 
 
 def drawtree(root):
+    # 用 turtle 画 Tree，比纯字符串美观，但慢
     def height(root):
         return 1 + max(height(root.left), height(root.right)) if root else -1
+
     def jumpto(x, y):
         t.penup()
         t.goto(x, y)
         t.pendown()
+
     def draw(node, x, y, dx):
         if node:
             t.goto(x, y)
-            jumpto(x, y-20)
+            jumpto(x, y - 20)
             t.write(node.val, align='center', font=('Arial', 12, 'normal'))
-            draw(node.left, x-dx, y-60, dx/2)
-            jumpto(x, y-20)
-            draw(node.right, x+dx, y-60, dx/2)
+            draw(node.left, x - dx, y - 60, dx / 2)
+            jumpto(x, y - 20)
+            draw(node.right, x + dx, y - 60, dx / 2)
     import turtle
     t = turtle.Turtle()
-    t.speed(0); turtle.delay(0)
+    t.speed(0);
+    turtle.delay(0)
     h = height(root)
-    jumpto(0, 30*h)
-    draw(root, 0, 30*h, 40*h)
+    jumpto(0, 30 * h)
+    draw(root, 0, 30 * h, 40 * h)
     t.hideturtle()
     turtle.mainloop()
 
-drawtree(deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]'))
+drawtree(list2tree2([2, 1, 3, 0, 7, 9, 1, 2, None, 1, 0, None, None, 8, 8, None, None, None, None, 7]))
 ```
-deserialize与我写的list2tree的区别是：  
-1. 输入的是字符串，以null作为空值标志，
-2. （重点）对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点。（比我写的更合理，因为节省存储空间，提高效率，但两者可能都有应用场景，因此保留）
-
-
-drawtree与我写的printtree的区别是
-1. drawtree调用turtle，生成一个很美观的图；我的是print字符串。美观和效率上各有优缺点。
 
 
 ## 其它应用举例

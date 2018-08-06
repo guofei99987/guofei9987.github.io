@@ -91,7 +91,7 @@ x**y   pow(x,y)
 
 
 
-## 元组类型（tuple）
+## tuple
 
 ### 特点
 - 元组中的元素可以是不同类型的
@@ -100,6 +100,8 @@ t3=123,456,("hello","中国")
 ```
 - tuple定义之后，其中的元素不能更改，也不能删除
 - 如果tuple中有个list，这个list可以更改
+
+
 ### 生成
 ```python
 x=(1,2,3)
@@ -194,8 +196,8 @@ a=[(1, 'a'), (2, 'b'), (3, 'c')]
 list(zip(*a))
 ```
 ### range
-```
-range(start, stop,step)
+```py
+range(start, stop, step)
 ```
 ## dict
 
@@ -205,14 +207,14 @@ range(start, stop,step)
 - 值可以是任何类型
 - 命名空间是通过字典来实现的
 
-### 构造方法
+### 创建
 ```python
-p={"key1":"value1","key2":"value2"}#构造方法1
+p={"key1":"value1","key2":"value2"} #构造方法1
 
 #构造方法2：
 d = dict()
-d = dict(key1=value1, key2=value2)#key的名字不用试字符串
-d = dict([('name','tom'), ('age',22)])#这种比较好
+d = dict(key1=value1, key2=value2) # key的名字不用是字符串
+d = dict([('name','tom'), ('age',22)])
 
 #构造方法3：
 keys = ['name','age']
@@ -235,25 +237,13 @@ d.pop('key1') #返回key1对应的value，并且从d中删除key1。不存在则
 ### 遍历
 
 ```python
-for key in my_dict:print(key)#key是str
-for key in my_dict.keys():print(key)#key是str, my_dict.keys()是<dict_keys>类
-for value in my_dict.values():print(value)#value是各自的类，my_dict.values是<dict_name>类
-for k in my_dict.items():print(k)#k是tuple,里面放着一对key-value;my_dict.items()是<dict_items>类
+for key in my_dict:print(key) #key是str
+for key in my_dict.keys():print(key) #key是str, my_dict.keys()是<dict_keys>类
+for value in my_dict.values():print(value) #value是各自的类，my_dict.values是<dict_name>类
+for k in my_dict.items():print(k) #k是tuple,里面放着一对key-value;my_dict.items()是<dict_items>类
 for key,value in my_dict.items():print(key,value)
 ```
-### 操作符
-```py
--
-<
->
-<=
->=
-==
-!=
-and
-or
-not
-```
+
 ### 方法
 ```py
 <dict>.keys() #返回所有key
@@ -261,27 +251,19 @@ not
 <dict>.items() #返回key-value
 <dict>.clear() #清除字典，返回none
 <dict>.get(key) #key对应的value，不存在返回None，而不是报错
+<dict>.get(key,val) # 不存在则返回 val，而不是报错
 <dict>.pop(key) #返回key对应的value，并从dict中删除
 <dict>.update(<dict>) #返回none，两个dict加一起
 ```
 ### 取值
 
-
-运算符
 ```python
-取值：x['bill'];
-求长度：len(x);
-逻辑判断：'bill' in x;#返回ture
-逻辑判断：'11' in x;#返回false
-```
+x['bill'] # 取值
+len(x); # 求长度
+'bill' in x; #返回 Ture or False
 
-字典方法（在3.4和2.7版本中有所不同）
-```python
-item()# 转为dict_items
-keys()#转为dict_keys
-copy()#拷贝
+dict1= sorted(word_dict.items(), key=lambda d:d[1], reverse = True)
 ```
-
 
 
 ## set
@@ -291,16 +273,16 @@ copy()#拷贝
 ### 集合运算
 
 ```python
-z1=x.intersection(y);#交
-z2=y.union(x);#并
-z3=y.difference(x);#差
+z1=x.intersection(y) #交
+z2=y.union(x) #并
+z3=y.difference(x) #差
 ```
 或者：
 ```python
 x&y #交
 x|y #并
 x-y #差
-a^b #=x|y-x&y
+a^b #补 =x|y-x&y
 
 a.issebset(b) #a是否是b的子集
 a.issuperset(b)
@@ -316,7 +298,7 @@ a.remove(4) #删除一个元素，不存在则报错
 ```
 ## 互转
 x可以是tuple，list，set：
-```
+```py
 tuple(x)
 list(x)
 set(x)
