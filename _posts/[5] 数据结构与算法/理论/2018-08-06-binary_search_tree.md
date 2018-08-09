@@ -7,24 +7,221 @@ keywords:
 description:
 order: 555
 ---
+
+## 介绍
 `Binary Search Tree`(BST) is a special form of a binary tree.  
 - The value in each node must be greater than (or equal to) any values in its left subtree
 - but less than (or equal to) any values in its right subtree
 
 
+设计一个Binary Search Tree Iterator  
+并定义next()和hasNext()方法，并且有 O(1) time 和 O(h) memory  
 ```py
+class BSTIterator(object):
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.stack=[]
+        while root:
+            self.stack.append(root)
+            root=root.left
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return len(self.stack)>0
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        node=self.stack.pop()
+        x=node.right
+        while x:
+            self.stack.append(x)
+            x=x.left
+        return node.val
+
+# Your BSTIterator will be called like this:
+# i, v = BSTIterator(root), []
+# while i.hasNext(): v.append(i.next())
+```
+
+## 基本功能
+
+```py
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def inorder(self, root):  # LDR
-        return [] if (root is None) else self.inorder(root.left) + [root.val] + self.inorder(root.right)
+    # 注意，标准的二叉树遍历算法中，遇到空节点返回[],而不是[None]
+    def InOrder(self, root):  # LDR
+        return [] if (root is None) else self.InOrder(root.left) + [root.val] + self.InOrder(root.right)
 
-    def preorder(self, root):  # DLR
-        return [] if (root is None) else [root.val] + self.preorder(root.left) + self.preorder(root.right)
+    def PreOrder(self, root):  # DLR
+        return [] if (root is None) else [root.val] + self.PreOrder(root.left) + self.PreOrder(root.right)
 
-    def postorder(self, root):  # LRD
-        return [] if (root is None) else self.inorder(root.left) + self.inorder(root.right) + [root.val]
+    def PostOrder(self, root):  # LRD
+        return [] if (root is None) else self.PostOrder(root.left) + self.PostOrder(root.right) + [root.val]
 
-    def isValidBST(self,root):
-        # 判断一个二叉树是否是 BST
-        inorder=self.inorder(root)
-        return inorder==list(sorted(set(inorder)))
+    def PrintTree(self, root, i=0):
+        '''
+        打印二叉树，凹入表示法。原理是RDL遍历，旋转90度看
+        '''
+        tree_str = ''
+        if root.right:
+            tree_str += self.PrintTree(root.right, i + 1)
+        if root.val:
+            tree_str += ('    ' * i + '-' * 3 + str(root.val) + '\n')
+        if root.left:
+            tree_str += self.PrintTree(root.left, i + 1)
+        return tree_str
+
+    def find_track(self, num, root, track_str=''):
+        '''
+        二叉树搜索
+        :param num:
+        :param root:
+        :param track_str:
+        :return:
+        '''
+        track_str = track_str + str(root.val)
+        if root.val == num:
+            return track_str
+        if root.left is not None:
+            self.find_track(num, root.left, track_str + ' ->left-> ')
+        if root.right is not None:
+            self.find_track(num, root.right, track_str + ' ->right-> ')
+
+    def list2tree(self, i=1, list_num=[]):
+        # 顺序结构转链式结构
+        # 节点标号从1开始
+        if i > len(list_num):
+            return None
+        treenode = TreeNode(list_num[i - 1])
+        treenode.left = self.list2tree(2 * i, list_num)
+        treenode.right = self.list2tree(2 * i + 1, list_num)
+        return treenode
+
+    # 还未完成
+    def tree2list(self):
+        pass
+
+    def list2tree2(self, nums):
+        # 与 list2tree 的区别是：对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点，而是跳过，因此更加节省空间。
+        if not nums:
+            return None
+        nodes = [None if val is None else TreeNode(val) for val in nums]
+        kids = nodes[::-1]
+        root = kids.pop()
+        for node in nodes:
+            if node:
+                if kids: node.left = kids.pop()
+                if kids: node.right = kids.pop()
+        return root
+
+    def deserialize(self, string):
+        # LeetCode官方版本
+        # deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
+        if string == '{}':
+            return None
+        nodes = [None if val == 'null' else TreeNode(int(val)) for val in string.strip('[]{}').split(',')]
+        kids = nodes[::-1]
+        root = kids.pop()
+        for node in nodes:
+            if node:
+                if kids: node.left = kids.pop()
+                if kids: node.right = kids.pop()
+        return root
+
+    def drawtree(self, root):
+        # 用 turtle 画 Tree，比纯字符串美观，但慢
+        def height(root):
+            return 1 + max(height(root.left), height(root.right)) if root else -1
+
+        def jumpto(x, y):
+            t.penup()
+            t.goto(x, y)
+            t.pendown()
+
+        def draw(node, x, y, dx):
+            if node:
+                t.goto(x, y)
+                jumpto(x, y - 20)
+                t.write(node.val, align='center', font=('Arial', 12, 'normal'))
+                draw(node.left, x - dx, y - 60, dx / 2)
+                jumpto(x, y - 20)
+                draw(node.right, x + dx, y - 60, dx / 2)
+
+        import turtle
+        t = turtle.Turtle()
+        t.speed(0);
+        turtle.delay(0)
+        h = height(root)
+        jumpto(0, 30 * h)
+        draw(root, 0, 30 * h, 40 * h)
+        t.hideturtle()
+        turtle.mainloop()
+
+    # 以下是BST方法
+    def isValidBST(self, root):
+        # 判断是否是BST，返回 True/False
+        inorder = self.inorder(root)
+        return inorder == list(sorted(set(inorder)))
+
+    def searchBST(self, root, val):
+        # 搜索 BST，如果val在 BST中，返回对应节点，否则返回None
+        if root and val < root.val:
+            return self.searchBST(root.left, val)
+        elif root and val > root.val:
+            return self.searchBST(root.right, val)
+        return root
+
+    def insertIntoBST(self, root, val):
+        """
+        把值 val 插入到BST中
+        :type root: TreeNode
+        :type val: int
+        :rtype: TreeNode
+        """
+        if root is None:
+            return TreeNode(val)
+        if root.val < val:
+            root.right = self.insertIntoBST(root.right, val)
+        elif root.val > val:
+            root.left = self.insertIntoBST(root.left, val)
+        return root
+
+    def deleteNode(self, root, key):
+        """
+        删除节点的方式有很多种：左子节点提升，右子节点提升，下面这个思路是把右子树的最左左叶节点作为替换被删节点的值
+        :type root: TreeNode
+        :type key: int
+        :rtype: TreeNode
+        """
+        if not root:
+            return root
+        if root.val > key:
+            root.left = self.deleteNode(root.left, key)
+        elif root.val < key:
+            root.right = self.deleteNode(root.right, key)
+        else:
+            if not root.right:
+                return root.left
+            if not root.left:
+                return root.right
+            else:
+                tmp, mini = root.right, root.right.val
+                while tmp.left:
+                    tmp, mini = tmp.left, tmp.left.val
+                root.val = mini
+                root.right = self.deleteNode(root.right, root.val)
+        return root
 ```

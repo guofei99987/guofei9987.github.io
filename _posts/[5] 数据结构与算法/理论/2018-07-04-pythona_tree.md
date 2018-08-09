@@ -74,8 +74,14 @@ class TreeNode(object):
             self.right.find_track(num, track_str + ' ->right-> ')
 ```
 
-其它写法
+把方法封装到 TreeNode 外
 ```py
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 class Solution:
     def inorder(self, root):  # LDR
         return [] if (root is None) else self.inorder(root.left) + [root.val] + self.inorder(root.right)
@@ -188,6 +194,76 @@ drawtree(list2tree2([2, 1, 3, 0, 7, 9, 1, 2, None, 1, 0, None, None, 8, 8, None,
 
 
 ## 其它应用举例
+
+### Level Order Traversal
+[效果描述](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)  
+代码本身应用不广，这个思路可以用来做 list2tree 的逆问题（想想怎样让程序更简单）
+```py
+class Solution:
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        import collections
+        level = 0
+        deque = collections.deque([(root,level)])
+        output=[]
+        while deque:
+            tmp_root,level = deque.popleft()
+            if tmp_root.left: deque.append((tmp_root.left,level+1))
+            if tmp_root.right: deque.append((tmp_root.right,level+1))
+            if len(output)<=level:
+                output.append([tmp_root.val])
+            else:
+                output[level].append(tmp_root.val)
+        return output
+```
+
+### Recursive
+"Top-down" Solution
+```py
+1. return specific value for null node
+2. update the answer if needed                      // anwer <-- params
+3. left_ans = top_down(root.left, left_params)      // left_params <-- root.val, params
+4. right_ans = top_down(root.right, right_params)   // right_params <-- root.val, params
+5. return the answer if needed                      // answer <-- left_ans, right_ans
+```
+"Bottom-up" Solution
+```py
+1. return specific value for null node
+2. left_ans = bottom_up(root.left)          // call function recursively for left child
+3. right_ans = bottom_up(root.right)        // call function recursively for right child
+4. return answers                           // answer <-- left_ans, right_ans, root.val
+```
+
+对于 “max-depth” 问题，具体解法如下：
+```py
+1. return if root is null
+2. if root is a leaf node:
+3.      answer = max(answer, depth)         // update the answer if needed
+4. maximum_depth(root.left, depth + 1)      // call the function recursively for left child
+5. maximum_depth(root.right, depth + 1)     // call the function recursively for right child
+
+1. return 0 if root is null                 // return 0 for null node
+2. left_depth = maximum_depth(root.left)
+3. right_depth = maximum_depth(root.right)
+4. return max(left_depth, right_depth) + 1  // return depth of the subtree rooted at root
+
+
+class Solution:
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        return 0 if root is None else max(self.maxDepth(root.left),self.maxDepth(root.right))+1
+```
+
+
+
 ### mergeTrees
 ```py
 # merge
