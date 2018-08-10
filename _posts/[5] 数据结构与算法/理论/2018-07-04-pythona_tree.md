@@ -25,183 +25,100 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
-    def printtree(self, i=0):
+
+class Solution:
+    # 注意，标准的二叉树遍历算法中，遇到空节点返回[],而不是[None]
+    def InOrder(self, root):  # LDR
+        return [] if (root is None) else self.InOrder(root.left) + [root.val] + self.InOrder(root.right)
+
+    def PreOrder(self, root):  # DLR
+        return [] if (root is None) else [root.val] + self.PreOrder(root.left) + self.PreOrder(root.right)
+
+    def PostOrder(self, root):  # LRD
+        return [] if (root is None) else self.PostOrder(root.left) + self.PostOrder(root.right) + [root.val]
+
+    def PrintTree(self, root, i=0):
         '''
-        :param i:
-        :return:
         打印二叉树，凹入表示法。原理是RDL遍历，旋转90度看
         '''
-        tree_str=''
-        if self.right:
-            tree_str+=self.right.printtree(i + 1)
-        if self.val:
-            tree_str+=('    ' * i + '-' * 3+str(self.val)+'\n')
-        if self.left:
-            tree_str+=self.left.printtree(i + 1)
+        tree_str = ''
+        if root.right:
+            tree_str += self.PrintTree(root.right, i + 1)
+        if root.val:
+            tree_str += ('    ' * i + '-' * 3 + str(root.val) + '\n')
+        if root.left:
+            tree_str += self.PrintTree(root.left, i + 1)
         return tree_str
 
-    def PreOrder(self, list_num=[]):  # DLR
-        list_num.append(self.val)
-        if self.left is not None:
-            self.left.PreOrder(list_num=list_num)
-        if self.right is not None:
-            self.right.PreOrder(list_num=list_num)
-        return list_num
+    def find_track(self, num, root, track_str=''):
+        '''
+        二叉树搜索
+        :param num:
+        :param root:
+        :param track_str:
+        :return:
+        '''
+        track_str = track_str + str(root.val)
+        if root.val == num:
+            return track_str
+        if root.left is not None:
+            self.find_track(num, root.left, track_str + ' ->left-> ')
+        if root.right is not None:
+            self.find_track(num, root.right, track_str + ' ->right-> ')
 
-    def InOrder(self, list_num=[]):  # LDR
-        if self.left is not None:
-            self.left.InOrder(list_num=list_num)
-        list_num.append(self.val)
-        if self.right is not None:
-            self.right.InOrder(list_num=list_num)
-        return list_num
+      def buildTree(self, inorder, postorder):
+          """
+          https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+          中序+后序确定一棵树，前提是list中没有重复的数字
+          :type inorder: List[int]
+          :type postorder: List[int]
+          :rtype: TreeNode
+          """
+          if not inorder or not postorder:
+              return None
+          root = TreeNode(postorder.pop())
+          inorder_index = inorder.index(root.val)
 
-    def PostOrder(self, list_num=[]):  # LRD
-        if self.left is not None:
-            self.left.PostOrder(list_num=list_num)
-        if self.right is not None:
-            self.right.PostOrder(list_num=list_num)
-        list_num.append(self.val)
-        return list_num
+          root.right = self.buildTree(inorder[inorder_index + 1:], postorder)
+          root.left = self.buildTree(inorder[:inorder_index], postorder)
 
-    def find_track(self, num, track_str=''):
-        track_str = track_str + str(self.val)
-        if self.val == num:
-            print(track_str)
-        if self.left is not None:
-            self.left.find_track(num, track_str + ' ->left-> ')
-        if self.right is not None:
-            self.right.find_track(num, track_str + ' ->right-> ')
-```
+          return root
 
-把方法封装到 TreeNode 外
-```py
-class TreeNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+      def buildTree(self, preorder, inorder):
+          """
+          https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+          前序+中序确定一棵树，前提是list中没有重复的数字
+          pop(0)效率很低，看看怎么解决
+          :type preorder: List[int]
+          :type inorder: List[int]
+          :rtype: TreeNode
+          """
+          if not preorder or not inorder:
+              return None
+          root=TreeNode(preorder.pop(0))
+          inorder_index=inorder.index(root.val)
 
-class Solution:
-    def inorder(self, root):  # LDR
-        return [] if (root is None) else self.inorder(root.left) + [root.val] + self.inorder(root.right)
+          root.left=self.buildTree(preorder,inorder[:inorder_index])
+          root.right=self.buildTree(preorder,inorder[inorder_index+1:])
+          return root
 
-    def preorder(self, root):  # DLR
-        return [] if (root is None) else [root.val] + self.preorder(root.left) + self.preorder(root.right)
+    def list2tree(self, i=1, list_num=[]):
+        # 顺序结构转链式结构
+        # 节点标号从1开始
+        if i > len(list_num):
+            return None
+        treenode = TreeNode(list_num[i - 1])
+        treenode.left = self.list2tree(2 * i, list_num)
+        treenode.right = self.list2tree(2 * i + 1, list_num)
+        return treenode
 
-    def postorder(self, root):  # LRD
-        return [] if (root is None) else self.inorder(root.left) + self.inorder(root.right) + [root.val]
+    # 还未完成
+    def tree2list(self):
+        pass
 
-    def isValidBST(self,root):
-        inorder=self.inorder(root)
-        return inorder==list(sorted(set(inorder)))
-```
-
-## 常用函数
-- 顺序存储转链式存储
-- 链式存储转顺序存储（尚未实现）
-
-
-```py
-# 顺序结构转链式结构
-# 第i个节点（编号从1开始）
-def list2tree(i=1, list_num=[1, 2, 3]):
-    if i > len(list_num):
-        return None
-    treenode = TreeNode(list_num[i - 1])
-    treenode.left = list2tree(2 * i, list_num)
-    treenode.right = list2tree(2 * i + 1, list_num)
-    return treenode
-
-
-def tree2list():
-    pass
-
-
-list_num = [1, 2, 3, 4, 5, 6, 7]
-tree = list2tree(1, list_num)
-# tree.printtree()
-tree.PreOrder()
-tree.InOrder()
-tree.PostOrder()
-tree.find_track(4)
-```
-
-### 另一种实现
-这个来自[leetCode](https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python)，做了一定的改造  
-```py
-def list2tree2(nums):
-  # 与我写的 list2tree 的区别是：对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点，而是跳过，因此更加节省空间。
-    if not nums:
-        return None
-    nodes = [None if val is None else TreeNode(val)
-             for val in nums]
-    kids = nodes[::-1]
-    root = kids.pop()
-    for node in nodes:
-        if node:
-            if kids: node.left = kids.pop()
-            if kids: node.right = kids.pop()
-    return root
-
-
-# LeetCode官方版本
-# deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
-def deserialize(string):
-    if string == '{}':
-        return None
-    nodes = [None if val == 'null' else TreeNode(int(val))
-             for val in string.strip('[]{}').split(',')]
-    kids = nodes[::-1]
-    root = kids.pop()
-    for node in nodes:
-        if node:
-            if kids: node.left  = kids.pop()
-            if kids: node.right = kids.pop()
-    return root
-
-
-def drawtree(root):
-    # 用 turtle 画 Tree，比纯字符串美观，但慢
-    def height(root):
-        return 1 + max(height(root.left), height(root.right)) if root else -1
-
-    def jumpto(x, y):
-        t.penup()
-        t.goto(x, y)
-        t.pendown()
-
-    def draw(node, x, y, dx):
-        if node:
-            t.goto(x, y)
-            jumpto(x, y - 20)
-            t.write(node.val, align='center', font=('Arial', 12, 'normal'))
-            draw(node.left, x - dx, y - 60, dx / 2)
-            jumpto(x, y - 20)
-            draw(node.right, x + dx, y - 60, dx / 2)
-    import turtle
-    t = turtle.Turtle()
-    t.speed(0);
-    turtle.delay(0)
-    h = height(root)
-    jumpto(0, 30 * h)
-    draw(root, 0, 30 * h, 40 * h)
-    t.hideturtle()
-    turtle.mainloop()
-
-drawtree(list2tree2([2, 1, 3, 0, 7, 9, 1, 2, None, 1, 0, None, None, 8, 8, None, None, None, None, 7]))
-```
-
-
-## 其它应用举例
-
-### Level Order Traversal
-[效果描述](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)  
-代码本身应用不广，这个思路可以用来做 list2tree 的逆问题（想想怎样让程序更简单）
-```py
-class Solution:
     def levelOrder(self, root):
         """
+        https://leetcode.com/problems/binary-tree-level-order-traversal/description/
         :type root: TreeNode
         :rtype: List[List[int]]
         """
@@ -209,7 +126,7 @@ class Solution:
             return []
         import collections
         level = 0
-        deque = collections.deque([(root,level)])
+        deque = collections.deque([(root,0)])
         output=[]
         while deque:
             tmp_root,level = deque.popleft()
@@ -220,7 +137,67 @@ class Solution:
             else:
                 output[level].append(tmp_root.val)
         return output
+
+    def list2tree2(self, nums):
+        # 与 list2tree 的区别是：对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点，而是跳过，因此更加节省空间。
+        if not nums:
+            return None
+        nodes = [None if val is None else TreeNode(val) for val in nums]
+        kids = nodes[::-1]
+        root = kids.pop()
+        for node in nodes:
+            if node:
+                if kids: node.left = kids.pop()
+                if kids: node.right = kids.pop()
+        return root
+
+    def deserialize(self, string):
+        # LeetCode官方版本
+        # https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python
+        # deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
+        if string == '{}':
+            return None
+        nodes = [None if val == 'null' else TreeNode(int(val)) for val in string.strip('[]{}').split(',')]
+        kids = nodes[::-1]
+        root = kids.pop()
+        for node in nodes:
+            if node:
+                if kids: node.left = kids.pop()
+                if kids: node.right = kids.pop()
+        return root
+
+    def drawtree(self, root):
+        # 用 turtle 画 Tree，比纯字符串美观，但慢
+        def height(root):
+            return 1 + max(height(root.left), height(root.right)) if root else -1
+
+        def jumpto(x, y):
+            t.penup()
+            t.goto(x, y)
+            t.pendown()
+
+        def draw(node, x, y, dx):
+            if node:
+                t.goto(x, y)
+                jumpto(x, y - 20)
+                t.write(node.val, align='center', font=('Arial', 12, 'normal'))
+                draw(node.left, x - dx, y - 60, dx / 2)
+                jumpto(x, y - 20)
+                draw(node.right, x + dx, y - 60, dx / 2)
+
+        import turtle
+        t = turtle.Turtle()
+        t.speed(0);
+        turtle.delay(0)
+        h = height(root)
+        jumpto(0, 30 * h)
+        draw(root, 0, 30 * h, 40 * h)
+        t.hideturtle()
+        turtle.mainloop()
 ```
+
+
+## 其它应用举例
 
 ### Recursive
 "Top-down" Solution
@@ -262,6 +239,28 @@ class Solution:
         return 0 if root is None else max(self.maxDepth(root.left),self.maxDepth(root.right))+1
 ```
 
+### 1
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/  
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/description/  
+（两个题对应同一个解法，解题思路就是用队列进行LevelOrder遍历）  
+
+```py
+class Solution:
+    # @param root, a tree link node
+    # @return nothing
+    def connect(self, root):
+        if not root:return
+        import collections
+        deque = collections.deque([(root, 0)])
+        output = dict()
+        while deque:
+            tmp_root, level = deque.popleft()
+            if tmp_root.left: deque.append((tmp_root.left, level + 1))
+            if tmp_root.right: deque.append((tmp_root.right, level + 1))
+            if level in output:
+                output[level].next = tmp_root
+            output[level] = tmp_root
+```
 
 
 ### mergeTrees

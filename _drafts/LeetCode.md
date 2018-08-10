@@ -78,3 +78,11 @@ def fourSumCount(self, A, B, C, D):
 
 ## Trie
 A Trie is a special form of a Nary tree
+
+## Binary Tree
+从前序+中序，构建一棵树，可以背下来了
+https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+
+也是可以背下来的东西  
+找到共同的祖先节点
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65225/4-lines-C%25252B%25252BJavaPythonRuby/163571

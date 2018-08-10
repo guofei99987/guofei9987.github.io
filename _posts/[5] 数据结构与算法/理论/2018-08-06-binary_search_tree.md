@@ -100,6 +100,42 @@ class Solution:
         if root.right is not None:
             self.find_track(num, root.right, track_str + ' ->right-> ')
 
+      def buildTree(self, inorder, postorder):
+          """
+          https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+          中序+后序确定一棵树，前提是list中没有重复的数字
+          :type inorder: List[int]
+          :type postorder: List[int]
+          :rtype: TreeNode
+          """
+          if not inorder or not postorder:
+              return None
+          root = TreeNode(postorder.pop())
+          inorder_index = inorder.index(root.val)
+
+          root.right = self.buildTree(inorder[inorder_index + 1:], postorder)
+          root.left = self.buildTree(inorder[:inorder_index], postorder)
+
+          return root
+
+      def buildTree(self, preorder, inorder):
+          """
+          https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+          前序+中序确定一棵树，前提是list中没有重复的数字
+          pop(0)效率很低，看看怎么解决
+          :type preorder: List[int]
+          :type inorder: List[int]
+          :rtype: TreeNode
+          """
+          if not preorder or not inorder:
+              return None
+          root=TreeNode(preorder.pop(0))
+          inorder_index=inorder.index(root.val)
+
+          root.left=self.buildTree(preorder,inorder[:inorder_index])
+          root.right=self.buildTree(preorder,inorder[inorder_index+1:])
+          return root
+
     def list2tree(self, i=1, list_num=[]):
         # 顺序结构转链式结构
         # 节点标号从1开始
@@ -113,6 +149,28 @@ class Solution:
     # 还未完成
     def tree2list(self):
         pass
+
+    def levelOrder(self, root):
+        """
+        https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        import collections
+        level = 0
+        deque = collections.deque([(root,0)])
+        output=[]
+        while deque:
+            tmp_root,level = deque.popleft()
+            if tmp_root.left: deque.append((tmp_root.left,level+1))
+            if tmp_root.right: deque.append((tmp_root.right,level+1))
+            if len(output)<=level:
+                output.append([tmp_root.val])
+            else:
+                output[level].append(tmp_root.val)
+        return output
 
     def list2tree2(self, nums):
         # 与 list2tree 的区别是：对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点，而是跳过，因此更加节省空间。
@@ -129,7 +187,10 @@ class Solution:
 
     def deserialize(self, string):
         # LeetCode官方版本
+        # https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python
         # deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
+        # 这里是 deserialize 和 serialize 的案例
+        # https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/995/discuss
         if string == '{}':
             return None
         nodes = [None if val == 'null' else TreeNode(int(val)) for val in string.strip('[]{}').split(',')]
@@ -169,6 +230,9 @@ class Solution:
         draw(root, 0, 30 * h, 40 * h)
         t.hideturtle()
         turtle.mainloop()
+
+
+
 
     # 以下是BST方法
     def isValidBST(self, root):
