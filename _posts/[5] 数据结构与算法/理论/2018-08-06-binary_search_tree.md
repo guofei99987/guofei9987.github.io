@@ -288,4 +288,43 @@ class Solution:
                 root.val = mini
                 root.right = self.deleteNode(root.right, root.val)
         return root
+
+        def sortedArrayToBST(self, nums):
+            """
+            从一个sorted list生成平衡的BST
+            https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/
+            :type nums: List[int]
+            :rtype: TreeNode
+            """
+            if not nums:
+                return None
+            mid = len(nums) // 2
+            root = TreeNode(nums[mid])
+            root.left = self.sortedArrayToBST(nums[:mid])
+            root.right = self.sortedArrayToBST(nums[mid + 1:])
+            return root
+
+```
+
+
+## 实用方法
+https://leetcode.com/problems/trim-a-binary-search-tree/description/
+```py
+class Solution(object):
+    def trimBST(self, root, L, R):
+        """
+        :type root: TreeNode
+        :type L: int
+        :type R: int
+        :rtype: TreeNode
+        """
+        if not root:
+            return None
+        if root.val < L:
+            return self.trimBST(root.right, L, R)
+        if root.val > R:
+            return self.trimBST(root.left, L, R)
+        root.left = self.trimBST(root.left, L, R)
+        root.right = self.trimBST(root.right, L, R)
+        return root
 ```

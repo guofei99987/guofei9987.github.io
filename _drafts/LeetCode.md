@@ -86,3 +86,19 @@ https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-t
 也是可以背下来的东西  
 找到共同的祖先节点
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65225/4-lines-C%25252B%25252BJavaPythonRuby/163571
+```py
+def lowestCommonAncestor(self, root, p, q):
+    """
+    :type root: TreeNode
+    :type p: TreeNode
+    :type q: TreeNode
+    :rtype: TreeNode
+    """
+    if root in (None, p, q): return root
+    left, right = (self.lowestCommonAncestor(kid, p, q)
+                   for kid in (root.left, root.right))
+    return root if left and right else left or right
+```
+
+再理解理解
+https://leetcode.com/problems/trim-a-binary-search-tree/description/
