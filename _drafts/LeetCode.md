@@ -42,6 +42,9 @@ class Solution:
 
 https://leetcode.com/problems/isomorphic-strings/discuss/57941/Python-different-solutions-(dictionary-etc).
 
+### 1
+https://leetcode.com/problems/longest-palindrome/discuss/89587/What-are-the-odds-(Python-and-C++)
+也可以算是奇技淫巧了
 ## 2
 
 https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1127
@@ -74,10 +77,21 @@ def fourSumCount(self, A, B, C, D):
     AB = collections.Counter(a+b for a in A for b in B)
     return sum(AB[-c-d] for c in C for d in D)
 ```
+### 3-2
+O(n^3)问题
+https://leetcode.com/problems/number-of-boomerangs/description/
 
+### 4
+https://leetcode.com/problems/rotate-string/description/
+解法可以算是天才了
+```py
+def rotateString(self, A, B):        
+    return len(A) == len(B) and B in A + A
+```
 
 ## Trie
 A Trie is a special form of a Nary tree
+
 
 ## Binary Tree
 从前序+中序，构建一棵树，可以背下来了
@@ -102,3 +116,33 @@ def lowestCommonAncestor(self, root, p, q):
 
 再理解理解
 https://leetcode.com/problems/trim-a-binary-search-tree/description/
+
+levelorder的几种写法（虽然我觉得已经背下来的那个解法最好）
+https://leetcode.com/problems/binary-tree-level-order-traversal-ii/discuss/34978/Python-solutions-(dfs-recursively-dfs+stack-bfs+queue).
+
+https://leetcode.com/problems/merge-two-sorted-lists/description/
+## IsLand专题
+主要看一看一种能少写很多代码的思路
+https://leetcode.com/problems/max-area-of-island/description/
+```py
+class Solution:
+    def dfs(self,i,j):
+        if (0<=i<self.row) and (0<= j<self.col) and(self.grid[i][j]==1):
+            self.grid[i][j]=-1
+            return 1+self.dfs(i-1,j)+self.dfs(i+1,j)+self.dfs(i,j-1)+self.dfs(i,j+1)
+        return 0
+    def maxAreaOfIsland(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        self.grid=grid
+        self.row,self.col=len(grid),len(grid[0])
+        area=[self.dfs(i,j) for i in range(self.row) for j in range(self.col)]
+        return max(area) if area else 0
+```
+
+## 奇技淫巧
+https://leetcode.com/problems/poor-pigs/description/
+
+https://leetcode.com/problems/rectangle-overlap/description/

@@ -19,6 +19,8 @@ counter.most_common(2) # 返回频率最高的n个，例如 [('a', 3), ('b', 2)]
 
 # 其它生成 Counter 对象的方法
 collections.Counter({'a':2,'b':1}) # 返回 Counter({'a': 2, 'b': 1})
+
+collections.Counter('aab')-collections.Counter('abc') # 结果的value中，剔除了0和负数（因此看起来应用范围不是很宽）
 ```
 
 ## defaultdict
@@ -60,3 +62,6 @@ deque.count(val) # 计算val的数量
 deque.extend(d2) # 等价于 deque+d2
 
 ```
+
+## 参考文献
+https://docs.python.org/3/

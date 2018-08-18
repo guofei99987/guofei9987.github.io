@@ -28,6 +28,7 @@ class TreeNode(object):
 
 class Solution:
     # 注意，标准的二叉树遍历算法中，遇到空节点返回[],而不是[None]
+    # 有些场景还是需要空节点返回[None]的，例如，使用inorder+preorder确定一棵树的场景
     def InOrder(self, root):  # LDR
         return [] if (root is None) else self.InOrder(root.left) + [root.val] + self.InOrder(root.right)
 
@@ -137,6 +138,19 @@ class Solution:
             else:
                 output[level].append(tmp_root.val)
         return output
+
+    def levelOrder(self, root):
+        """
+        针对N-ary Tree的方法，binary tree 可以参考
+        https://leetcode.com/problems/n-ary-tree-level-order-traversal/description/
+        :type root: Node
+        :rtype: List[List[int]]
+        """
+        q, ret = [root], []
+        while any(q):
+            ret.append([node.val for node in q])
+            q = [child for node in q for child in node.children if child]
+        return ret
 
     def list2tree2(self, nums):
         # 与 list2tree 的区别是：对空值不再生成子节点，之后的数据也不会作为这个空节点的子节点，而是跳过，因此更加节省空间。
