@@ -56,6 +56,11 @@ itertools.permutations([1,2,3,4],r=2)
 ```
 
 
+```py
+from scipy.special import comb, perm
+perm(3, 2)
+comb(3, 2)
+```
 
 ## 参考文献
 https://docs.python.org/3/library/itertools.html  

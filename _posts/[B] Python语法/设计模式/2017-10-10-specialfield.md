@@ -25,19 +25,24 @@ class Foo:
 print(Foo.__doc__) #输出：类的描述信息
 ```
 
-### `__str__`
+### `__str__`与`__repr__`
 
 ```py
 class Foo:
+    def __repr__(self):
+        return 'repr method'
 
-    def __str__(self):
-        return 'wupeiqi'
 
 obj = Foo()
 print(obj)
-# 输出：wupeiqi
+obj
+# 输出：repr method
+
+# __str__ 只重构与print相关的
+# __repr__ 既重构与print相关的，也重构与直接输出相关的
 ```
 
+### `__`
 
 
 ### `__module__` 和  `__class__`
