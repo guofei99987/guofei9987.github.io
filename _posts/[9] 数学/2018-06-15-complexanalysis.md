@@ -139,7 +139,7 @@ $f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{
 
 
 调和函数
-:    如果实变函数$h(x,y)$在区域D内具有连续的二阶偏导数，并且慢速 **拉普拉斯方程** $h_{xx}(x,y)+h_{yy}(x,y)=0$  
+:    如果实变函数$h(x,y)$在区域D内具有连续的二阶偏导数，并且满足 **拉普拉斯方程** $h_{xx}(x,y)+h_{yy}(x,y)=0$  
 称$h(x,y)$是D内的 **调和函数**。  
 
 
@@ -198,7 +198,7 @@ $f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint
 
 - $Az\overline z+\overline B z+B \overline z +C=0$  
 其中，A, C是实数  
-其中-B是圆心，$B \overline B-C$ 是半径。
+其中-B/A是圆心，$B \overline B-C$ 是半径。
 若A=0变成直线。  
 
 
