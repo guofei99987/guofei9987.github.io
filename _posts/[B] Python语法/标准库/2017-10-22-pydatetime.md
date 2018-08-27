@@ -69,7 +69,10 @@ parse('2016/11/12 12:00:03')
 
 ### 应用
 ```py
-now.year,now.month,now.day
+now=datetime.datetime.now()
+now.year,now.month,now.day # 年月日
+now.weekday() # 一周中的第几天，周一是0，周日是6
+
 ```
 ## timedelta
 

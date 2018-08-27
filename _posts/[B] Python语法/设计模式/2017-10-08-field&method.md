@@ -32,7 +32,10 @@ print(obj.name)
 
 # 静态字段属于类
 Province.country
-obj.country#静态字段也可以通过对象来访问
+obj.country # 静态字段也可以通过对象来访问
+obj.country='美国' # 会创建一个新指针，因此只影响obj,不影响Province
+obj2=Province()
+Province.country='德国' # obj2.country会变，而obj.country不会变，因为obj已经指向一个新变量了
 ```
 
 <img src='http://www.guofei.site/public/postimg2/pythonoop1.jpg'>  

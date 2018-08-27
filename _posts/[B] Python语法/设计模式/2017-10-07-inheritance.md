@@ -70,6 +70,49 @@ a = A()
 a.bar()
 ```
 
+### 继承中的 `__init__` 方法
+子类继承父类时，会覆写父类的方法，也包括 `__init__` 方法。有时候不想要这种效果，想让父类也执行创建，有两种方法解决。
+- 未绑定的父类方法
+```py
+import random
+import scipy.stats as stats
+class Fish:
+    def __init__(self):
+        self.position = stats.randint(1, 10).rvs(size=(2,))
+    def move(self):
+        self.position[0] -= 1
+        print('move to {position}'.format(position=self.position))
+class Shark(Fish):
+    def __init__(self):
+        Fish.__init__(self) # 未绑定的父类方法
+        self.ishungry = False
+shark = Shark()
+shark.move()
+shark.move()
+shark.move()
+```
+- 使用super函数
+```py
+import random
+import scipy.stats as stats
+class Fish:
+    def __init__(self):
+        self.position = stats.randint(1, 10).rvs(size=(2,))
+    def move(self):
+        self.position[0] -= 1
+        print('move to {position}'.format(position=self.position))
+class Shark(Fish):
+    def __init__(self):
+        super().__init__(self) # super方法，好处是不用一一去找父类的名称，改继承关系很方便
+        self.ishungry = False
+shark = Shark()
+shark.move()
+shark.move()
+shark.move()
+```
+
+
+
 ## 多态
 
 Pyhon不支持多态并且也用不到多态，或者说Python天然有多态性。多态的概念是应用于Java和C#这一类强类型语言中，而Python崇尚“鸭子类型”。  

@@ -196,8 +196,10 @@ $f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint
 - $|z-z_0|=R$
 其中R是半径， $z_0$ 是圆心
 
-- $Az\overline z+\overline B z+B \overline z +C=0$
- 其中-B是圆心，AC是实数 。若A=0， $B \overline B-C$ 是半径
+- $Az\overline z+\overline B z+B \overline z +C=0$  
+其中，A, C是实数  
+其中-B是圆心，$B \overline B-C$ 是半径。
+若A=0变成直线。  
 
 
 ## 参考资料
