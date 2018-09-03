@@ -146,3 +146,8 @@ class Solution:
 https://leetcode.com/problems/poor-pigs/description/
 
 https://leetcode.com/problems/rectangle-overlap/description/
+
+
+
+https://leetcode.com/problems/longest-common-prefix/discuss/6918/Short-Python-Solution
+https://leetcode.com/problems/longest-common-prefix/discuss/6911/Simple-Python-solution

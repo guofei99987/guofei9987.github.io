@@ -2,10 +2,10 @@
 layout: post
 title: 常见统计分布(2)
 categories:
-tags: 4统计学
+tags: 9B_概率统计
 keywords:
 description:
-order: 450
+order: 9502
 ---
 
 

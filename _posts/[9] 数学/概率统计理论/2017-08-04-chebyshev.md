@@ -2,10 +2,10 @@
 layout: post
 title: law of large numbers
 categories:
-tags: 4统计学
+tags: 9B_概率统计
 keywords:
 description:
-order: 450
+order: 9550
 ---
 
 ## 切比雪夫不等式

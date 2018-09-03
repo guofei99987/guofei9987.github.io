@@ -2,7 +2,7 @@
 layout: post
 title: 概率测度简介
 categories:
-tags: 4统计学
+tags: 9B_概率统计
 keywords:
 description:
 order: 450

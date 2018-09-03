@@ -2,7 +2,7 @@
 layout: post
 title: 条件概率,条件期望,条件方差
 categories:
-tags: 4统计学
+tags: 9B_概率统计
 keywords:
 description:
 order: 450

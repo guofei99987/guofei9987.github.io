@@ -2,10 +2,10 @@
 layout: post
 title: 【积分变换】拉普拉斯变换
 categories:
-tags: 9代数与分析
+tags: 9A_代数与分析
 keywords:
 description:
-order: 926012
+order: 92602
 ---
 ## 拉普拉斯变换的概念
 傅里叶分析有两个改进方向：

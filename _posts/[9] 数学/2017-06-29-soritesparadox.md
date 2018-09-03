@@ -2,7 +2,7 @@
 layout: post
 title: 【逻辑学】连锁悖论、真值度、超赋值理论与认知主义.
 categories:
-tags: 9代数与分析
+tags: 9A_代数与分析
 keywords:
 description:
 order: 98001

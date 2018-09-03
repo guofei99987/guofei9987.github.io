@@ -2,7 +2,7 @@
 layout: post
 title: 【汇总】统计学知识汇总
 categories:
-tags: 4统计学
+tags: 
 keywords:
 description:
 order: 450

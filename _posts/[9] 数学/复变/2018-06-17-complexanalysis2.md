@@ -2,7 +2,7 @@
 layout: post
 title: 【复变函数2】级数、留数
 categories:
-tags: 9代数与分析
+tags: 9A_代数与分析
 keywords:
 description:
 order: 92502
@@ -41,7 +41,7 @@ $f(z)=\sum\limits_{n=0}^\infty C_n(z-z_0)^n$，
 $f(z)$在圆环域$R_1<\mid z-z_0\mid <R_2$内处处解析，则$f(z)$一定可以表示为  
 $f(z)=\sum\limits_{n=-\infty}^\infty C_n(z-z_0)^n$  
 其中，$C_n=\dfrac{1}{2\pi i}\oint_C\dfrac{f(\xi)}{(\xi-z_0)^{n+1}}d\xi(n=0,\pm1,\pm 2,...)$  
-
+C是圆环域内绕$r_0$的任一简单闭曲线  
 
 ## 留数
 ### 奇点的基本概念
@@ -50,7 +50,7 @@ $f(z)=\sum\limits_{n=-\infty}^\infty C_n(z-z_0)^n$
 
 
 把$f(z)$展开为 **洛朗级数** $f(z)=\sum\limits_{n=-\infty}^\infty C_n(z-z_0)^n$,  
-发现$\sum\limits_{n=0}^{+\infty}$一定解析，所以奇异性质就完全体现在$\sum\limits_{n=0}^{+\infty}$部分  
+发现$\sum\limits_{n=0}^{+\infty}$一定解析，所以奇异性质就完全体现在$\sum\limits_{n=-\infty}^{-1}$部分  
 据此，可以把孤立奇点分为以下三类：
 1. **可去奇点** 对所有的$n<0$，都有$C_n=0$，叫做$z_0$是$f(z)$的 **可去奇点**  
 2. **极点** 如果只有有限个$n<0$，使得$C_n\neq 0$,叫做$z_0$是$f(z)$的 **极点**  。假如使得$C_n\neq 0$的最小的n记为m，称为$z_0$是$f(z)$的 **m阶极点**。称1阶极点为 **简单极点**

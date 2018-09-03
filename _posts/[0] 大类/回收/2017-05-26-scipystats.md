@@ -2,7 +2,7 @@
 layout: post
 title: scipy的stats库
 categories:
-tags: 4统计学
+tags:
 keywords:
 description:
 order: 450
