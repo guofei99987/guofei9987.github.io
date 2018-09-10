@@ -2,7 +2,7 @@
 layout: post
 title: 【实验设计】理论篇.
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 407

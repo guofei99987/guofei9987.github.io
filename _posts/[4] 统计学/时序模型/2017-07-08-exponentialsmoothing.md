@@ -2,7 +2,7 @@
 layout: post
 title: 【描述时序】指数平滑法
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 432

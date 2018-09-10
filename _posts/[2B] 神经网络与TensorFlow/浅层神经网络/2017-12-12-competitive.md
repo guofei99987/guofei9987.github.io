@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【神经网络6】竞争神经网络
+title: 竞争神经网络
 categories:
-tags: 2B神经网络与TF
+tags: 2B_浅层神经网络
 keywords:
 description:
 order: 256

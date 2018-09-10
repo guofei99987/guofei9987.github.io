@@ -2,7 +2,7 @@
 layout: post
 title: 【统计时序】非平稳数据的处理
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 450

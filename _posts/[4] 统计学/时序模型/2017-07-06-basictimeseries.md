@@ -2,7 +2,7 @@
 layout: post
 title: 【描述时序】趋势、季节和随机性
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 431

@@ -99,16 +99,45 @@ df.groupBy('col1').max() # 不加参数就是对所有列做同样的操作
 
 # agg1:默认函数
 df.groupby('col1').agg({'col2':'mean','col3':'sum'}) # 似乎不能与F混用
+
 # agg2：F中的函数
 from pyspark.sql import functions as F
 df.groupBy('col1').agg(F.countDistinct('col2'))
+
 # agg3：自定义函数
 ## agg3_1：udf左右于被 groupBy 的列，一一映射就有意义
 spark.udf.register('udf_func1',lambda x:x+1)
 df.groupBy('a').agg({'a':'udf_func1','b':'std'})
-## agg3_2：udf作用于普通列（还不知道如何实现）
+## agg3_2：udf作用于普通列：
+# http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.apply
+# 2.3版本才能用，还没去实验
 
+# UEF用于非groupby的场景
+def func(x):
+    return x + 1
+spark.udf.register('func',func)
+df.selectExpr('func(a)')
+
+
+# 这个在pyspark 2.3才能用，还没试过：
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+df = spark.createDataFrame(
+    [(1, 1.0), (1, 2.0), (2, 3.0), (2, 5.0), (2, 10.0)],
+    ("id", "v"))
+
+@pandas_udf("id long, v double", PandasUDFType.GROUPED_MAP)
+def substract_mean(pdf):
+    # pdf is a pandas.DataFrame
+    v = pdf.v
+    return pdf.assign(v=v - v.mean())
+
+df.groupby("id").apply(substract_mean).show()
+# 参考： http://spark.apache.org/docs/latest/sql-programming-guide.html
 ```
+
+
+
 ### 非groupby下的agg
 
 ```py
@@ -148,40 +177,6 @@ a.join(b,on=a.id==b.id,how='right').show()
 a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 ```
 
-
-
-
-## UEF
-```py
-# 每一列都使用一次UEF
-spark.udf.register("stringLengthString", lambda x: len(x))
-spark.sql('select id,stringLengthString(col1) from tmp.tmp_hive_table')
-df1.selectExpr('id','stringLengthString(col1)')
-
-
-# 更清晰的写法
-def func(x):
-    return x + 1
-spark.udf.register('func',func)
-df.selectExpr('func(a)')
-
-
-# 这个在pyspark 2.3才能用，还没试过：
-from pyspark.sql.functions import pandas_udf, PandasUDFType
-
-df = spark.createDataFrame(
-    [(1, 1.0), (1, 2.0), (2, 3.0), (2, 5.0), (2, 10.0)],
-    ("id", "v"))
-
-@pandas_udf("id long, v double", PandasUDFType.GROUPED_MAP)
-def substract_mean(pdf):
-    # pdf is a pandas.DataFrame
-    v = pdf.v
-    return pdf.assign(v=v - v.mean())
-
-df.groupby("id").apply(substract_mean).show()
-# 参考： http://spark.apache.org/docs/latest/sql-programming-guide.html
-```
 
 ## funs
 增添一列递增、唯一（但不连续）的数字

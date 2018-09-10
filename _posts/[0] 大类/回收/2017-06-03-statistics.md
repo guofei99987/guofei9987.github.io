@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【汇总】统计学知识汇总
-categories:
-tags: 
+categories: 回收
+tags:
 keywords:
 description:
 order: 450

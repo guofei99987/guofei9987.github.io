@@ -2,7 +2,7 @@
 layout: post
 title: 【回归分析】理论与实现
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 408

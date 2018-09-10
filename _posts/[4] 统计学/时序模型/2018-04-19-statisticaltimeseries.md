@@ -2,7 +2,7 @@
 layout: post
 title: 【统计时序1】工具
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 441

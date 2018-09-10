@@ -2,7 +2,7 @@
 layout: post
 title: 【时间序列】总览
 categories:
-tags: 4统计学
+tags: 4统计模型
 keywords:
 description:
 order: 430
