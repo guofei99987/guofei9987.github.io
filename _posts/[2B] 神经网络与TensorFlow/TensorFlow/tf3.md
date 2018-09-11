@@ -1,0 +1,33 @@
+
+
+<!-- <iframe src="http://www.guofei.site/StatisticsBlog/TF1.html" width="100%" height="1800em" marginwidth="10%"></iframe> -->
+
+
+
+X,Y,X_train,Y_trian,X_test,Y_test ： 原始数据
+x,y ：place_holder 类型，在tf.run中用真实数据来填充
+y_hat ： 由x和w等计算出的变量(tf类型)
+y_train_predict, y_test_predict 模型在X_train, X_test上的预测值
+## 扩展功能
+### 求导
+会先寻找从I到C的的正向路径，然后回溯，计算梯度
+[db,dW,dx]=tf.gradients(C,[b,W,x])
+
+‘
+
+
+’
+
+-----------------------------------------------
+<iframe src="http://www.guofei.site/StatisticsBlog/TF2.html" width="100%" height="1800em" marginwidth="10%"></iframe>
+
+
+
+经典CNN：  
+
+
+输入层→(卷积层+→池化层？)+→全连接层+  
+
+
+卷积层+表示可以连续使用卷积层，一般最多连续使用三层  
+池化层？表示可有可无  
