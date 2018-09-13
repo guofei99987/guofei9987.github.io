@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【交叉验证】介绍
+title: 【交叉验证】介绍与实现
 categories:
 tags: 2A_有监督学习
 keywords: model evaluation

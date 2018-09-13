@@ -23,6 +23,33 @@ order: 408
 
 大图见于<a href='http://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
 
+## 一元线性模型
+为简化记号，记：  
+$x_{xy}=\sum\limits_{i=1}^n (x_i-\bar x)(y_i-\bar y)=\sum\limits_{i=1}^n x_i y_i-n\bar x\bar y$  
+$l_{xx}=\sum\limits_{i=1}^n(x_i-\bar x)^2=\sum\limits_{i=1}^n x_i^2 -n\bar x^2$  
+$l_{yy}=\sum\limits_{i=1}^n(y_i-\bar y)^2=\sum\limits_{i=1}^n y_i^2-n\bar y^2$  
+
+
+对于一元线性回归模型:  
+$$\left \{ \begin{array}{l}
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i\\
+\varepsilon_i \sim (i.i.d) N(0,\sigma^2)
+\end{array}\right.
+$$
+
+
+用最小二乘法得到：  
+$\hat\beta_1=\dfrac{l_{xy}}{l_{xx}}$  
+$\hat\beta_0=\bar y -\hat\beta_1\bar x$  
+
+
+可以证明：  
+$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$  
+$\hat\beta_0 \sim  N(\beta_0, (\dfrac{1}{n} + \dfrac{\sigma^2}{l_{xx}}) \sigma^2)$  
+$Cov(\hat\beta_0,\hat\beta_1)=-\dfrac{\bar x}{l_{xx}}\sigma^2$  
+
+
+(上面的结论用于显著性检验)
 ## 正则化方法
 - 岭回归
 - lasso
