@@ -70,11 +70,13 @@ macrodata.to_csv('d:/foo.csv')
     - int：这一行作为columns name
     - list of ints：几行合起来作为columns name
     - None：不用数据作为columns name，而是用自然数
-- names： 自定义columns name
 - index_col：  选择那一列作为index name
     - int：选择第几列作为index name
     - list：选择多列作为多层index name(**非常强大！**)
     - None：不用数据做index name，而是用自然数
+- names： 自定义columns name
+- sep：`'\t', '\s+'`
+
 
 ## to_json
 
@@ -143,13 +145,6 @@ out:
 [["str1",1],["str2",2],["str3",3]]
 ```
 
-## HDF5
-优点：
-- 二进制保存
-- 进行了压缩
-- 读取迅速
-- 包含数据（dataset）和目录（group）两种数据
-
 ## 其它to
 ```py
 df.to_clipboard到剪切板上
@@ -167,4 +162,5 @@ to_sql
 ```py
 pd.set_option('display.max_columns',5000)
 pd.set_option('display.width',100000)
+pd.set_option('display.max_columns', None)
 ```

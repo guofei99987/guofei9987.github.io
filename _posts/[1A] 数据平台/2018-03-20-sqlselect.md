@@ -12,7 +12,7 @@ order: 170
 
 ## select
 
-```
+```sql
 select 列名称
 from 表名
 where 条件1
@@ -20,7 +20,7 @@ group by 列名 having 条件2
 order by  列名 asc/desc;
 ```
 条件：
-```
+```sql
 in（值1，值2）      not in语句
 between 取值1 and 取值2      not between and
 like '字符串' （通配符：%表示多个字符或0个，_表示单个字符,[charlist]字符列中的任意单一字符,[^charlist]不在字符列中的任意单一字符）
@@ -86,7 +86,7 @@ count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
 select 列名 as 显示列名 where...
 ```
 
-## UNION
+## union
 两个表并到一起，并且删掉重复内容
 ```
 select field1,field2,...,from tablename1
@@ -114,9 +114,9 @@ INTERSECT ALL表示不删除重复行。
     - 不等连接：对不等值匹配
 
 - 外连接（outer join）：不但保留匹配，还保留一部分不匹配
-    - 左外连接(left outer join)：保留匹配，还保留左边表的不匹配
-    - 右外连接(right outer join)：保留匹配，还保留右边表的不匹配
-    - 全外连接(full outer join)：保留匹配，保留左表、右表的不匹配
+    - 左外连接(left [outer] join)：保留匹配，还保留左边表的不匹配
+    - 右外连接(right [outer] join)：保留匹配，还保留右边表的不匹配
+    - 全外连接(full [outer] join)：保留匹配，保留左表、右表的不匹配
 - 交叉连接
 
 
@@ -145,13 +145,6 @@ from t_employee e ,t_tmployee l ,t_dept d
 where  e.mgr=l.empno and l.deptno=d.deptno;
 ```
 
-### 外连接
-内连接中的`join`改为`left|right|full [outer] join`即可
-
-### 超级分组和移动函数
-grouping sets 没看太懂，https://www.cnblogs.com/woodytu/p/4685959.html  
-rollup和cube，这里写的比较好 https://www.cnblogs.com/dyufei/archive/2009/11/12/2573974.html  
-over
 ## 子查询
 单行子查询
 ```
@@ -239,7 +232,7 @@ date, time,timestamp
 
 ### 时间日期
 
-```
+```sql
 year, quarter, month, week, day, hour, minute ,second  
 dayofyear(arg)  
 Dayofweek(arg)  
@@ -260,7 +253,7 @@ select datediff('2008-12-19','2008-12-10'); -- 两个日期之差
 ```
 ### 字符串函数
 
-```
+```sql
 length,lcase, ucase, ltrim , rtrim  
 Coalesce(arg1,arg2….):返回参数集中第一个非null参数。  
 Concat (arg1,arg2):连接两个字符串arg1和arg2。  
@@ -299,8 +292,8 @@ e(),pi() 常数e和常数pi
 
 
 ### 算术运算符
-同C
-```
+（与C语言很像）
+```sql
 +
 -
 *
@@ -357,6 +350,10 @@ xor(异或)
 >>
 ```
 
+### 统计运算符
+```sql
+percentile_approx(col_name,0.25) # 求0.25分位数
+```
 
 
 

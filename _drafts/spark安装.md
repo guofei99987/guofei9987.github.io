@@ -1,6 +1,6 @@
 
 ## 安装Hadoop
-### 安装JKD
+### 安装JDK
 1. 下载[java安装包](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)，并安装
 2. 添加环境变量
 ```bash
