@@ -136,6 +136,13 @@ df.groupby("id").apply(substract_mean).show()
 # 参考： http://spark.apache.org/docs/latest/sql-programming-guide.html
 ```
 
+用rdd接groupby
+```py
+df.rdd.map(lambda row: ((row['sku_id']), row)).groupByKey()\
+    .flatMap(lambda row : func(row))
+
+# func的入参，是（row['sku_id'],<iterable of row>）
+```
 
 
 ### 非groupby下的agg
