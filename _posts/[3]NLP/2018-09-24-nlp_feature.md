@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【NLP2】TF-IDF
+title: 【NLP2】主流feature生成方法
 categories:
 tags: 3_NLP
 keywords:

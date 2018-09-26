@@ -72,6 +72,13 @@ ON 条件（“A LEFT JOIN B ON 条件表达式”中的ON）用来决定如何�
 
 
 
+## Hive优化
+
+1. join前使用子表过滤掉不需要的数据（新版本Hive已经优化过，无需再考虑）
+2. 解决数据倾斜问题  
+1. 多表join时，每个on语句使用同样的连接键（可以减少job数）  
+1. join时，把小表放前面，大表放后面，hive会自动缓存其它表  
+
 
 ## 参考资料
 [Presto查询优化](https://blog.csdn.net/freefishly/article/details/79081764)
