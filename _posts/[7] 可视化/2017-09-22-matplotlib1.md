@@ -10,42 +10,47 @@ order: 710
 
 
 不用面向对象方式画图，优点在于代码简单，缺点在于画多图和多子图附带各种标注时，代码很乱。  
-当然，更复杂和标注清晰的图，大部分需求场景是成熟的可视化展示，这种情况下用echart更好。  
+当然，更复杂和和美观的图，用echart更好。  
 
 ## 示例
 
-### 示例1：plot
+取fig和ax的方法
 ```py
 import matplotlib.pyplot as plt
-fig,ax=plt.subplots(1,1)
-ax.plot([0,1,2,3,4,5],[0,1,4,9,16,25],label='$y=x^2$')
-plt.legend()
-# label可以是LaTeX公式
 
-plt.xticks([3,4,5],['abcd','bcde','cdef'],rotation=30)
-# 把指定数字替换成文字
+# 方法1
+fig,ax=plt.subplots(3,2)
 
-plt.ylim(-5,30)
-# 改变显示范围
+# 方法2
+f2 = plt.figure(2)
+axes2 = f2.subplots(nrows=2, ncols=1, sharex=True, sharey=False)
 
-plt.xlabel('Time(s)')
-plt.ylabel('Volt')
-plt.title('Pyplot')
-
-
-plt.show()
-```
-
-![matplotlib](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/matplotlib.png?raw=true)
-
-
-
-另一种取fig和ax的方法
-```py
-fig=plt.figure(1)
+# 方法3
+fig=plt.figure(3)
 ax=fig.add_subplot(111)
-```
 
+```
+### 对象之间的关系
+```py
+fig1=plt.figure(1)  
+# 先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
+
+fig1=plt.gcf() # get current figure
+axes1=plt.gca() # get current axes
+
+fig1.axes[0].lines[0]
+
+
+# get & set
+axes1=plt.getp(fig1,'axes')[0]
+lines1=plt.getp(axes1,'lines')[0]
+
+plt.setp(fig.axes[0].lines[0],'color','g')
+```
+取所有属性:
+```py
+plt.getp(plt.gcf())
+```
 
 ### 示例2：方块
 ```py
@@ -64,33 +69,7 @@ ax.add_patch(pgon)
 plt.show()
 ```
 
-
-
-
-
-
-
-## 对象之间的关系
-```py
-fig1=plt.figure(1)  
-# 先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
-
-fig1=plt.gcf()#get current figure
-axes1=plt.gca()#get current axes
-
-fig1.axes[0].lines[0]
-
-
-# get & set
-axes1=plt.getp(fig1,'axes')[0]
-lines1=plt.getp(axes1,'lines')[0]
-
-plt.setp(fig.axes[0].lines[0],'color','g')
-```
-取所有属性:
-```
-plt.setp(plt.gcf())
-```
+## 属性
 ### 共有属性
 这些对象共有的一些属性：  
 
