@@ -7,6 +7,42 @@ keywords:
 description:
 order: 301
 ---
+## 词袋
+```py
+from sklearn.feature_extraction import text
+count_vectorizer=text.CountVectorizer()
+# ngram_range
+# max_df : float in range [0.0, 1.0] or int, default=1.0
+# min_df : float in range [0.0, 1.0] or int, default=1
+# max_features : int or None, default=None
+# vocabulary : Mapping or iterable, optional
+
+
+# 源数据
+corpus = ['This is the first document.',
+          'This is the second second document.',
+          'And the third one.',
+          'Is this the first document?']
+
+
+count_vectorizer.fit(corpus)
+# count_vectorizer.fit_transform(corpus)
+X=count_vectorizer.transform(corpus)
+# corpus中没有出现的词，在transform阶段被忽略
+X.toarray() # 是一个shape=(num_sentence,num_words) 的array
+
+count_vectorizer.vocabulary_ # vocabulary向量（dict格式）
+
+
+# 下面这个函数用来分词
+analyze = bigram_vectorizer.build_analyzer()
+analyze('Bi-grams are cool!')
+```
+其它自定义配置
+```py
+ngram_range=(1, 2) # 分词时，除了自身外，还可以保留前后单词，例如，这个案例可以以这个为词典：
+# ['bi', 'grams', 'are', 'cool', 'bi grams', 'grams are', 'are cool']
+```
 
 ## 介绍
 TF-IDF(Text Frequency-Inverse Document Frequency)   
@@ -44,7 +80,9 @@ tf_idf_transformer.transform(counts).toarray()
 TfidfVectorizer # =CountVectorizer+TfidfTransformer
 ```
 
+
 ## 参考资料
+http://scikit-learn.org/stable/modules/feature_extraction.html  
 https://blog.csdn.net/pipisorry/article/details/41957763  
 Nick McClure:《TensorFlow机器学习实战指南》 机械工业出版社  
 lan Goodfellow:《深度学习》 人民邮电出版社  
