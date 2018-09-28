@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【Mento Carlo 3】生成指定分布随机数的方法.
-categories: 
+categories:
 tags: A蒙特卡洛方法
 keywords:
 description:
+order: 10003
 ---
 
 另一篇博客[随机数发生器](http://www.guofei.site/2017/08/18/randomgenerator.html)，讲了如何利用迭代法生成随机的$U(0,1)$均匀分布。  
@@ -48,7 +49,7 @@ $\int_{-\infty}^X\dfrac{1}{\sqrt{2\pi}}e^{-u^2/2} du$
 ### 问题提出
 
 $X\sim f(x)$无法求出$F^{-1}(x)$的解析解  
-用数字方法运算效率又太低。  
+用数值方法运算效率又太低。  
 
 ### 算法过程
 
