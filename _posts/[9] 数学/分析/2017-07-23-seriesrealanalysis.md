@@ -18,10 +18,9 @@ lp空间
 希尔伯特空间（Hilbert Space）  
 
 
-## 级数
+## 级数的若干定义
 
-Def: 级数  
-$$\{\sum\limits_{j=1}^\infty x_j\}$$  
+`级数`: $$\{\sum\limits_{j=1}^\infty x_j\}$$  
 
 `positive series`正项级数：$\forall j ,x_j>0$  
 `negetive series`负项级数：$\forall j,x_j<0$  
@@ -32,12 +31,12 @@ $$\{\sum\limits_{j=1}^\infty x_j\}$$
 `converge conditionally`条件收敛：$\sum\limits_{j=1}^\infty \mid x_j \mid$不收敛，而$\sum\limits_{j=1}^\infty x_j $收敛  
 
 
-Th： 级数绝对收敛，那么级数收敛  
-Th： 收敛级数的和也是收敛级数  
+Th： **级数绝对收敛，那么级数收敛**  
+Th： **收敛级数的和也是收敛级数**  
 
-Th： 两个级数绝对收敛，和也绝对收敛  
-Th： 两个级数绝对收敛，积也绝对收敛  
-(但是两个级数收敛，积不一定收敛)  
+Th： **两个级数绝对收敛，和也绝对收敛**  
+Th： **两个级数绝对收敛，积也绝对收敛**  
+(**但是两个级数收敛，积不一定收敛**)  
 
 ### 典型的级数
 
@@ -63,9 +62,65 @@ Th： 那么，哪些`重排函数`不改变`条件收敛`的收敛值呢？
 Th: 当然，对于`绝对收敛`的级数来说，不存在重排的问题  
 一个`绝对收敛`的级数$\sum\limits_{j=1}^\infty x_j =s$,对于任意的重排函数$\pi(j)$，级数和不变，$\sum\limits_{j=1}^\infty x_{\pi(j)} =s$  
 
-## 收敛性的检验
+## 收敛性的判断
+### 1. 比较判别法
+#### 1.1 比较判别法（基础形式）
+$$\{x_i\},\{ y_i \}$$是正项级数，如果$\exists N,\forall j>N,y_j< x_j$，那么
+- 如果$\sum x_i$收敛，那么$\sum y_i$收敛
+- 如果$\sum y_i$发散，那么$\sum x_i$发散
 
-### 比较判别法
+
+#### 1.2 比较判别法（极限形式）
+$$\{x_i\},\{ y_i \}$$是正项级数，如果$\lim\dfrac{x_i}{y_i}=\gamma (0\leq\gamma\leq+\infty)$，那么
+- 如果$\sum y_i$收敛，$\gamma<+\infty$,那么$\sum x_i$收敛
+- 如果$\sum y_i$发散，$\gamma>0$,那么$\sum x_i$发散
+
+
+#### 1.3 柯西根式判别法
+$\sum x_i$是正项级数，那么  
+1. 如果$\exists r<1,N\in \mathcal N$,使得  
+$\sqrt[n]{a_n}<r,\forall n\geq N$  
+那么$\sum a_n$收敛
+2. 如果有无穷多个$n$,使得  
+$\sqrt[n]{a_n}\geq 1$  
+那么$\sum a_n$发散
+
+
+#### 1.4 柯西根式判别法（极限形式）
+$\sum x_i$是正项级数，并且$\lim\sqrt[n]{x_n}=q$，那么  
+- 如果$q<1$,则$\sum x_n$收敛
+- 如果$q>1$,则$\sum x_n$发散
+
+
+#### 1.5 柯西积分判别法
+如果函数$f(x)$在$[1,+\infty)$单调下降且非负，则  
+$\sum_{n=1}^{+\infty} f(n)$与$\int_1^{+\infty}f(x)dx$同为收敛或同为发散  
+
+
+### 2. 比值判别法
+定义 **严格正项级数**： $a_n>0,\forall n\geq n_0$
+#### 2.1 比较判别法（普通形式）
+$\sum a_n,\sum b_n$都是严格正项级数，
+- 如果$\sum b_n$收敛，$\exists n_0,\forall n\geq n_0,\dfrac{a_{n+1}}{a_n}\leq\dfrac{b_{n+1}}{b_n}$，那么$\sum a_n$收敛
+- 如果$\sum b_n$发散，$\exists n_0,\forall n\geq n_0,\dfrac{a_{n+1}}{a_n}\geq\dfrac{b_{n+1}}{b_n}$,那么$\sum a_n$发散
+
+
+#### 2.2 达朗贝尔判别法（普通形式）
+$\sum a_n$是严格正项级数
+- 如果存在$r<1,n_0 \in \mathcal N$，使得  
+$\dfrac{a_{n+1}}{a_n}\leq r ,\forall n\geq n_0$  
+那么$\sum a_n$收敛
+- 如果存在$n_0\in \mathcal N$,使得  
+$\dfrac{a_{n+1}}{a_n}\geq 1,\foall n\geq n_0$  
+那么$\sum a_n$发散
+
+#### 2.3 达朗贝尔判别法（极限形式）
+$\sum a_n$是严格正项级数，且$\lim\dfrac{a_{n+1}}{a_n}=q$  
+那么
+- 如果$q<1$,那么$\sum a_n$收敛
+- 如果$q>1$,那么$\sum a_n$发散
+
+
 
 $x_j$`绝对收敛`，如果$\exists N,\forall j>N,\mid y_j\mid<\mid x_j \mid$,那么$y_j$也绝对收敛  
 
