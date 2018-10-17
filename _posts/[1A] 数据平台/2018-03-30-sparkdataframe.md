@@ -138,12 +138,47 @@ df.groupby("id").apply(substract_mean).show()
 
 用rdd接groupby
 ```py
-df.rdd.map(lambda row: ((row['sku_id']), row)).groupByKey()\
-    .flatMap(lambda row : func(row))
-
-# func的入参，是（row['sku_id'],<iterable of row>）
+df.rdd.map(lambda row: ((row['sku_id']), row)).groupByKey().flatMap(lambda row : func(row))
 ```
+示例（因为目前平台的udf没配置好，所以用rdd来代替，如下）
+```py
+import scipy.stats as stats
+import scipy
+import pandas as pd
+from pyspark.sql import SparkSession
 
+spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
+
+pd_df = pd.DataFrame(scipy.stats.norm().rvs(size=(3000, 3)), columns=list('abc'))
+pd_df.a = (pd_df.a > 0.5) * 1
+
+df = spark.createDataFrame(pd_df)
+
+
+def myfunc1(row, mystr):
+    '''
+    :param row: (row[0],row[1)结构，
+    其中row[0]是一个row['key']，是一个元素
+    row[1]是 <iterable of row>
+    :param mystr: 可以额外自定义一些输入
+    :return: 返回一定是 <iterable> ,其中的每个元素就是新rdd的一行
+    '''
+    key = row[0]
+    x, y = [], []
+    for i in row[1]:
+        x.append(i['b'])
+        y.append(i['c'])
+    # pd_df = pd.DataFrame(list(row[1]), columns=list('abc'))  # 一行转为DataFrame. 需要手动定义 columns
+    return [[key, sum(x), sum(y)]]
+
+
+rdd1 = df.rdd.map(lambda row: ((row['a']), row)).groupByKey() \
+    .flatMap(lambda row: myfunc1(row, 'cool!'))
+
+df1 = spark.createDataFrame(rdd1, schema=['a', 'b', 'c'])
+df1.show()
+pd_df1 = df1.toPandas()
+```
 
 ### 非groupby下的agg
 
