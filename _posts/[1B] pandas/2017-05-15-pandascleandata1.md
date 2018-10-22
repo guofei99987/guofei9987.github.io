@@ -157,6 +157,21 @@ to_pickle # 存到内存中
 to_sql
 ```
 
+## 循环
+每次读一行
+```py
+df=pd.DataFrame(np.random.rand(5,2),columns=list('ab'))
+for i,row in df.iterrows():
+    print(i,row['a'],row['b'])
+```
+每次读一列
+```py
+df=pd.DataFrame(np.random.rand(5,2),columns=list('ab'))
+for i,col in df.iteritems():
+    print(i,col)
+```
+
+
 ## pd.set_option
 
 ```py

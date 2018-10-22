@@ -62,6 +62,7 @@ df.dropDuplicates(subset=['col1','col2'])
 
 
 df.dropna(how='any', thresh=None, subset=None)
+# ! 注意，不会修改df，而是返回一个新的df
 # thresh 是一个阈值，例如，thresh=3，代表一行的缺失值达到3个以上时，移除这一行
 
 df.fillna(0)

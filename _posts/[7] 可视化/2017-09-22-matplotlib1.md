@@ -69,25 +69,25 @@ ax.add_patch(pgon)
 plt.show()
 ```
 
-## 属性
-### 共有属性
+
+## 共有属性
 这些对象共有的一些属性：  
 
-|关键字|解释|
-|--|--|
-|alpha|透明度，0~1|
-|animated|布尔值，用于绘制动画效果|
-|axes|所在的axes|
-|clip_box|对象的裁剪框|
-|clip_on|是否裁剪|
-|clip_path|裁剪的路径|
-|contains|判断指定点是否在对象上的函数|
-|figure|对象所在的figure|
-|label|文本标签|
-|picker|用来控制对象的选取|
-|transform|控制偏移、旋转、缩放等|
-|visible|是否可见|
-|zorder|控制绘图顺序,any number|
+|关键字|取值|解释|
+|--|--|--|
+|alpha||透明度，0~1|
+|animated|布尔值|用于绘制动画效果|
+|axes||所在的axes|
+|clip_box||对象的裁剪框|
+|clip_on||是否裁剪|
+|clip_path||裁剪的路径|
+|contains||判断指定点是否在对象上的函数|
+|figure||**对象所在的figure**|
+|label||文本标签|
+|picker||用来控制对象的选取|
+|transform||控制偏移、旋转、缩放等|
+|visible||**是否可见**|
+|zorder||控制绘图顺序,any number|
 
 ## figure
 
@@ -115,7 +115,6 @@ dpi = 72.0
 edgecolor = (1.0, 1.0, 1.0, 0.0)
 facecolor = (1.0, 1.0, 1.0, 0.0)
 figheight = 4.0
-figure = None
 figwidth = 6.0
 frameon = True
 gid = None
@@ -130,7 +129,6 @@ tight_layout = False
 transform = IdentityTransform()
 transformed_clip_path_and_affine = (None, None)
 url = None
-visible = True
 window_extent = TransformedBbox(Bbox([[0.0, 0.0], [6.0, 4.0]]))
 zorder = 0
 ```
@@ -139,7 +137,7 @@ zorder = 0
 
 |属性|意义|
 |--|--|
-|axes|Axes对象列表|
+|axes|Axes对象列表，如[<matplotlib.axes._subplots.AxesSubplot>]|
 |patch|作为背景的Rectangle对象|
 |images|FigureImage对象列表，用于显示图像|
 |lines|Line2D对象列表|
@@ -156,14 +154,82 @@ zorder = 0
 可以有两种方法获取
 
 ```py
-a1=plt.getp(f,'axes')#生成的是一个list
-a2=plt.gca()#当前激活的axes
+a1=plt.getp(f,'axes') # 生成的是一个list
+a2=plt.gca() #当前激活的axes
+```
+
+- xlim/ylim 坐标轴最大最小
+```py
+# 坐标轴最大最小范围
+plt.getp(ax,'xlim') # 'ylim'
+plt.getp(ax,'xlim',(-1,2)) # 'ylim'
+ax.get_xlim() # 返回 (left,right)
+ax.set_xlim(left,right)
+```
+- xlable/ylabel 坐标轴名称
+```py
+plt.setp(ax,'xlabel','$y=x^2$')
+plt.getp(ax,'xlabel') # 返回字符串
+```
+- title
+```py
+plt.setp(ax,'title','$y=x^2$')
+plt.getp(ax,'title') # 返回字符串
+```
+- visible
+```py
+plt.get(ax,'visible')
+```
+- legend
+```py
+# 有点特殊
+# 第一种写法：
+ax.plot([1,2],[2,1],label='a')
+ax.legend() # 或者 plt.legend()
+# 第二种写法
+ax.plot([1,2],[2,1])
+plt.legend(['c']) # 入参用list，可以同时给多条线设定 legend
+```
+- lines
+```py
+plt.getp(ax,'lines')  # <a list of 34 Line2D objects> , 可以用类似 a[0]的方式取
+```
+
+
+|参数|示例值|意义|
+|--|--|--|
+
+
+### Axes的方法
+```py
+ax.legend()  # 显示legend
+ax.autoscale_view() # 自动调整横纵坐标
+ax.set_axis_off() #不显示坐标轴
+```
+### axes对象可以包含的对象
+
+|Axes方法|所创建的对象|添加进的列表|
+|--|--|--|
+|annotate|Annotate|texts|
+|bars|Rectangle|patches|
+|errorbar|Line2D,Rectangle|lines,patches|
+|fill|Polygon|patches|
+|hist|Rectangle|patches|
+|imshow|AxesImage|images|
+|legend|Legend|legends|
+|plot|Line2D|lines|
+|scatter|PolygonCollection|Collections|
+|text|Text|texts|
+
+
+### axes对象的属性（上面未列出的）
+```py
+ax.axes is ax # True
 
 ```
 
-axes对象的属性：(用plt.getp(a2)获取)
-
 ```py
+# 用plt.getp(ax)获取
 adjustable = box
 agg_filter = None
 alpha = None
@@ -173,9 +239,7 @@ aspect = auto
 autoscale_on = False
 autoscalex_on = True
 autoscaley_on = False
-axes = Axes(0.125,0.125;0.775x0.755)
 axes_locator = None
-axis_bgcolor = (1.0, 1.0, 1.0, 1)
 axisbelow = line
 children = [<matplotlib.lines.Line2D>]
 clip_box = None
@@ -187,7 +251,6 @@ data_ratio = 0.36363636363636365
 default_bbox_extra_artists = [<matplotlib.lines.Line2D>]
 facecolor = (1.0, 1.0, 1.0, 1)
 fc = (1.0, 1.0, 1.0, 1)
-figure = Figure(432x288)
 frame_on = True
 geometry = (1, 1, 1)
 gid = None
@@ -195,7 +258,6 @@ images = <a list of 0 AxesImage objects>
 label =
 legend = None
 legend_handles_labels = ([], [])
-lines = <a list of 34 Line2D objects>
 navigate = True
 navigate_mode = None
 path_effects = []
@@ -213,14 +275,11 @@ title = Pyplot
 transform = IdentityTransform()
 transformed_clip_path_and_affine = (None, None)
 url = None
-visible = True
 window_extent = Bbox(x0=50.5, y0=32.5, x1=392.3, y1=256.94)
 xaxis = XAxis(54.000000,36.000000)
 xaxis_transform = BlendedGenericTransform(CompositeGenericTransform(...))
 xbound = (-0.30000000000000004, 6.2999999999999998)
 xgridlines = <a list of 9 Line2D xgridline objects>
-xlabel = Time(s)
-xlim = (-0.30000000000000004, 6.2999999999999998)
 xmajorticklabels = <a list of 9 Text xticklabel objects>
 xminorticklabels = <a list of 0 Text xticklabel objects>
 xscale = linear
@@ -231,46 +290,16 @@ yaxis = YAxis(54.000000,36.000000)
 yaxis_transform = BlendedGenericTransform(BboxTransformTo(Transforme...))
 ybound = (-1.2, 1.2)
 ygridlines = <a list of 7 Line2D ygridline objects>
-ylabel = Volt
-ylim = (-1.2, 1.2)
 ymajorticklabels = <a list of 7 Text yticklabel objects>
 yminorticklabels = <a list of 0 Text yticklabel objects>
 yscale = linear
 yticklabels = <a list of 7 Text yticklabel objects>
 yticklines = <a list of 14 Line2D ytickline objects>
 yticks = [-1.5 -1.  -0.5  0.   0.5  1. ]...
-zorder = 0
 ```
 
 
 
-
-|参数|意义|
-|--|--|
-|xlabel, ylabel|X, Y轴的标题文字|
-|title|标题|
-|xlim, ylim|X, Y轴的范围|
-|legend|显示图示|
-
-### Axes的方法
-显示legend：ax1.legend()  
-自动调整横纵坐标：ax.autoscale_view()  
-不显示坐标轴：ax.set_axis_off()
-
-### axes对象可以包含的对象
-
-|Axes方法|所创建的对象|添加进的列表|
-|--|--|--|
-|annotate|Annotate|texts|
-|bars|Rectangle|patches|
-|errorbar|Line2D,Rectangle|lines,patches|
-|fill|Polygon|patches|
-|hist|Rectangle|patches|
-|imshow|AxesImage|images|
-|legend|Legend|legends|
-|plot|Line2D|lines|
-|scatter|PolygonCollection|Collections|
-|text|Text|texts|
 
 
 ## line
@@ -282,9 +311,9 @@ zorder = 0
 获取方法类似
 
 ```py
-l=plt.getp(a,'lines')#是一个list
-l=plt.plot(...)#这个可以注意一下
-l=plt.plot(x,y,label="$sin(x)$",color='red',linewidth=2)#可以直接在plot中配置参数
+l=plt.getp(a,'lines') # 是一个list
+l=ax.plot(x,y,label="$sin(x)$",color='red',linewidth=2)
+l=plt.plot(x,y,label="$sin(x)$",color='red',linewidth=2) # 可以直接在plot中配置参数
 ```
 
 获取line属性的方法
@@ -292,8 +321,22 @@ l=plt.plot(x,y,label="$sin(x)$",color='red',linewidth=2)#可以直接在plot中�
 line=plt.plot(x,y)
 plt.getp(line[0],'color')
 plt.setp(line[0],'color','r')
-plt.setp(line,'color','r')#setp可以对一组对象进行操作，getp只能操作一个
+plt.setp(line,'color','r') # setp可以对一组对象进行操作，getp只能操作一个
 ```
+
+常用属性
+```py
+plt.setp(line,'xdata',[1,2,3],'ydata',[4,5,6])
+plt.setp(line,'xydata',[[1,2,3],[4,5,6]])
+
+```
+
+
+```py
+line.axes
+
+```
+
 
 line有这些属性：  
 ```py
@@ -301,7 +344,6 @@ agg_filter = None
 alpha = None
 animated = False
 antialiased or aa = True
-axes = Axes(0.125,0.125;0.775x0.755)
 children = []
 clip_box = TransformedBbox(Bbox([[0.0, 0.0], [1.0, 1.0]]), Co...)
 clip_on = True
@@ -338,9 +380,6 @@ transform = CompositeGenericTransform(TransformWrapper(Blended...))
 transformed_clip_path_and_affine = (None, None)
 url = None
 visible = True
-xdata = [ 0.          0.66666667  1.33333333  2.          ]
-xydata = [[ 0.         -0.        ]  [ 0.66666667 -0.618369.]]
-ydata = [-0.         -0.6183698  -0.9719379  -0.90929743 -...]
 zorder = 2
 ```
 
@@ -570,15 +609,15 @@ annotate(s,xy,xytext,xycoords='data',textcoords='data',arrowprops=None)
 |offset points|以点为单位，相对于点xy的坐标|
 |polar|数据坐标系中的极坐标|
 
-## test
+## text
 
 用来绘制文字
 
 ```py
-ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData)#数据坐标
-ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#Axes内坐标，左下是(0,0)，右上是(1,1)
-fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData)#数据坐标
-fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#Figure内坐标，左下是(0,0)，右上是(1,1)
+ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData) # 数据坐标
+ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes) # Axes内坐标，左下是(0,0)，右上是(1,1)
+fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData) # 数据坐标
+fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes) # Figure内坐标，左下是(0,0)，右上是(1,1)
 ```
 
 - fontname：字体，参见[这里](http://www.guofei.site/2017/09/20/matplotlib.html#title4)
