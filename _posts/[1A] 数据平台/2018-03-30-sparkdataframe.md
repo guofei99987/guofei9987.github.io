@@ -7,6 +7,14 @@ keywords:
 description:
 order: 154
 ---
+
+<!-- df_30_days_sku.write.mode("overwrite").format("orc").partitionBy("dt").saveAsTable("df_30_days_sku"); -->
+<!-- #事后堡垒机内合并小文件
+#table-merge table=default.df_30_days_sku start=dt='2018-07-01' end=dt='2018-08-30' -->
+
+
+
+
 DataFrame的生成见于另一篇文章  
 DataFrame转RDD后也有一系列的使用技巧，见于另一篇文章  
 

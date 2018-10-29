@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【NLP2】主流feature生成方法
+title: NLP中主要的feature提取方法
 categories:
-tags: 3_NLP
+tags: 2C_NLP
 keywords:
 description:
 order: 301
