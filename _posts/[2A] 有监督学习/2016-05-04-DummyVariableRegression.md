@@ -46,7 +46,7 @@ $D_1=1$代表夏季，0代表冬季
 $D_2=1$代表城市，0代表农村  
 
 模型是这样的：  
-![QQ截图20170522095008](http://i.imgur.com/82Ol9E1.png)
+![dummy_variable1](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/dummy_variable/dummy_variable1.png?raw=true)
 
 其特点是斜率不变  
 
@@ -59,12 +59,12 @@ $Y=a_1+a_2D+b_1X+b_2DX+u$
 
 特点是截距斜率都变化  
 
-![QQ截图20170522100233](http://i.imgur.com/WCIfU6N.png)
+![dummy_variable2](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/dummy_variable/dummy_variable2.png?raw=true)
 
 ### 乘法模型的变种
 $Y=a_1+b_1X+b_2DX+u$
 
-![QQ截图20170522100243](http://i.imgur.com/wYpnflg.png)
+![dummy_variable3](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/dummy_variable/dummy_variable3.png?raw=true)
 
 ## 分段模型
 
@@ -77,7 +77,7 @@ $$D=\left \{ \begin{array}{ccc}
 
 图像是一个折线（两条共点的线段）
 
-![QQ截图20170522110308](http://i.imgur.com/BdxthSu.png)  
+![dummy_variable4](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/dummy_variable/dummy_variable4.png?raw=true)
 
 
 ## 其它虚拟变量回归模型
