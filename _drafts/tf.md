@@ -26,3 +26,10 @@ a=tf.matmul(x,w1) #矩阵乘法
 sess.run(tf.global_variables_initializer())
 sess.run(a,feed_dict={x:rv.rvs(size=(3,6))})
 ```
+
+
+有很多已经训练好的模型，可以直接下载下来作为预训练模型  
+https://github.com/tensorflow/models
+
+
+keras
