@@ -58,3 +58,14 @@ Top k 召回率
 1. 回答与问应当语义一致、语法正确、逻辑正确
 2. 有趣、多样，少一些安全回答（好啊，是啊之类的）
 3. 个性表达一致
+
+
+## 其它
+```
+tf.train.batch
+tf.train.shuffle_batch
+```
+
+```
+lstm:dropout
+```
