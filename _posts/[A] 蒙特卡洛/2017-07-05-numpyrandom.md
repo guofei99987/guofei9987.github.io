@@ -9,7 +9,23 @@ order: 10022
 ---
 
 
-本博客参考了numpy的[官方文档](https://docs.scipy.org/doc/numpy/reference/routines.random.html)
+## 最佳实践
+np.random.choice 只能针对规整的数组或矩阵进行choice  
+random.choice 只能每次抽样一个  
+a=random.shuffle;a[:3]会改变原序列  
+下面做了个最佳方案
+- 有放回抽样
+```py
+all_papers=[[1,[2]],[3,[4]]]
+random.choices(all_papers,k=2)
+# random.choice(all_papers) # 单个抽样
+```
+- 无放回抽样
+```py
+random.sample(all_papers,k=2)
+```
+
+----------------------------------------
 
 ## 随机种子
 numpy.random.seed(seed=None)
@@ -56,3 +72,6 @@ gamma
 
 
 ```
+
+## 参考文献
+[numpy官方文档](https://docs.scipy.org/doc/numpy/reference/routines.random.html)

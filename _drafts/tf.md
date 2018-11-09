@@ -69,3 +69,36 @@ tf.train.shuffle_batch
 ```
 lstm:dropout
 ```
+## 其它2
+autoencoder的代码还没有review
+
+## tensorboard
+```
+tf.summay.scalar # 标量数据，如准确率，损失值
+tf.summay.histogram # 参数数据，如weights，bias
+tf.summay.image # 图像数据
+tf.summay.audio # 音频
+tf.summay.FileWriter # 计算图结构
+
+```
+
+## RNN
+- 听：语音识别（Speech To Text），从音频到文本
+- 说：语音合成（Text To Speech），从文本到音频
+- 读：文本理解（Text Understanding），从文本到语义
+- 写：文本生成（Text Generation），从语义到文本
+
+
+1. 文本理解
+    - 新闻自动分类（文本分类）
+    - 用户评论分析（情感分析）
+2. 文本生成
+    - 翻译
+
+
+图像识别中，图片大小的问题可以通过裁剪、缩放解决，但文本处理中并不能。
+
+### 对话机器人
+- 基于规则：人工标注，对语料进行数据挖掘，来减少人工标注的工作量
+- 基于检索
+- 基于生成模型

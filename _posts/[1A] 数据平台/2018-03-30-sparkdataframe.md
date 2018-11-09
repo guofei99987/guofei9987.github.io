@@ -96,6 +96,27 @@ df.approxQuantile('col1',[0.25,0.75],0.05) # 返回一个list，大小与第二�
 df.corr('pv','uv') # 相关系数，目前只支持两个字段，只支持Person相关系数
 ```
 
+### pivot
+```py
+# 用 pandas 造数据并做 pivot
+import pandas as pd
+import numpy as np
+pd_df=pd.DataFrame(np.arange(40).reshape(4,-1).T,columns=list('wxyz'))
+pd_df.w=pd_df.w%2
+pd_df.x=pd_df.x//3
+pd_df.pivot_table(index='w',columns='x',values='y',aggfunc=sum)
+```
+```py
+df=spark.createDataFrame(pd_df)
+df.groupBy('w','x').pivot('y').sum('z')
+# 详解：
+# 1. groupby 后面的内容作为 index （因为 spark.DataFrame 不搞 index，因此作为普通列）
+# 2. pivot 后面的内容作为 col
+# 3. 后面接的agg func 作为返回的表里面的 value
+# df.groupBy('w','x').pivot('y',[20,21,22]).sum('z') # pivot 的第二个参数用来限定 col 所取的范围
+# df.groupBy('w','x').pivot('y') 是一个 <GroupedData> ，因此后面可以跟 agg 等操作
+```
+
 ## groupby
 ```py
 df.groupby('col1') # 返回一个GroupedData对象，可以对这个对象进行很多操作
