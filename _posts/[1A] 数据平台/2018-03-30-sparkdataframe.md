@@ -136,21 +136,23 @@ from pyspark.sql import functions as F
 df.groupBy('col1').agg(F.countDistinct('col2'))
 
 # agg3：自定义函数
-## agg3_1：udf左右于被 groupBy 的列，一一映射就有意义
+## agg3_1：udf作用于被 groupBy 的列，一一映射就有意义
 spark.udf.register('udf_func1',lambda x:x+1)
 df.groupBy('a').agg({'a':'udf_func1','b':'std'})
 ## agg3_2：udf作用于普通列：
-# http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.apply
-# 2.3版本才能用，还没去实验
-
-# UEF用于非groupby的场景
 def func(x):
     return x + 1
 spark.udf.register('func',func)
 df.selectExpr('func(a)')
+## agg3_2: udf作用于groupBy之后的普通列
+#（方案有几种，见于下面）
+```
 
 
-# 这个在pyspark 2.3才能用，还没试过：
+### 方案1：UDF
+目前因为一些包没装好，暂时没去测
+```py
+# http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.apply
 from pyspark.sql.functions import pandas_udf, PandasUDFType
 
 df = spark.createDataFrame(
@@ -164,10 +166,86 @@ def substract_mean(pdf):
     return pdf.assign(v=v - v.mean())
 
 df.groupby("id").apply(substract_mean).show()
-# 参考： http://spark.apache.org/docs/latest/sql-programming-guide.html
+```
+### 方案2：借助register
+（目前个人偏爱这个方案）
+```py
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
+import pandas as pd
+import scipy.stats as stats
+pd_df=pd.DataFrame(stats.norm().rvs(size=(100,3)),columns=list('abc'))
+pd_df.a=(pd_df.a>0)*1.0
+df=spark.createDataFrame(pd_df)
 ```
 
-用rdd接groupby
+```py
+import pyspark.sql.functions as F
+# step1:groupby阶段，先把待使用的数据做成list
+df2 = df.groupBy('a').agg(F.collect_list('b').alias('b_list'),
+                          F.collect_list('c').alias('c_list'))
+
+# step2：定义函数并 register
+#（注意，返回的应当是标准的float格式，scipy返回的是 numpy.float64，如果不转化一下，会使spark报错）
+def my_fun1(x, y):
+    return float(stats.pearsonr(x, y)[0])
+
+# step3：应用
+spark.udf.register('my_fun1', my_fun1)
+df3 = df2.selectExpr('*', 'my_fun1(b_list,c_list) as a_end')
+
+#%%
+# 附：有时候每次调用 udf，想要返回多个数字组成的 list
+# 返回的是 array 对象
+def my_fun1(x, y):
+    return x+y
+
+spark.udf.register('my_fun1', my_fun1,returnType=ArrayType(DoubleType())) # 这里指定了 type，注意，如果 return 的 type 不同，会置为空
+df3 = df2.selectExpr('*', 'my_fun1(b_list,c_list) as a_end')
+
+# 1. 想要把 array 横向展开，只需自定义一个udf
+spark.udf.register('my_fun2',lambda x,y:x[y])
+df4=df3.selectExpr('my_fun2(a_end,1) as a_1')
+# 2. 想要把 array 横向展开，用explode即可
+df3.selectExpr('*','explode(a_end)')
+```
+
+### 方案3：借助F.udf
+思路类似方案2。  
+生成数据也与方案2一样，略去  
+[参考](https://changhsinlee.com/pyspark-udf/)
+```py
+import pyspark.sql.functions as F
+from pyspark.sql.types import DoubleType
+
+df2=df.groupBy('a').agg(F.collect_list('b').alias('b_list'),
+                    F.collect_list('c').alias('c_list'))
+
+# 同方案2，这里如果返回 numpy.float64,将会报错
+def corr_fun(x,y):
+    return float(stats.pearsonr(x,y)[0])
+
+# 这里也需要注意，要指定返回值得类型。任何不一致都会用null填充。
+# 例如，如果 udf 返回 int，这里指定 DoubleType,会用null填充。
+# 方案2则没有这种困扰
+spark_corr_fun=F.udf(corr_fun,DoubleType())
+df3=df2.withColumn('corr',spark_corr_fun('b_list','c_list'))
+
+
+# 如果想让新列是一个 ArrayType:
+from pyspark.sql.types import ArrayType
+def myfun(x, y):
+    return x + y
+
+spark_myfun = F.udf(myfun, ArrayType(DoubleType()))
+df4 = df2.withColumn('merge', spark_myfun('b_list', 'c_list'))
+
+# 一个增加效率的技巧:df2=df2.repartition(number_of_executors)
+# 否则，如果小文件过多，只会让一个 executors 去计算
+```
+
+
+### 方案4：借助rdd
 ```py
 df.rdd.map(lambda row: ((row['sku_id']), row)).groupByKey().flatMap(lambda row : func(row))
 ```

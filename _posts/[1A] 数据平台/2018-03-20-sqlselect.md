@@ -423,8 +423,23 @@ select * from app.app_temp_test where row_number(id)<=1;
 #### 2. 层次查询函数
 
 ## 表生成函数
+```sql
+-- 拼接行：
+concat(col1,col2) -- 拼接每一个字段，按行
+concat_ws(",",col1,col2) -- 拼接,并且中间用逗号分隔
 
+-- 把列拼接到一个单元格：（要与group by 配合使用）
+-- 注意：新字段是 array 对象
+collect_list
+collect_set
 
+-- 综合用法：(列拼接成一个单元格，并转为string)
+concat_ws(',',collect_list(cast (name as string)))
+```
+逆操作（行转列）
+```sql
+select explode(split(concat_ws(',','1','2','3','4'),','))
+```
 ## 参考文献
 
 https://www.cnblogs.com/liuxuewen/archive/2012/03/12/2392644.html  
