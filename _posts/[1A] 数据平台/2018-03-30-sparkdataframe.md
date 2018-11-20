@@ -206,7 +206,7 @@ df3 = df2.selectExpr('*', 'my_fun1(b_list,c_list) as a_end')
 # 1. 想要把 array 横向展开，只需自定义一个udf
 spark.udf.register('my_fun2',lambda x,y:x[y])
 df4=df3.selectExpr('my_fun2(a_end,1) as a_1')
-# 2. 想要把 array 横向展开，用explode即可
+# 2. 想要把 array 纵向展开，用explode即可
 df3.selectExpr('*','explode(a_end)')
 ```
 

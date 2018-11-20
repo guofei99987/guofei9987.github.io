@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【spark】工程中的一些使用
+title: 【spark】工程上的一些实践技巧
 categories:
 tags: 1A_数据平台
 keywords:
