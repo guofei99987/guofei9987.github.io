@@ -25,17 +25,23 @@ DataFrame转RDD后也有一系列的使用技巧，见于另一篇文章
 from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
 ```
-
+### 新建
+```py
+df=spark.createDataFrame([[1,2],[1,3],[2,3],[2,4]],schema=['col1','col2'])
+spark.createDataFrame(<pd.DataFrame>)
+spark.createDataFrame(<rdd>)
+```
 ### show
 ```py
-# 注释部分用的少
-# df.head(5) #类似RDD，返回一个list，里面多个Row
-# df.take(5) #类似RDD，效果同head
-# df.collect() #多个Row组成的list
-# df.first() #返回一个Row
-df.limit(5) #取前5行，不同的是，是transformation
-df.show() #返回20条数据
-df.show(30) #返回30条数据
+df.limit(5) # 取前5行，不同的是，是transformation
+df.show() # 返回20条数据
+df.show(30) # 返回30条数据
+df.collect() # 返回一个list，里面多个Row
+
+# df.take(5) #类似RDD，等价于 df.limit(n).collect()
+# df.head(5) #类似RDD，等价于 df.take(n)
+# df.first() #返回一个Row，等价于 df.head(1)
+
 
 
 df.describe() #返回统计值，是一个action，但返回的是DataFrame
@@ -64,9 +70,9 @@ df.selectExpr('col1 as id','col2*2 as col2_value')
 ## 数据清洗类操作
 ```py
 # 去重
-df.distinct() #返回一个去重的DataFrame
+df.distinct() # 返回一个去重的DataFrame
 df.dropDuplicates()
-df.dropDuplicates(subset=['col1','col2'])
+df.dropDuplicates(subset=['col1','col2']) # 按字段去重
 
 
 df.dropna(how='any', thresh=None, subset=None)
