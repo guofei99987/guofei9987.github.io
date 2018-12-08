@@ -24,15 +24,8 @@ import sys
 spark = SparkSession.builder.appName("AppName").enableHiveSupport().getOrCreate()
 
 def parseArgs(arrs=sys.argv):
-    """"
-    parse k，v
-    """
-    dict_arrs = {}
-    for i in arrs:
-        if i.find('=') != -1:
-            k, v = i.split('=')
-            dict_arrs[k] = v
-    return dict_arrs
+    list_arrs = [arr.split('=') for arr in arrs if arr.find('=') != -1]
+    return dict(list_arrs)
 
 dict_arrs = parseArgs()
 cal_dt_str = dict_arrs['cal_dt_str']
