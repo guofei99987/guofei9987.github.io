@@ -110,7 +110,7 @@ ax.set_xlim(-1, 5)
 ax.set_ylim(-3, 3)
 p = plt.show()
 ```
-![complexanalysis](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/complexanalysis/complexanalysis.png?raw=true)
+![complexanalysis](https://www.guofei.site/pictures_for_blog/complexanalysis/complexanalysis.png?raw=true)
 
 
 

@@ -94,7 +94,7 @@ plt.ylim(-5, 100)
 
 plt.show()
 ```
-![matplotlib](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/matplotlib.png?raw=true)
+![matplotlib](https://www.guofei.site/pictures_for_blog/matplotlib.png)
 ## 字体&汉字支持
 
 1. 查询系统自带的字体

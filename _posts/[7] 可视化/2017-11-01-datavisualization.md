@@ -235,7 +235,7 @@ plt.title('R2={a:.2f},y={b:.3f}x+{c:.3f}'.format(a=lm_s.rsquared,b=lm_s.params[0
 plt.show()
 ```
 
-![regression_plot](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/regression_plot.png?raw=true)
+![regression_plot](https://www.guofei.site/pictures_for_blog/regression_plot.png)
 
 
 ## 参考文献
