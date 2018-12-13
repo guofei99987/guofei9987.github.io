@@ -178,4 +178,5 @@ for i,col in df.iteritems():
 pd.set_option('display.max_columns',5000)
 pd.set_option('display.width',100000)
 pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None) # 显示所有行
 ```
