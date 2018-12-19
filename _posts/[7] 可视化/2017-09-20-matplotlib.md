@@ -92,6 +92,10 @@ plt.xticks([3, 4, 5], ['abcd', 'bcde', 'cdef'], rotation=30)
 # 5. 改变显示范围
 plt.ylim(-5, 100)
 
+# 6. 中文字体
+from pylab import mpl
+mpl.rcParams['font.sans-serif']=['SimHei']
+
 plt.show()
 ```
 ![matplotlib](https://www.guofei.site/pictures_for_blog/matplotlib.png)

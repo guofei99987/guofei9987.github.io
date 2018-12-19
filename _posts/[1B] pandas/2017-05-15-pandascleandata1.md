@@ -176,7 +176,8 @@ for i,col in df.iteritems():
 
 ```py
 pd.set_option('display.max_columns',5000)
+pd.set_option('display.max_columns', None) # 显示所有的列
 pd.set_option('display.width',100000)
-pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None) # 显示所有行
+pd.set_option('display.max_colwidth',100) # 有时候一个单元格里面的内容太长，超过上限会不显示并加上省略号
 ```
