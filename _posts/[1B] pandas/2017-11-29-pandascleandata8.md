@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【pandas】时间序列
-categories: 趣文
-tags:
+categories:
+tags: 1B_Pandas
 keywords:
 description:
 order: 107
@@ -130,7 +130,7 @@ ts.shift(1)#数据下移一格，第一格填入nan，最后个值丢弃
 ```py
 ts.shift(1,freq='D')
 ```
-## resample：与groupby一样强大
+## resample：强大的升采样与降采样
 数据准备
 ```py
 import pandas as pd
@@ -153,19 +153,13 @@ ts.resample('14s').sum()
 
 - freq
 - axis=0
-- fill_methods=None：（仅用于upsampling）插值方法'ffill','bfill' (此功能将移除，用ffill()代替)
 - colsed='right': （仅用于downsampling），用于指定区间哪个端点闭合，'right','left'
 - label='right': （仅用于downsampling），用于指定index是左端点还是右端点，'right','left'
 - limit=None： fill的时候，允许最大填充次数
 - loffset=None: index偏移，'-1s', Second(-1)等.(用shift可以实现同样的功能)
 
 
-### ohlc
 
-开盘、最高、最低、收盘  
-```py
-ts.resample('5b').ohlc()
-```
 
 ### ffill()/bfill()
 upsampling的时候使用，填充nan.  
@@ -184,14 +178,30 @@ ts.resample('D').ffill()
 ```
 
 
-## rolling
+### rolling
 ```py
 import pandas as pd
 import numpy as np
 from datetime import datetime
 rng=pd.date_range(datetime(2017,11,1),periods=20,freq='3D')
 ts=pd.DataFrame(np.random.rand(20,1),index=rng,columns=['x1'])
-ts.rolling(window=5,center=False).mean() #mean()函数可以换成自定义函数
+
+ts.rolling(window=5,center=False).mean() # mean()函数可以换成自定义函数
+# window： 也可以省略不写。表示时间窗的大小，注意有两种形式（int or offset）。如果使用int，则数值表示计算统计量的观测值的数量即向前几个数据。如果是offset类型，表示时间窗的大小。offset详解  http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases
+# min_periods：每个窗口最少包含的观测值数量，小于这个值的窗口结果为NA。值可以是int，默认None。offset情况下，默认为1。
+# center: 把窗口的标签设置为居中。布尔型，默认False，居右
+# win_type: 窗口的类型。截取窗的各种函数。字符串类型，默认为None。各种类型  https://docs.scipy.org/doc/scipy/reference/signal.html#window-functions
+# on: 可选参数。对于dataframe而言，指定要计算滚动窗口的列。值为列名。
+# axis: int、字符串，默认为0，即对列进行计算
+# closed：定义区间的开闭，支持int类型的window。对于offset类型默认是左开右闭的即默认为right。可以根据情况指定为left both等。
 ```
+
+### ohlc
+
+开盘、最高、最低、收盘  
+```py
+ts.resample('5b').ohlc()
+```
+
 ## 参考资料
 [^pydatetime]: [【Python】【datetime】时间的介绍](http://www.guofei.site/2017/10/22/pydatetime.html)

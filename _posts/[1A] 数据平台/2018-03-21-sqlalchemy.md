@@ -56,7 +56,9 @@ engine = create_engine('sqlite:///E:/test1.db',encoding='utf-8',echo=True)
 ```py
 # 写入数据库
 df.to_sql("tablename",con = engine,index=False,if_exists='append',index_label=False)
-# fail:如果存在，啥也不做。replace:如果存在则替换。append:如果存在则插入，不存在则创建
+# if_exists：如果存在，怎样.fail(default):报错。replace:替换。append:插入
+# index:True(default),False.是否使用 df 的index ，作为index
+# index_label:sql 的 index 字段名
 
 # 读出数据库
 pd.read_sql(sql='select * from tablename where e>:value', con=engine, params={'value':0.5})
