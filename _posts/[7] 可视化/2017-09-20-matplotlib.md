@@ -27,6 +27,7 @@ order: 701
 ```py
 import matplotlib
 matplotlib.rcParams['savefig.dpi']=4
+plt.rcParams['figure.figsize'] = (20.0, 12.0) # 图片大小
 ```
 保存已经plot过的图像：
 ```py

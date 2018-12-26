@@ -24,6 +24,7 @@ fig,ax=plt.subplots(3,2)
 # 方法2
 f2 = plt.figure(2)
 axes2 = f2.subplots(nrows=2, ncols=1, sharex=True, sharey=False)
+# 只有一个 axes 时，axes2 是一个 axes 对象，超过一个是 m*n 的 array
 
 # 方法3
 fig=plt.figure(3)
@@ -186,9 +187,10 @@ plt.get(ax,'visible')
 # 第一种写法：
 ax.plot([1,2],[2,1],label='a')
 ax.legend() # 或者 plt.legend()
+
 # 第二种写法
 ax.plot([1,2],[2,1])
-plt.legend(['c']) # 入参用list，可以同时给多条线设定 legend
+plt.legend(['c']) # 入参用list，用以同时给多条线设定 legend
 ```
 - lines
 ```py
@@ -196,8 +198,6 @@ plt.getp(ax,'lines')  # <a list of 34 Line2D objects> , 可以用类似 a[0]的�
 ```
 
 
-|参数|示例值|意义|
-|--|--|--|
 
 
 ### Axes的方法
@@ -312,15 +312,16 @@ yticks = [-1.5 -1.  -0.5  0.   0.5  1. ]...
 
 ```py
 l=plt.getp(a,'lines') # 是一个list
-l=ax.plot(x,y,label="$sin(x)$",color='red',linewidth=2)
+l=ax.plot(x,y,label="$sin(x)$",color='red',linewidth=2,marker='.',linestyle='-')
 l=plt.plot(x,y,label="$sin(x)$",color='red',linewidth=2) # 可以直接在plot中配置参数
+# color: ‘b’	blue, ‘g’	green, ‘r’	red, ‘c’	cyan, ‘m’	magenta, ‘y’	yellow, ‘k’	black, ‘w’	white
 ```
 
 获取line属性的方法
 ```py
 line=plt.plot(x,y)
-plt.getp(line[0],'color')
-plt.setp(line[0],'color','r')
+
+plt.setp(line[0],'color','r') # plt.getp(line[0],'color')
 plt.setp(line,'color','r') # setp可以对一组对象进行操作，getp只能操作一个
 ```
 
@@ -431,22 +432,6 @@ zorder = 2
 |``'_'``            | hline marker横线
 
 
-
-
-
-### color
-
-
-|character|   color|
-|--|--|
-|'b'         |blue
-|'g'         |green
-|'r'         |red
-|'c'         |cyan
-|'m'         |magenta
-|'y'         |yellow
-|'k'         |black
-|'w'         |white
 
 
 ### line的其他参数
