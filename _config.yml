@@ -20,8 +20,8 @@ url: http://www.guofei.site
 # rss_url: /pages/atom.xml
 
 # gavatar头像及Favicon
-gavatar: /public/img/unicorn.png
-favicon: /public/img/unicorn.png
+gavatar: /public/img/me.png
+favicon: /public/img/me.png
 
 # google analytics 设置
 ga:
