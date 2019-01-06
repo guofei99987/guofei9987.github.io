@@ -110,7 +110,7 @@ $\dfrac{\partial f}{\partial x_i}+\sum\limits_{r=1}^p \lambda_r \dfrac{\partial 
 #### 充分条件
 $a+h,a$在可行域上M，$g(a+h)-g(a)=0$二阶展开，带入$f(a+h)-f(a)$后，可以找到取极值的条件。  
 
-### Lagrange对偶性
+### Lagrange对偶函数
 
 从上面知道，对于优化问题：  
 $\min f(x)$,   
@@ -118,18 +118,32 @@ s.t. $g_i(x) <= 0; i =1, ..., n$
 $h_i(x) = 0; i =1, ..., n $  
 
 
-对应的Lagrange函数是$L(x,\lambda,v)=\sum\limits_{i=1}^m\lambda_i f_i(x)+\sum\limits_{i=1}^p v_ih_i(x)$  
+对应的Lagrange函数是$L(x,\lambda,v)=f(x)+\sum\limits_{i=1}^m\lambda_i g_i(x)+\sum\limits_{i=1}^p v_ih_i(x)$  
 
 
 那么Lagrange对偶函数是$g(\lambda,v)=\inf\limits_x L(x,\lambda,v)$  
 
-<!--
-### 性质
-1. 即使原问题不是凸的，对偶函数也是凹函数
--->
+### Lagrange对偶问题
+$\max g(\lambda,v)$  
+s.t.$\lambda \geq 0$  
+
+#### 性质1
+即使原问题不是凸的，对偶函数也是凹函数
+
+#### 性质2
+$\forall \lambda\geq 0,v$有$g(\lambda,v)\leq p^* $  
+（其中，$p^* $是原问题的最优值）  
+
+进一步说，如果Lagrange 对偶问题的最优解是 $d^* $，那么有$d^* \leq p^* $  
+（称为 **弱对偶性** ）
+#### 性质3
+如果$d^* = p^* $称为 **强对偶性**  
+
+如果强对偶性成立，问题就更容易解决。  
+如果原问题是凸优化问题，且满足 slater 条件，那么强对偶性成立。  
 
 
-## 不等式约束:KKT条件
+## KKT条件
 $\min f(x)$,   
 s.t. $$\begin{array}{l}
 h_j(x) = 0; j =1, ..., p\\
