@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【matplotlib】img
+title: 【Python】图像的读写显
 categories:
 tags: 7可视化
 keywords:
@@ -8,12 +8,12 @@ description:
 order: 741
 ---
 
-## 读
+## matplotlib
+### 读
 ```py
 import matplotlib.pyplot as plt
 a=plt.imread('image.jpg')
 # a是一个m*n*3 的 np.array 对象
-
 ```
 
 图像数组可以是以下类型
@@ -22,7 +22,7 @@ a=plt.imread('image.jpg')
 - (3) M*N*4  RGBA（浮点型或者unit8类型）
 
 
-## 显
+### 显
 
 ```py
 from scipy.stats import uniform
@@ -31,3 +31,15 @@ b=rv.rvs(size=(400,400,3))
 plt.imshow(b)
 plt.show()
 ```
+
+## cv
+```py
+import cv2
+a=cv2.imread('me.png')
+# a是一个m*n*3 的 np.array 对象
+```
+
+
+## CV与PIL
+格式互转  
+https://blog.csdn.net/dcrmg/article/details/78147219
