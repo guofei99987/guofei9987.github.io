@@ -28,6 +28,9 @@ order: 701
 import matplotlib
 matplotlib.rcParams['savefig.dpi']=4
 plt.rcParams['figure.figsize'] = (20.0, 12.0) # 图片大小
+plt.rcParams['figure.dpi'] = 200 # jupyter中调大dpi可以让图更大，同时不会模糊
+
+plt.rcParams['savefig.dpi'] = 100
 ```
 保存已经plot过的图像：
 ```py
