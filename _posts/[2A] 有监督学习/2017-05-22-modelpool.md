@@ -69,7 +69,7 @@ order: 200
 
 </table>
 
-[原文](http://www.guofei.site/StatisticsBlog/sklearn%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93.htm)
+[大图](http://www.guofei.site/StatisticsBlog/sklearn%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93.htm)
 <iframe src="http://www.guofei.site/StatisticsBlog/sklearn%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93.htm" width="100%" height="3600em" marginwidth="10%"></iframe>
 
 
@@ -167,10 +167,28 @@ $R_{SRM}=1/N \sum L(y_i,f(x_i))+\lambda J(f)$
 
 其中$J(f)$是模型的复杂度。  
 
-### 算法
+### 3. 算法
 
 为了得到上面的最小化，用不同的算法找出最优。  
 需要考虑算法效率等，有时也会根据需要，发展处独自的最优化算法。  
+
+
+## 数据
+数据的集合叫做 data set，  
+每条记录成为一个 instance 或者 sample  
+反映对象的每个性质叫做 attribute 或者 feature  
+attribute 的取值，称为 attribute value  
+属性张成的空间叫做 attribute space、 sample space  
+
+
+从数据中学的模型的过程称为 learning 或 training  
+训练时用的数据称为 training data，其中每个样本称为 training sample  
+
+
+
+
+
+
 
 ### 神经网络的缺点：  
 网络结构选择、过学习、欠学习以及局部最小值问题
