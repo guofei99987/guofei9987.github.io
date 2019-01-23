@@ -2,7 +2,7 @@
 layout: post
 title: 【DeepDream】初学
 categories:
-tags: 2B神经网络与TF
+tags: 2C_神经网络与TF
 keywords:
 description:
 order: 262

@@ -2,7 +2,7 @@
 layout: post
 title: NLP中主要的feature提取方法
 categories:
-tags: 2C_NLP
+tags: 2D_NLP
 keywords:
 description:
 order: 301

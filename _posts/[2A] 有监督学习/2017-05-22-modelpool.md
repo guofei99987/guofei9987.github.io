@@ -185,8 +185,16 @@ attribute 的取值，称为 attribute value
 训练时用的数据称为 training data，其中每个样本称为 training sample  
 
 
+## 无免费午餐定理
+假设样本空间$\mathcal{X}$和假设空间$\mathcal{H}$都是离散的  
+$P(h\mid X,\mathscr Z_a)$代表算法$\mathscr Z_a$基于训练集$X$产生假设$h$的概率，  
+$f$是真实目标函数，$I(\cdot)$是指示函数，自变量为真时取1，否则取0  
+
+定义“训练集外误差”为$E_{ote}(\mathscr Z_a \mid X,f)=\sum\limits_h \sum\limits_{x\in \mathcal X -X} P(x) I(h(x) \not=f(x))P(h\mid X,\mathscr Z_a)$  
 
 
+考虑二分类问题$$\mathcal X \to \{ 0,1\}$$,函数空间为$$\{0,1\}^{\mid \mathcal X \mid}$$，对所有可能的f，按照均匀分布对误差求和  
+$\sum\limits_f E_{ote}(\mathscr Z_a \mid X,f)=...=2^{\mid \mathcal X \mid -1}\sum\limits_{x\in \mathcal X-X}P(x)$
 
 
 
