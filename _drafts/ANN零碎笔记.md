@@ -31,8 +31,10 @@ Long Short-Term Memory
 ### 受限玻尔兹曼机
 
 受限玻尔兹曼机(RBM,restricted boltzmann machine)
-#### DBN
-DBN由多个RBM组成，Hitton提出DBN，验证了Greedy Layer-wise Training
+#### DBN（deep belief network，深度信念网络）
+DBN由多个RBM组成，Hitton提出DBN，验证了Greedy Layer-wise Training  
+DBN对每层进行无监督训练，训练方法可以是标准的RBM，各层训练完毕后，用BP算法进行微调。
+
 #### 损失函数
 RBM的cost Function称为对比散度函数(contrasive divergence，CD)  
 学习的目标是最大似然度。  
@@ -84,3 +86,7 @@ Hopfield：80年代神经网络复兴，一般功劳应当归功于他。
 
 
 Minsky：构建第一部能自我学习的神经网络机器SNARC
+
+## BP
+BP推荐使用：3层（能解决大部分问题）  
+hidden layer中神经元的个数推荐是$\sqrt{n_{input}+n_{output}} \pm 10$个  

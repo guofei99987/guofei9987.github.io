@@ -37,6 +37,7 @@ BP与Hopfield的训练局部最小的原因：
 2. 每个神经元的输出是0, 1
 3. n个神经元分为可视层和隐含层。可视层有分为输入部分和输出部分
 
+受限 Boltzmann 机(Restricted Boltzmann Machine, RBM) 仅保留显层和隐层之间的连接，而把显层之间、隐层之间的连接全部删除。
 
 ### 神经元
 $s_j=\sum\limits_{i=1}^nx_jw_{ij}-\theta_j,j=1,2,...,n$  

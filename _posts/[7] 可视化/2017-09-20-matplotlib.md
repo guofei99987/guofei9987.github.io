@@ -67,7 +67,7 @@ axes2[1].plot(x, np.sin(x))
 plt.show()
 ```
 
-## 常用小配置
+## 常用配置
 ```py
 import matplotlib.pyplot as plt
 
@@ -90,16 +90,32 @@ ax.set_ylabel('Volt')
 # plt.xlabel('Time(s)'),plt.ylabel('Volt')
 
 # 4. 自定义坐标轴刻度
-plt.xticks([3, 4, 5], ['abcd', 'bcde', 'cdef'], rotation=30)
-# 把指定数字替换成文字，未指定的不予显示
+ax.set_xticks([3, 4, 5])
+ax.set_xticklabels(['abcd', 'bcde', 'cdef'], rotation=30)
+# 第一步：指定需要显示的刻度
+# 第二步：把显示的刻度替换成字符串
+
+ax.set_yticks([0,20,40,60,80,100])
+# y轴一样的做法
+
+# 或者：plt.xticks([3, 4, 5], ['abcd', 'bcde', 'cdef'], rotation=30) # 把指定数字替换成文字，未指定的不予显示
 
 # 5. 改变显示范围
-plt.ylim(-5, 100)
+ax.set_xlim(-1,10)
+ax.set_ylim(0,100)
+
+# 或者：plt.ylim(-5, 100)
 
 # 6. 中文字体
 from pylab import mpl
 mpl.rcParams['font.sans-serif']=['SimHei']
 
+# 7. 网格线
+ax.grid()
+# b=None, which='major', axis='both', **kwargs
+# which:'major', 'minor', or 'both'
+# axis:'both', 'x', or 'y'
+# **kwargs: 自定义线的样式，例如 color='r', linestyle='-', linewidth=2
 plt.show()
 ```
 ![matplotlib](https://www.guofei.site/pictures_for_blog/matplotlib.png)

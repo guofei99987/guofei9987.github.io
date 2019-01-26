@@ -251,11 +251,16 @@ select date_add('2008-12-29',5); -- 日期增加一个天数
 select datediff('2008-12-19','2008-12-10'); -- 两个日期之差
 
 ```
+### 多列函数
+```sql
+coalesce(arg1,arg2….) -- 返回参数集中第一个非null参数。
+greatest(col1,col2,...,coln) -- 返回多列中，最大的那个值
+```
+
 ### 字符串函数
 
 ```sql
 length,lcase, ucase, ltrim , rtrim  
-Coalesce(arg1,arg2….):返回参数集中第一个非null参数。  
 Concat (arg1,arg2):连接两个字符串arg1和arg2。  
 insert(arg1,pos,size,arg2):返回一个，将arg1从pos处删除size个字符，将arg2插入该位置。  
 left(arg,length):返回arg最左边的length个字符串。  
@@ -266,6 +271,7 @@ replace(arg1,arg2,arg3):将在arg1中的所有arg2替换成arg3。
 right(arg,length):返回一个有arg左边length个字节组成的字符串。  
 space(arg):返回一个包含arg个空格的字符串。  
 substr(arg1,pos,<length>;):返回arg1中pos位置开始的length个字符，如果没指定length，则返回剩余的字符。
+initcap(col) -- 每个单词的首字母大写（一个字符串中可以有多个单词）
 ```
 ### 数学函数
 
@@ -287,6 +293,8 @@ Sign(arg):返回arg的符号指示符。-1,0,1表示。
 truncate(arg1,arg2):截断arg1，arg2是位数，如果arg2是负数，则保留arg1小数点前的arg2位。
 
 e(),pi() 常数e和常数pi
+
+factorial(5) -- 阶乘
 ```
 
 

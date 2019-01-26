@@ -196,6 +196,19 @@ $f$是真实目标函数，$I(\cdot)$是指示函数，自变量为真时取1，
 考虑二分类问题$$\mathcal X \to \{ 0,1\}$$,函数空间为$$\{0,1\}^{\mid \mathcal X \mid}$$，对所有可能的f，按照均匀分布对误差求和  
 $\sum\limits_f E_{ote}(\mathscr Z_a \mid X,f)=...=2^{\mid \mathcal X \mid -1}\sum\limits_{x\in \mathcal X-X}P(x)$
 
+### 多分类
+可以用多个二分类学习方法进行多分类学习，主要有3种策略
+1. One vs One (OvO) 按类别进行两两配对，从训练 N(N-1)/2 个分类器，最终结果由投票来获得
+2. One vs Rest (OvR) 每个类作为正例，其它类作为反例，训练N个分类器，最终某个数据属于哪一类，取决于N个分类器中，预测正例置信度最大的那个分类器
+3. Many vs Many (MvM) 若干类为正例，若干类为反例，OvO 和 OvR 都是 MvM的特殊情况
+
+
+### 类别不平衡问题
+- 降采样（undersampling）:对过多的那一类，进行降采样。  
+典型算法是 EasyEnsemble ，这种算法将少的那一类划分为不同的集合，供不同的学习器使用，这样每个分类器类别均衡且整体不丢失信息。
+- 升采样（oversampling）：对于过少的那一类，进行复制。典型算法拾 SMOTE ，对少的那一类利用插值来增加数量。
+- 阈值移动（threshold-moving），直接用原始数据进行预测，然后执行$\dfrac{y'}{1-y'}=\dfrac{y}{1-y}\dfrac{m^-}{m^+}$
+
 
 
 ### 神经网络的缺点：  
