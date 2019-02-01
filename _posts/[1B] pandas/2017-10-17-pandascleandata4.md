@@ -555,20 +555,3 @@ s = s.reindex(idx,fill_value=np.nan)
 ？？参数还可以是其它类型吗
 ？？字符格式的时间能不能转成时间格式
 【未完待续】自己查
-
-
-## 其它
-
-### 用map修改index&columns
-- rename可以完全替代这个
-- 参数不能是dict
-
-
-index有map()方法，但没有apply方法，案例：  
-```python
-import pandas as pd
-import numpy as np
-
-df = pd.DataFrame(np.arange(16).reshape(4, -1), index=list('abcd'), columns=list('gfjk'))
-df.index = df.index.map(str.upper)
-```

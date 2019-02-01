@@ -2,7 +2,7 @@
 layout: post
 title: 数据清洗方法
 categories:
-tags: 1B_Pandas
+tags: 1C_特征工程
 keywords:
 description:
 order: 100

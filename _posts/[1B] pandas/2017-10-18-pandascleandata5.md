@@ -10,7 +10,7 @@ order: 105
 
 |方法|说明|
 |--|--|
-|count|非NaN值得数量|
+|count|非NaN值的数量|
 |describe|描述统计|
 |min, max|最值|
 |idxmin, idxmax|最值所在位置(loc)|
@@ -39,7 +39,7 @@ df.describe(include='all')
 返回的是DataFrame格式的描述性统计数据
 
 ```py
-data.info()#DataFrame的简要情况
+data.info() # DataFrame的简要情况
 df.shape
 ```
 

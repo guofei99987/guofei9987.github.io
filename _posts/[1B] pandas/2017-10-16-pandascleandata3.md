@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】去重、填充、排序
+title: 【pandas】去重、填充、排序、变换
 categories:
 tags: 1B_Pandas
 keywords:
@@ -13,18 +13,19 @@ order: 103
 
 ```python
 data.drop_duplicates(inplace=True)
-data.drop_duplicates(subset='column1')#找第一列重复者
-data.duplicated(keep='last')#'first','last',False
+data.drop_duplicates(subset='column1') # 找第一列重复者
+data.duplicated(keep='last') # 'first','last',返回布尔类型
 ```
 
 ```py
-data.duplicated()#返回Series，bool类型，存放是否是重复行/列
+data.duplicated(keep='last')  # 返回Series，bool类型，存放是否是重复行/列
+# keep='first','last'
 ```
 
 ## 删除空数据
 
 ```py
-dropna(how='any')#how='all'
+dropna(how='any') # how='all'
 ```
 
 ## 删除整行&整列
@@ -47,7 +48,7 @@ data.replace({4:np.nan,5:999},inplace=True)
 可以向上填充/向下填充
 ```python
 a=data.fillna(method='bfill',inplace=True)
-#method :bfill,ffill,
+# method :bfill,ffill,
 ```
 
 也可以用值填充
@@ -62,13 +63,13 @@ df.fillna({'a':999,'b':888,'c':777,'d':666})
 
 线性插值填充
 
-```
+```py
 df1.interpolate()
 ```
 
 线性插值填充：把index作为间隔
 
-```
+```py
 df1.interpolate(method='index')
 ```
 
@@ -86,63 +87,10 @@ df.loc[:,'ww']=df.loc[:,'w']*2+df.loc[:,'x']
 ## 改变数据类型
 
 ```python
-df.loc[:,['ww']].astype('float')#int
-```
-
-## 字符串方法
-```python
-df['index'].str.upper()
-df['index'].str.len()
-df['index'].str.contains('a')#字符中是否包含a，bool
+df.loc[:,['ww']].astype('float') # int
 ```
 
 
-### 字符串加减
-```PY
-df=pd.DataFrame(['北京','北京市','北京地区'])
-df_abc=pd.DataFrame(list('abc'))
-df+df_abc*2
-```
-
-### 字符串的分裂合并
-**只对Series有用**
-
-#### 分裂
-
-```
-s=pd.Series(['a|b|cc','x|yy|z'])
-s_list=s.str.split('|')
-```
-- output
-```
-0    [a, b, cc]
-1    [x, yy, z]
-```
-
-#### 获取元素
-```py
-s_list.str[1]
-```
-- output
-```py
-0     b
-1    yy
-```
-
-#### 用其它字符填充
-```py
-s_comma=s_list.str.join(',')
-```
-- output
-```py
-0    a,b,cc
-1    x,yy,z
-```
-
-#### 正则表达式
-```py
-s.str.extract('正则表达式')
-```
 
 ## 排序
 ### sort
@@ -271,28 +219,104 @@ method说明：
 - 'first': 按照原始数据中出现的顺序分配排名
 
 
-## 列变化
+## 变换
+### transfrom：按列变换
+```py
+df = pd.DataFrame([['about', 'a|b|cc'], ['cool', 'x|yy|z']], columns=['col1', 'col2'], index=['a', 'b'])
 
-### 方法1：map
-- map只能针对Series
-- 原本的数据没在dict中的，填充为NaN
+def func(x):
+    return x.upper()
 
-```python
-data['animal'] = data['food'].map(str.lower).map(my_dict)
-#my_dict是一个字典，key是data['food']中的元素，values是输出Series中的元素
+df.transform({'col1': func})
+
+# 1. transform返回一个DataFrame
+# 2. func每次接收一个单元格。如果不能运行，常识接收整列作为 <Series>
+# 3_1. 如果 func 返回一个 Series，那么把这个Series展开为多列
+# 3_2. 如果 func 返回其它对象（数字、list等），那么把这个对象塞到新 DataFrame 的单元格内
+```
+例子：
+```py
+df = pd.DataFrame([['a|b|cc'], ['x|yy|z']], columns=['col1'])
+
+# 用字符串方法做一切操作
+df.transform({'col1': lambda x: x.upper()})
+df.transform({'col1': lambda x: len(x)})
+df.transform({'col1': lambda x: 'a' in x})
+
+df.transform({'col2': lambda x: x.split('|')})
+df.transform({'col2': lambda x: ','.join(x.split('|'))})
+
+# 可以直接加减乘
+df.col1 + df.col2 * 2
 ```
 
-### 方法2：apply
+## agg
+
+
+
+### apply：更灵活的变换
 
 ```python
-data.apply(func1,axis='columns')#返回Series
+data.apply(func1,axis=0) # 返回Series
+# axis=0，输入一列
+# axis=1，输入一行
+
+def func(series):
+
+
+# 1. apply 返回 Series
+# 2. func 的输入是 原 DataFrame 的一行/一列，格式为 <Series>
+# 3. 如果return数字、列表等其它对象，那么把其它对象作为每一个元素塞到一个单元格内
+    # return内容就是data.apply这个series中的元素
+    # 如果return一个 <Series> ,那么把这个 Series 作为新列
+
 ```
 
-func1的规则：
-- axis=0，输入一列
-- axis=1，输入一行
+## 其它
+
+### 用map修改index&columns
+- rename可以完全替代这个
+- 参数不能是dict
+
+
+index有map()方法，但没有apply方法，案例：  
 ```python
-def func1(series):
-    #series的类型是Series，其内容是DataFrame的一行，
-    #return内容就是data.apply这个series中的元素
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.arange(16).reshape(4, -1), index=list('abcd'), columns=list('gfjk'))
+df.index = df.index.map(str.upper)
+```
+
+
+## 非groupby的agg
+### agg
+```py
+import pandas as pd
+import numpy as np
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+
+def func(data):
+    return data.max()
+
+df.agg([np.mean,func]) # 此例返回2行，一行mean，一行func
+# func接受每一列作为Series，返回一个数字
+
+df.agg({'a':func}) # 对指定列做func，与上一条有个区别，func可以返回多组数字，这种情况下，func返回的多组数字是这条语句返回的多行
+```
+
+### transform
+```py
+import pandas as pd
+import numpy as np
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+
+def func(data):
+    return data+1
+
+df.transform({'a':func,'b':func}) # func需要接受df每一列作为Series，返回同样大小的Series
 ```

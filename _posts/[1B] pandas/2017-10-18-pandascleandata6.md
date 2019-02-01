@@ -244,35 +244,3 @@ df.groupby('col1').apply(func,n=1,b=3) # n=1, b=3是func的输入
 ```py
 creditcard_exp.groupby('gender')['avg_exp'].describe()
 ```
-
-## 非groupby的agg
-### agg
-```py
-import pandas as pd
-import numpy as np
-from scipy import stats
-rv=stats.uniform()
-df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
-
-def func(data):
-    return data.max()
-
-df.agg([np.mean,func]) # 此例返回2行，一行mean，一行func
-# func接受每一列作为Series，返回一个数字
-
-df.agg({'a':func}) # 对指定列做func，与上一条有个区别，func可以返回多组数字，这种情况下，func返回的多组数字是这条语句返回的多行
-```
-
-### transform
-```py
-import pandas as pd
-import numpy as np
-from scipy import stats
-rv=stats.uniform()
-df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
-
-def func(data):
-    return data+1
-
-df.transform({'a':func,'b':func}) # func需要接受df每一列作为Series，返回同样大小的Series
-```

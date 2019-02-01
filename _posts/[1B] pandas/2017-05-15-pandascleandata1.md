@@ -9,81 +9,64 @@ order: 101
 ---
 
 ## 创建
-### 用Series组成的dict创建
+### 1. 按列创建
+- 方式1
 ```python
 import pandas as pd
-d = {'one' : pd.Series([1., 2., 3.], index=['a', 'b', 'c']),'two' : pd.Series([1., 2., 3., 4.], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame({'col1': [1] * 9, 'col2': ['one', 'tow', 'three'] * 3}, index=range(9))
+```
+- 方式2
+```python
+import pandas as pd
+d = {'col1' : pd.Series([1., 2., 3.], index=['idx1', 'idx2', 'idx3']),'col2' : pd.Series([1., 2., 3., 4.], index=['idx1', 'idx2', 'idx3', 'idx4'])}
 df = pd.DataFrame(d)
 ```
 
-### 用list组成的dict创建
-```python
-import pandas as pd
-df = pd.DataFrame({'key': ['b', 'b', 'a', 'c', 'a', 'a', 'b'], 'data1': range(7)})
-df.head(5)
-```
 
-### 用dict组成的list创建
+### 2. 按行创建
+- 方式1
+```py
+df = pd.DataFrame([[1, 2], [3, 4], [5, 6]], index=range(3), columns=['col1', 'col2'])
+```
+- 方式2
 ```python
-d = [{'one' : 1,'two':1},{'one' : 2,'two' : 2},{'one' : 3,'two' : 3},{'two' : 4}]
-df = pd.DataFrame(d,index=['a','b','c','d'],columns=['one','two'])
+d = [{'col1' : 1,'col2':1},{'col1' : 2,'col2' : 2},{'col1' : 3,'col2' : 3},{'col2' : 4}]
+df = pd.DataFrame(d,index=['idx1', 'idx2', 'idx3', 'idx4'],columns=['col1','col2'])
 df.index.name='index'
 ```
 
-## to_dict
+## 各种to
+- to_dict
 ```python
 df.to_dict(orient='Series')
 df.to_dict(orient='records')
-...
+# 两个都是返回一个Series组成的dict
 ```
-返回一个Series组成的dict
-
-## to_excel&read_excel
-- 从EXCEL读入DataFrame：
+- to_excel&read_excel
 ```python
+# 从EXCEL读入DataFrame：
 bonus = pd.read_excel('bonus_schedule.xls')
-bonus.head(3)
-```
-
-- 将DataFrame写入EXCEL：
-```python
+# 将DataFrame写入EXCEL：
 bonus.to_excel('foo1.xlsx', sheet_name='sheet1')
 ```
 
-## to_csv&read_csv
-- read_csv
+### to_csv&read_csv
 ```python
 macrodata = pd.read_csv('macrodata.csv')
-macrodata.head(1)
-```
-
-- to_csv
-```py
 macrodata.to_csv('d:/foo.csv')
+# header： 选择哪一行作为columns name，读入的数据从header的下一行开始
+#     - int：这一行作为columns name
+#     - list of ints：几行合起来作为columns name
+#     - None：不用数据作为columns name，而是用自然数
+# index_col：  选择那一列作为index name
+#     - int：选择第几列作为index name
+#     - list：选择多列作为多层index name(**非常强大！**)
+#     - None：不用数据做index name，而是用自然数
+# names： 自定义columns name
+# sep：`'\t', '\s+'` 等
 ```
 
-### read_csv中的参数
-
-在数据分析中，read_csv是最常用的函数之一，所以有必要详细解释参数。  
-
-- header： 选择哪一行作为columns name，读入的数据从header的下一行开始
-    - int：这一行作为columns name
-    - list of ints：几行合起来作为columns name
-    - None：不用数据作为columns name，而是用自然数
-- index_col：  选择那一列作为index name
-    - int：选择第几列作为index name
-    - list：选择多列作为多层index name(**非常强大！**)
-    - None：不用数据做index name，而是用自然数
-- names： 自定义columns name
-- sep：`'\t', '\s+'`
-
-
-## to_json
-
-用Python于其他语言进行数据交互时经常要用到json，这里记录to_json的方法
-
-
-
+### to_json
 
 生成数据
 ```Python
@@ -106,7 +89,7 @@ out:
 ```Python
 a.to_json('a.json',orient='index')
 ```
-out:
+    - out:
 ```Json
 {"idx1":{"col1":"str1","col2":1},"idx2":{"col1":"str2","col2":2},"idx3":{"col1":"str3","col2":3}}
 ```
@@ -115,7 +98,7 @@ out:
 ```Python
 a.to_json('a.json',orient='columns')
 ```
-out:  
+    - out:  
 ```Json
 {"col1":{"idx1":"str1","idx2":"str2","idx3":"str3"},"col2":{"idx1":1,"idx2":2,"idx3":3}}
 ```
@@ -123,7 +106,7 @@ out:
 ```Python
 a.to_json('a.json',orient='records')
 ```
-out:  
+    - out:  
 ```Json
 [{"col1":"str1","col2":1},{"col1":"str2","col2":2},{"col1":"str3","col2":3}]
 ```
@@ -131,7 +114,7 @@ out:
 ```Python
 a.to_json('a.json',orient='split')
 ```
-out:
+    - out:
 ```Json
 {"columns":["col1","col2"],"index":["idx1","idx2","idx3"],"data":[["str1",1],["str2",2],["str3",3]]}
 ```
@@ -140,35 +123,35 @@ out:
 ```Python
 a.to_json('ax1.json', orient='values')
 ```
-out:
+    - out:
 ```Json
 [["str1",1],["str2",2],["str3",3]]
 ```
 
 ## 其它to
 ```py
-df.to_clipboard到剪切板上
+df.to_clipboard # 到剪切板上
 to_panel
 to_period # 把时间序列数据，变成频率数据
 to_latex
 to_html
 to_string
 to_pickle # 存到内存中
-to_sql
+to_sql # 也挺有用，在另一篇博客里详解
 ```
 
 ## 循环
-每次读一行
+- 每次读一行
 ```py
 df=pd.DataFrame(np.random.rand(5,2),columns=list('ab'))
-for i,row in df.iterrows():
-    print(i,row['a'],row['b'])
+for index,row in df.iterrows():
+    print(index,row['a'],row['b']) # row是一个 <Series>
 ```
-每次读一列
+- 每次读一列
 ```py
 df=pd.DataFrame(np.random.rand(5,2),columns=list('ab'))
-for i,col in df.iteritems():
-    print(i,col)
+for col_name,col in df.iteritems():
+    print(col_name,col) # col是一个 <Series>
 ```
 
 
