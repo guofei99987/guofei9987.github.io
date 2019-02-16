@@ -2,7 +2,7 @@
 layout: post
 title: 【图挖掘】社区检测
 categories:
-tags: 3C_其他无监督
+tags: 3C_其他
 keywords:
 description:
 order: 350

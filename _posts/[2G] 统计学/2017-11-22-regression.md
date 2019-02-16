@@ -45,11 +45,32 @@ $\hat\beta_0=\bar y -\hat\beta_1\bar x$
 
 可以证明：  
 $\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$  
-$\hat\beta_0 \sim  N(\beta_0, (\dfrac{1}{n} + \dfrac{\sigma^2}{l_{xx}}) \sigma^2)$  
+$\hat\beta_0 \sim  N(\beta_0, (\dfrac{1}{n} + \dfrac{\bar x^2}{l_{xx}}) \sigma^2)$  
 $Cov(\hat\beta_0,\hat\beta_1)=-\dfrac{\bar x}{l_{xx}}\sigma^2$  
 
 
-(上面的结论用于显著性检验)
+(上面的结论用于显著性检验，下面以$\beta_1$为例)
+$H_0:\beta_1=0,H_1:\beta_1 \not=0$  
+已知$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，  
+其中$\sigma^2$未知，所以构造t统计量  
+$t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$   
+其中，$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$  
+
+（上面三条结论也可以用来求出预测值的置信区间）  
+（根据正态分布的加法）  
+对 $x=x_0$ 处做预测 $\hat y_0=\beta_1 x_0 +\beta_0\sim N(\beta_1 x_0+\beta_0,(\dfrac{1}{n}+\dfrac{(x_0-\bar x)^2}{l_{xx}})\sigma^2)$  
+得到区间估计$(\hat y-t_{1-\alpha/2}(n-2) s_{\hat y},\hat y+t_{1-\alpha/2}(n-2) s_{\hat y})$  
+其中，$s_{\hat y}=\sqrt{\dfrac{(x_0-\bar x)^2}{l_{xx}})\hat\sigma^2},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$
+
+### 另一种写法
+$SST=\sum\limits_{i=1}^n(y_i-\bar y)^2$
+$SSR=\sum\limits_{i=1}^n(\hat y_i-\bar y)^2=\dfrac{l_{xy}}{l_{xx}}$
+$SSE=\sum\limits_{i=1}^n(y_i-\hat y_i)^2$
+
+结论：  
+$SST=SSR+SSE$  
+$F=\dfrac{SSR/1}{SSE/(n-2)}$
+相关系数$r^2=\dfrac{l_{xy}^2}{l_{xx}l_{yy}}=\dfrac{SSR}{SST}$
 ## 正则化方法
 - 岭回归
 - lasso

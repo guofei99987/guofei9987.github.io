@@ -61,6 +61,37 @@ $E=-0.5\sum\sum w_{ij}x_i x_j +\sum\theta_i x_i$
 Boltzmann机既可以用于做优化，也可以用于联想记忆。  
 但Boltzmann机只会收敛到一个最小值点，因此不能实现Hopfield的多记忆点，但是可以实现概率意义上的联想记忆。
 
+
+## 受限玻尔兹曼机
+上面提过，受限 Boltzmann 机(Restricted Boltzmann Machine, RBM) 仅保留显层和隐层之间的连接，而把显层之间、隐层之间的连接全部删除。  
+
+把 visible layer 记为$v$，把 hidden layer 记为 $h$  
+
+所有隐藏节点$h$之间是条件独立的，所有显层节点$v$是条件独立的。  
+也就是说$p(h\mid v)=p(h_1\mid v)p(h_2\mid v)...p(h_n\mid v)$  
+$p(v\mid h)=p(v_1\mid h)p(v_2\mid h)...p(v_m\mid h)$
+
+### 实现
+```py
+from sklearn.neural_network import BernoulliRBM
+rbm=BernoulliRBM(n_components=2)
+
+rbm.fit(X)
+rbm.transform(X)
+rbm.partial_fit(X)
+rbm.fit_transform(X)
+
+rbm.score_samples(X) # Compute the pseudo-likelihood of X
+```
+### DBM(Deep Boltzmann Machine)
+
+隐藏层数增加  
+
+![](https://github.com/guofei9987/pictures_for_blog/blob/master/machine_learning/dbm.png?raw=true)  
+
+
+如上图所示，深度玻尔兹曼机相当于限制连接的BDM
+
 ## 参考文献
 《Matlab神经网络原理与实例精解》陈明，清华大学出版社   
 《神经网络43个案例》王小川，北京航空航天大学出版社  
