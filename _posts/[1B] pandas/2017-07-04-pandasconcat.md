@@ -39,8 +39,8 @@ df4=pd.DataFrame({'B':['A8','A9','A10','A11'],
                index=[2,3,6,7])
 ```
 
+## 1. pd.concat:以index或columns为合并条件
 
-## 1纵向合并  
 特点：匹配columns，匹配不到的的填入nan
 ```python
 result=pd.concat([df1,df2,df3])
@@ -54,8 +54,27 @@ result=pd.concat([df1,df2,df3])
 效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat.jpg'>
 
+### 1.1 axis：纵向合并还是横向合并
+```py
+result = pd.concat([df1, df4], axis=1)
+# axis='index'（默认）是纵向合并，（等价：axis=0）
+# axis='columns' 是横向合并，（等价：axis=1）
+```
+效果如下：  
+<img src='http://www.guofei.site/public/postimg2/concat3.jpg'>
 
-### 1.1keys分组键
+### 1.2 join
+join='outer'(默认),把所有未匹配到的也列出来，（上面这个案例）  
+join='inner'，只列出左右两列都有的
+
+```py
+result = pd.concat([df1, df4], axis=1, join='inner')
+```
+效果如下：  
+<img src='http://www.guofei.site/public/postimg2/concat4.jpg'>
+
+
+### 1.3 keys分组键
 
 要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数  
 
@@ -69,7 +88,7 @@ result = pd.concat([df1,df2,df3], keys=['x', 'y', 'z'])
 <img src='http://www.guofei.site/public/postimg2/concat2.jpg'>
 
 
-### 1.2ignore_index
+### 1.4 ignore_index
 如果两个表的index没什么实际含义，用ignore_index=True，使两个表对齐整理出一个新的index  
 
 ```py
@@ -79,26 +98,7 @@ result=pd.concat([df1,df4],ignore_index=True)
 效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat5.jpg'>
 
-## 2横向对齐
-```py
-result = pd.concat([df1, df4], axis=1)
-```
-效果如下：  
-<img src='http://www.guofei.site/public/postimg2/concat3.jpg'>
-
-
-### 2.1join
-join='outer'(默认),把所有未匹配到的也列出来，（上面这个案例）  
-join='inner'，只列出左右两列都有的
-
-```py
-result = pd.concat([df1, df4], axis=1, join='inner')
-```
-效果如下：  
-<img src='http://www.guofei.site/public/postimg2/concat4.jpg'>
-
-
-## 3merge
+## 2. merge：以指定列为合并条件
 除了简单合并外，有时需要匹配合并（类似SQL中的join命令）  
 数据准备  
 ```py
@@ -115,33 +115,35 @@ right = pd.DataFrame({'key1': ['K0', 'K1', 'K1', 'K2'],
                      'D': ['D0', 'D1', 'D2', 'D3']})
 ```
 
-### 3.1连接
-```
+### 3.1 连接
+```pu
 result = pd.merge(left, right, on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge1.jpg'>
 
-### 3.2how
+### 3.2 how
 
-how='inner'(默认,上面的案例)  
+how='inner'(默认)  
 how='left'  
 how='right'  
-how='outer'  
+how='outer'
 
-```
+
+```py
 result = pd.merge(left, right, how='left', on=['key1', 'key2'])
+
 ```
 
 <img src='http://www.guofei.site/public/postimg2/merge2.jpg'>
 
 
-```
+```py
 result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge3.jpg'>
 
 
-```
+```py
 result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge4.jpg'>
