@@ -320,3 +320,9 @@ def func(data):
 
 df.transform({'a':func,'b':func}) # func需要接受df每一列作为Series，返回同样大小的Series
 ```
+
+### apply
+```py
+# 生成新的两列
+df.apply(lambda x:pd.Series({'new_a':x['a']+x['b'],'new_b':x['a']+x['b']}),axis=1)
+```
