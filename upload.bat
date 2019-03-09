@@ -1,4 +1,3 @@
-python auto_generat_sidebar.py
 git add -A
 git commit -m "AutoUpload"
 echo ok
