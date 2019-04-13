@@ -197,7 +197,8 @@ def my_fun1(x, y):
     return float(stats.pearsonr(x, y)[0])
 
 # step3：应用
-spark.udf.register('my_fun1', my_fun1)
+from pyspark.sql.types import DoubleType
+spark.udf.register('my_fun1', my_fun1, returnType=DoubleType())
 df3 = df2.selectExpr('*', 'my_fun1(b_list,c_list) as a_end')
 
 #%%
