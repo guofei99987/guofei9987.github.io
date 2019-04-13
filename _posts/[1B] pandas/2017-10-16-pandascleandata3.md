@@ -290,7 +290,21 @@ df.index = df.index.map(str.upper)
 
 
 ## 非groupby的agg
-### agg
+生成样例
+```py
+import pandas as pd
+import numpy as np
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+```
+
+### apply：按行计算
+```py
+# 生成新的两列
+df.apply(lambda x:pd.Series({'new_a':x['a']+x['b'],'new_b':x['a']+x['b']}),axis=1)
+```
+### agg：汇总计算
 ```py
 import pandas as pd
 import numpy as np
@@ -307,22 +321,10 @@ df.agg([np.mean,func]) # 此例返回2行，一行mean，一行func
 df.agg({'a':func}) # 对指定列做func，与上一条有个区别，func可以返回多组数字，这种情况下，func返回的多组数字是这条语句返回的多行
 ```
 
-### transform
+### transform：用途有限
 ```py
-import pandas as pd
-import numpy as np
-from scipy import stats
-rv=stats.uniform()
-df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
-
 def func(data):
     return data+1
 
 df.transform({'a':func,'b':func}) # func需要接受df每一列作为Series，返回同样大小的Series
-```
-
-### apply
-```py
-# 生成新的两列
-df.apply(lambda x:pd.Series({'new_a':x['a']+x['b'],'new_b':x['a']+x['b']}),axis=1)
 ```
