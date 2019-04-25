@@ -7,7 +7,8 @@ keywords:
 description:
 ---
 
-
+### 》》2019年4月22日
+给statsmodels发了个pr，被merge到master里了。https://github.com/statsmodels/statsmodels/pull/5567#event-2289882360
 
 ### 》》2017-06-06    
 给scipy发了一个pr，10分钟后被merge到master里。  
