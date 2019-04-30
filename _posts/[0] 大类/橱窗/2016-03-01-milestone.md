@@ -7,11 +7,25 @@ keywords:
 description:
 ---
 
+## 2019
+
+### 》》2019年4月26日
+[读书笔记](https://docsify.js.org/#/awesome?id=showcase)网站被docsify官网收录
+
 ### 》》2019年4月22日
 给statsmodels发了个pr，被merge到master里了。  
 [pr](https://github.com/statsmodels/statsmodels/pull/5567#event-2289882360)  
 
 其实就改了[一个单词](https://github.com/statsmodels/statsmodels/blob/master/examples/notebooks/recursive_ls.ipynb)
+
+--------------------------------------------
+
+## 2018
+### 2018年总结
+写了82篇博客，读了42本书，LeetCode刷了203题，跑步69公里。
+
+--------------------------------------------
+## 2017
 
 ### 》》2017-06-06    
 给scipy发了一个pr，10分钟后被merge到master里。  
