@@ -172,16 +172,16 @@ string.whitespace
 step1：编译一个可重用的regex对象
 ```py
 import re
-regex=re.compile('\s+') #就是一个regex对象
+regex=re.compile('\s+') # 返回一个regex对象
 ```
 step2：使用regex对象
 
 ```py
 text='a\n b \t  c'
-regex.split(text) #返回list
+regex.split(text) # 返回list
 
-regex.findall(text) #返回list
-regex.finditer(text)  #迭代器,存放的是<SRE_Match object>
+regex.findall(text) # 返回list
+regex.finditer(text) #迭代器,存放的是<SRE_Match object>
 m = regex.match(text) # 返回<SRE_Match object>
 ```
 
@@ -193,12 +193,12 @@ step3：使用'SRE_Match'对象
 m.start() # 返回起始位置
 m.end() # 返回结束位置(不包含该位置的字符).
 
-m.span() #返回一个tuple表示(m.start(), m.end())
+m.span() # 返回一个tuple表示(m.start(), m.end())
 
 ```
 
 
-1.  句点符号  
+1.  句点符号：通配符
 ```
 '.' # 如果句号没在[]中出现，表示匹配任意一个（只有一个）字符（包括空格，但除去换行符）。
 ```
@@ -240,6 +240,8 @@ m.span() #返回一个tuple表示(m.start(), m.end())
 ```
 \oN or \o{N}\  ASCII码表
 \xN or \x{N}
+'[\u4e00-\u9fa5]' # 全部中文
+'[。；，：“”（）、？《》]' # 中文标点
 ```
 6. 量词  
 ```
@@ -250,6 +252,7 @@ m.span() #返回一个tuple表示(m.start(), m.end())
 (expr){m,} #m次以上
 (expr){n} #n次
 ```
+
 
 ## 参考文献
 https://docs.python.org/3/

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【statsmodels】WLS加钱最小二乘法
+title: 【statsmodels】WLS加权最小二乘法
 categories:
 tags: 2G_统计模型
 keywords:
