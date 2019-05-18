@@ -256,6 +256,14 @@ basestring
 bin
 approx_count_distinct
 ```
+
+这个常用的
+```py
+F.lit(3) # 增列都是一个值
+F.col('col1') # 选取一列
+F.when().else()
+```
+
 ## 参考文献
 http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions  
 https://blog.csdn.net/liam08/article/details/79663018
