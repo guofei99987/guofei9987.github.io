@@ -188,11 +188,14 @@ df.b=(df.b>0.5)*1
 df.groupby('a')['d','e'].agg([np.sum,np.mean,np.min,np.max])
 
 # 对每个列做不同的agg
-df.groupby(['a','b']).agg({'c':'mean','d':np.std,'e':lambda x:x.mean(),'e':func})
+df.groupby(['a','b'], as_index=False).agg({'c':[('mean_of_c','mean'),'std',('sum_of_c',np.sum)],'d':np.std,'e':lambda x:x.mean(),'e':func})
+# 1. as_index 顾名思义
+# 2. agg 后接一个dict，dict的key表示对这个字段进行操作，
+# 3. dict 的 value 可以是字符串、函数，可以是['自定义名',字符串/函数]
 ```
 
-后接
-- 常用函数('count','sum'...)
+常用函数
+- 内置函数('count','sum'...)
 - np函数 (np.max, np.min, np.sum, np.mean, np.median, np.std, np.std, np.size)
 - 自定义函数(func,lambda表达式)
 
@@ -207,7 +210,8 @@ df.groupby('w').agg(lambda dd: dd.loc[(dd.z+dd.y).idxmax()])
 #### agg()命名
 可以手动给agg后的每列命名
 ```py
-df.groupby('a').agg([('one','mean'),('two','std')]) #两列不再以mean, std命名，而是改成'one', 'two'
+df.groupby('a').agg([('one','mean'),('two','std')]) # 两列不再以mean, std命名，而是改成'one', 'two'
+df.groupby('a').agg({'col1':('mean_of_col1','mean'),('std_of_col1','std')]})
 df.groupby('a').mean().add_prefix('mean_of_') # 批量命名
 ```
 ### transfrom()
