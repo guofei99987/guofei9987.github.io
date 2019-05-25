@@ -7,6 +7,7 @@ keywords:
 description:
 order: 450
 ---
+*吴恩达的课程笔记*  
 
 ## train/dev/test
 这个已经很熟悉了。  
