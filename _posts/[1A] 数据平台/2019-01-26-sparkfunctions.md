@@ -23,6 +23,35 @@ df.groupBy('col1').agg(F.count('col2'))
 df.groupBy('col1').agg(F.count(df.col2))
 ```
 
+## 特殊常用
+```py
+F.lit(3) # 增列都是一个值
+F.col('col1') # 选取一列
+F.when().else()
+```
+
+F.expr: 用python风格写sql
+```py
+# 最简单的用法
+df.withColumn('row_num',F.expr('row_number() over(partition by col1 order by col2)'))
+
+# 分位数
+from pyspark.sql import Window
+df.withColumn('percentile_25',F.expr('percentile_approx(col2, 0.25)').over(Window.partitionBy('col1'))) # 每个partition的分位数，但不聚合（所以逻辑上有点怪）
+
+# 分位数
+df.groupBy('col1').agg(F.expr('''
+concat(
+    round(percentile_approx(col2,0),3),'_',
+    round(percentile_approx(col2,0.25),3),'_',
+    round(percentile_approx(col2,0.5),3),'_',
+    round(percentile_approx(col2,0.75),3),'_',
+    round(percentile_approx(col2,1),3),'_'
+    )
+''').alias('percentile_col2'))
+
+```
+
 
 ## 数学
 - 符号，取整等
@@ -257,12 +286,7 @@ bin
 approx_count_distinct
 ```
 
-这个常用的
-```py
-F.lit(3) # 增列都是一个值
-F.col('col1') # 选取一列
-F.when().else()
-```
+
 
 ## 参考文献
 http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions  

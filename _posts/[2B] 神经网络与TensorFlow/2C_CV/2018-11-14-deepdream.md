@@ -17,6 +17,27 @@ order: 262
 3. 用梯度来做这个事情，迭代中不断调整图片各个像素的值（梯度上升）。
 
 
+---------------------------
+下面是听吴恩达的课程后的笔记
+
+Content（C）+Style（S）=Generated image G  
+
+$J(G)=\alpha J_{content}(C,G)+\beta J_{style}(S,G)$
+
+算法过程
+1. initiate G randomly
+2. Use gradient descent to $\min J(G)$
+    - $J_{content}(C,G)=0.5 \mid \mid a^{[l](C)}-a^{[l](G)}\mid\mid^2$
+    - $J_{style}(S,G)=\sum\limits_l\lambda^{[l]}J_{style}^{[l]}(S,G)$
+        - $J_{style}^{[l]}(S,G)=\dfrac{1}{(2n_H^{[l]}n_W^{[l]}n_C^{[l]})^2}\mid\mid G^{[l](S)}-G^{[l](C)} \mid\mid_F=\dfrac{1}{(2n_H^{[l]}n_W^{[l]}n_C^{[l]})^2}\sum\limits_k\sum\limits_{k'}(G_{kk'}^{[l](S)}-G_{kk'}^{[l](G)})$
+        - $G_{kk'}^{[l](S)}=\sum\limits_i\sum\limits_j a_{ijk}^{[l](S)}a_{ijk'}^{[l](S)}$
+        - $G_{kk'}^{[l](C)}=\sum\limits_i\sum\limits_j a_{ijk}^{[l](C)}a_{ijk'}^{[l](C)}$
+
+
+## tf实现
+
+不同的是，这里用的是 vgg-19，预训练好的参数在这里下载
+https://www.kaggle.com/teksab/imagenetvggverydeep19mat/downloads/imagenetvggverydeep19mat.zip/1
 
 
 
