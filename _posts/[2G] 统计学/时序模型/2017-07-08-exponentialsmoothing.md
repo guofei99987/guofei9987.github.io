@@ -2,7 +2,7 @@
 layout: post
 title: 【描述时序】指数平滑法
 categories:
-tags: 2H_时间序列和随机过程
+tags: 2_9_时间序列和随机过程
 keywords:
 description:
 order: 432

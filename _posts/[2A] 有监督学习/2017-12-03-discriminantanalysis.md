@@ -2,7 +2,7 @@
 layout: post
 title: 【判别分析】理论篇
 categories:
-tags: 2A_有监督学习
+tags: 2_1_有监督学习
 keywords: model evaluation
 description:
 order: 280

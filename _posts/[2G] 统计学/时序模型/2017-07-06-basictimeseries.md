@@ -2,7 +2,7 @@
 layout: post
 title: 【描述时序】趋势、季节和随机性
 categories:
-tags: 2H_时间序列和随机过程
+tags: 2_9_时间序列和随机过程
 keywords:
 description:
 order: 431

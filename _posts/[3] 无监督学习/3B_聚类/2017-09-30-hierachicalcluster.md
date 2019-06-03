@@ -2,7 +2,7 @@
 layout: post
 title: 【层次聚类】理论与实现
 categories:
-tags: 3B_聚类
+tags: 3_2_聚类
 keywords:
 description:
 order: 303

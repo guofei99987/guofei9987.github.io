@@ -2,7 +2,7 @@
 layout: post
 title: 【statsmodels】Quantile regression
 categories:
-tags: 2G_统计模型
+tags: 2_8_统计模型
 keywords:
 description:
 order: 409

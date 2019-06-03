@@ -2,7 +2,7 @@
 layout: post
 title: 【统计时序1】工具
 categories:
-tags: 2H_时间序列和随机过程
+tags: 2_9_时间序列和随机过程
 keywords:
 description:
 order: 441

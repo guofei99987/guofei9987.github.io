@@ -2,7 +2,7 @@
 layout: post
 title: 【AutoEncoder】自编码网络
 categories:
-tags: 2D_NLP
+tags: 2_4_NLP
 keywords:
 description:
 order: 331

@@ -2,7 +2,7 @@
 layout: post
 title: 【matplotlib】设置&多图&汉字
 categories:
-tags: 7可视化
+tags: 7_可视化
 keywords:
 description:
 order: 701

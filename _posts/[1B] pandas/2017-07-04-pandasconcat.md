@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】合并数据表
 categories:
-tags: 1B_Pandas
+tags: 1_2_Pandas
 keywords:
 description:
 order: 107

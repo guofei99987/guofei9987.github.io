@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】可视化方法汇总
 categories:
-tags: 7可视化
+tags: 7_可视化
 keywords:
 description:
 order: 752

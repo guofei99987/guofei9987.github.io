@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【matplotlib】绘图函数
 categories:
-tags: 7可视化
+tags: 7_可视化
 keywords:
 description:
 order: 721

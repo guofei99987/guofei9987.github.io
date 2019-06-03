@@ -2,7 +2,7 @@
 layout: post
 title: 【KernelPCA】理论与实现
 categories:
-tags: 3A_降维模型
+tags: 3_1_降维模型
 keywords:
 description:
 order: 321

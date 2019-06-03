@@ -2,7 +2,7 @@
 layout: post
 title: 【SQL】select专题.
 categories:
-tags: 1A_数据平台
+tags: 1_1_数据平台
 keywords:
 description:
 order: 150

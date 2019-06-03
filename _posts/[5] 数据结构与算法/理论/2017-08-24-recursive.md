@@ -2,7 +2,7 @@
 layout: post
 title: 【算法理论5】递归
 categories:
-tags: 5数据结构与算法
+tags: 5_数据结构与算法
 keywords:
 description:
 order: 505

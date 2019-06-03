@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】练习题
 categories:
-tags: 1B_Pandas
+tags: 1_2_Pandas
 keywords:
 description:
 order: 120
