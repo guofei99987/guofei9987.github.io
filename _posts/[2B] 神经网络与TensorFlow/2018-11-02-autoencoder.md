@@ -2,7 +2,7 @@
 layout: post
 title: 【AutoEncoder】自编码网络
 categories:
-tags: 2_4_NLP
+tags: 2_3_神经网络与TF
 keywords:
 description:
 order: 331
@@ -13,7 +13,7 @@ order: 331
 一个类似PCA的降维算法
 
 
-```
+```py
 # 导入模块
 import tensorflow as tf
 import numpy as np
