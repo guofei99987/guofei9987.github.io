@@ -7,7 +7,7 @@ keywords:
 description:
 ---
 
-## Coursera
+## Coursera.com
 
 
 |||
@@ -18,7 +18,6 @@ description:
 |![Structuring Machine Learning Projects](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Structuring%20Machine%20Learning%20Projects.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ)|
 |![Convolutional Neural Networks](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Convolutional%20Neural%20Networks.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8)|
 |![Sequence Models](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Sequence%20Models.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF)|
-|![以后还会有]()|[link]()|
 |![Computer Organization](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)|
 |![Learning How to Learn](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Learning%20How%20to%20Learn.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9)|
 
