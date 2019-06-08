@@ -1,7 +1,7 @@
 ﻿---
 layout: post
 title: 小事记
-categories: 橱窗
+categories: 
 tags:
 keywords:
 description:

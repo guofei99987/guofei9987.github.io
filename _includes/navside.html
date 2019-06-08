@@ -33,12 +33,15 @@
                 {% if category[0] == '橱窗' %}
                   <a class="list-group-item-lay pjaxlink" href="/2018/01/02/reading.html">读书笔记库</a>
                   <a class="list-group-item-lay pjaxlink" href="/2018/01/03/matlab.html">Matlab笔记库</a>
-                  <a class="list-group-item-lay pjaxlink" href="/2015/02/10/certification.html">证书</a>
+                  <a class="list-group-item-lay pjaxlink" href="/2015/02/10/certification.html">证书陈列柜</a>
                 {% endif %}
 
                 {% for post in category[1] %}
                   <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                 {% endfor %}
+                {% if category[0] == '橱窗' %}
+                  <a class="list-group-item-lay pjaxlink" href="/2016/03/01/milestone.html">小事记</a>
+                {% endif %}
               </div>
             </div>
           {% endfor %}
