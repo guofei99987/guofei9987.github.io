@@ -52,21 +52,20 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 *License 6541110108001269* 2014/12
 - 会计从业
 - [CAD培训证书](http://www.cadnet.cn/) *License 08027100423*
-- 证券从业（5门全刷了）
+- 证券从业（5个板块），期货从业2个板块
 
 
-||||
-|--|--|--|
-|![证券基础](http://www.guofei.site/pictures_for_blog/certification/从业证/证券基础.png)|![证券交易](http://www.guofei.site/pictures_for_blog/certification/从业证/证券交易.png)|![证券发行与承销](http://www.guofei.site/pictures_for_blog/certification/从业证/证券发行与承销.png)|
-|![证券投资基金](http://www.guofei.site/pictures_for_blog/certification/从业证/证券投资基金.png)|![证券投资分析](http://www.guofei.site/pictures_for_blog/certification/从业证/证券投资分析.png)||
-
-
-- 期货从业
+（感谢小伙伴提醒，身份证号已经全部打上马赛克）  
 
 
 |||
 |--|--|
+|![证券基础](http://www.guofei.site/pictures_for_blog/certification/从业证/证券基础.png)|![证券交易](http://www.guofei.site/pictures_for_blog/certification/从业证/证券交易.png)|
+|![证券发行与承销](http://www.guofei.site/pictures_for_blog/certification/从业证/证券发行与承销.png)|![证券投资基金](http://www.guofei.site/pictures_for_blog/certification/从业证/证券投资基金.png)|
+|![证券投资分析](http://www.guofei.site/pictures_for_blog/certification/从业证/证券投资分析.png)|
 |![期货从业](http://www.guofei.site/pictures_for_blog/certification/从业证/期货从业.png)|![期货投资分析](http://www.guofei.site/pictures_for_blog/certification/从业证/期货投资分析.png)|
+|![CDA二级英文](http://www.guofei.site/pictures_for_blog/certification/水证/CDA二级英文.jpg)|![CDA二级中文](http://www.guofei.site/pictures_for_blog/certification/水证/CDA二级中文.jpg)|
+|![工信部高级数据分析师](http://www.guofei.site/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg)|![中级经济师](http://www.guofei.site/pictures_for_blog/certification/水证/中级经济师.jpg)|
 
 
 ### 第一作者发了3篇论文
