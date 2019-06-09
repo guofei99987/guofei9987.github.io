@@ -12,14 +12,14 @@ description:
 
 |||
 |--|--|--|
-|![Deep Learning Specialization](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Deep%20Learning.png?raw=true)|[link1](https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6)<br>[link2](https://www.coursera.org/account/accomplishments/specialization/certificate/HGTDUMAQ3TC6)|
-|![Neural Networks and Deep Learning](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Neural%20Networks%20and%20Deep%20Learning.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y)|
-|![Improving Deep Neural Networks](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Improving%20Deep%20Neural%20Networks.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA)|
-|![Structuring Machine Learning Projects](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Structuring%20Machine%20Learning%20Projects.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ)|
-|![Convolutional Neural Networks](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Convolutional%20Neural%20Networks.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8)|
-|![Sequence Models](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Sequence%20Models.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF)|
-|![Computer Organization](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)|
-|![Learning How to Learn](https://github.com/guofei9987/pictures_for_blog/blob/master/coursera/Learning%20How%20to%20Learn.png?raw=true)|[link](https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9)|
+|![Deep Learning Specialization](http://www.guofei.site/pictures_for_blog/certification/coursera/Deep%20Learning.png)|[link1](https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6)<br>[link2](https://www.coursera.org/account/accomplishments/specialization/certificate/HGTDUMAQ3TC6)|
+|![Neural Networks and Deep Learning](http://www.guofei.site/pictures_for_blog/certification/coursera/Neural%20Networks%20and%20Deep%20Learning.png)|[link](https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y)|
+|![Improving Deep Neural Networks](http://www.guofei.site/pictures_for_blog/certification/coursera/Improving%20Deep%20Neural%20Networks.png)|[link](https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA)|
+|![Structuring Machine Learning Projects](http://www.guofei.site/pictures_for_blog/certification/coursera/Structuring%20Machine%20Learning%20Projects.png)|[link](https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ)|
+|![Convolutional Neural Networks](http://www.guofei.site/pictures_for_blog/certification/coursera/Convolutional%20Neural%20Networks.png)|[link](https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8)|
+|![Sequence Models](http://www.guofei.site/pictures_for_blog/certification/coursera/Sequence%20Models.png)|[link](https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF)|
+|![Computer Organization](http://www.guofei.site/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.png)|[link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)|
+|![Learning How to Learn](http://www.guofei.site/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.png)|[link](https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9)|
 
 
 ## Reviewer
@@ -27,11 +27,12 @@ description:
 -  Reviewer for [SPG](http://www.sciencepublishinggroup.com/)' *Journal of Finance and Accounting*
 (SPG期刊审稿员)
 
-<table >
+<!-- <table >
 <tr><td>  <img width="600" height="800" src="http://www.guofei.site/public/img/2016.jpg"></td><td>  <img width="600" height="800" src="http://www.guofei.site/public/img/2017.jpg"></td></tr>
-</table>
+</table> -->
 
-
+|![2016](http://www.guofei.site/pictures_for_blog/certification/spg/2016.jpg)|![2016](http://www.guofei.site/pictures_for_blog/certification/spg/2016.jpg)|
+|--|--|
 
 
 ## 水证
