@@ -24,15 +24,21 @@ description:
 
 ## Reviewer
 
--  Reviewer for [SPG](http://www.sciencepublishinggroup.com/)' *Journal of Finance and Accounting*
+Reviewer for [SPG](http://www.sciencepublishinggroup.com/)' *Journal of Finance and Accounting*
 (SPG期刊审稿员)
 
 <!-- <table >
 <tr><td>  <img width="600" height="800" src="http://www.guofei.site/public/img/2016.jpg"></td><td>  <img width="600" height="800" src="http://www.guofei.site/public/img/2017.jpg"></td></tr>
 </table> -->
 
-|![2016](http://www.guofei.site/pictures_for_blog/certification/spg/2016.jpg)|![2016](http://www.guofei.site/pictures_for_blog/certification/spg/2016.jpg)|
+
+|||
 |--|--|
+|![2016](http://www.guofei.site/pictures_for_blog/certification/spg/2016.jpg)|![2017](http://www.guofei.site/pictures_for_blog/certification/spg/2017.jpg)|
+
+
+
+
 
 
 ## 水证
@@ -46,21 +52,22 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 *License 6541110108001269* 2014/12
 - 会计从业
 - [CAD培训证书](http://www.cadnet.cn/) *License 08027100423*
-- 证券从业
-证券从业5门全刷了，特别水的证，摆这还挺有感觉的。
-<table >
-<tr><td>  <img width="476" height="300"  src="http://i.imgur.com/CB6npA4.png"></td><td>  <img width="476" height="300"  src="http://i.imgur.com/eoyBrKN.png"></td></tr>
+- 证券从业（5门全刷了）
 
- <tr><td>  <img width="476" height="300"  src="http://i.imgur.com/cFX0Vdv.png"></td><td>  <img width="476" height="300"  src="http://i.imgur.com/ATUQij2.png"></td></tr>
 
-<tr><td>  <img width="476" height="300"  src="http://i.imgur.com/Zv7BOj5.png"></td></tr>
+||||
+|--|--|--|
+|![证券基础](http://www.guofei.site/pictures_for_blog/certification/从业证/证券基础.png)|![证券交易](http://www.guofei.site/pictures_for_blog/certification/从业证/证券交易.png)|![证券发行与承销](http://www.guofei.site/pictures_for_blog/certification/从业证/证券发行与承销.png)|
+|![证券投资基金](http://www.guofei.site/pictures_for_blog/certification/从业证/证券投资基金.png)|![证券投资分析](http://www.guofei.site/pictures_for_blog/certification/从业证/证券投资分析.png)||
 
-</table>
 
 - 期货从业
-<table >
-<tr><td>  <img width="476" height="300"  src="http://i.imgur.com/kTW0n2v.png"></td><td>  <img width="476" height="300"  src="http://i.imgur.com/bIX81uc.png"></td></tr>
-</table>
+
+
+|||
+|--|--|
+|![期货从业](http://www.guofei.site/pictures_for_blog/certification/从业证/期货从业.png)|![期货投资分析](http://www.guofei.site/pictures_for_blog/certification/从业证/期货投资分析.png)|
+
 
 ### 第一作者发了3篇论文
 - “Research on the Connection relationship between Private Offering Fund and Share Price Index Futures” (2015) Atlantis Press Journal (ISSN 2352-5398)（ISTP检索）  
