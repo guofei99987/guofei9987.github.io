@@ -128,6 +128,76 @@ a.to_json('ax1.json', orient='values')
 [["str1",1],["str2",2],["str3",3]]
 ```
 
+### to_excel
+```py
+# 参数只列出实践中常用的
+df.to_excel(excel_writer, sheet_name='Sheet1',  float_format=None, header=True, index=True, startrow=0, startcol=0, engine=None, merge_cells=True, encoding=None, na_rep='', inf_rep='inf', freeze_panes=None)
+```
+
+excel_writer : str or ExcelWriter object
+:    File path or existing ExcelWriter.
+
+sheet_name : str, default ‘Sheet1’
+:    Name of sheet which will contain DataFrame.
+
+float_format : str, optional
+:    Format string for floating point numbers. For example float_format="%.2f" will format 0.1234 to 0.12.
+
+index : bool, default True
+:    Write row names (index).
+
+startrow, startcol : int, default 0
+:    Upper left cell row/column to dump data frame. 都是从1开始数，而不是从0开始
+
+merge_cells : bool, default True
+:    Write MultiIndex and Hierarchical Rows as merged cells.
+
+freeze_panes : tuple of int (length 2), optional
+:    Specifies the one-based bottommost row and rightmost column that is to be frozen. 0代表不冻结
+
+
+
+- 附1：同时写入多个sheet
+```py
+# 共享同一个 writer 即可同时写入多个sheet，否则就是覆盖
+writer=pd.ExcelWriter('test_excel.xlsx')
+pd_df4.to_excel(excel_writer=writer,sheet_name='test1')
+pd_df4.to_excel(excel_writer=writer,sheet_name='test2')
+writer.close()
+```
+- 附2：用xlsxwriter插入图片或者其他内容
+```py
+import xlsxwriter
+workbook  = xlsxwriter.Workbook('test.xlsx')
+worksheet = workbook.add_worksheet('sheet_name')
+worksheet.insert_image(row, col, image[, options])
+# row, col: 图片所在的位置，从0开始计数
+# image：图片目录
+# options(dict) - 可选的图片位置，缩放，url参数
+# {
+#     'x_offset': 0,
+#     'y_offset': 0,
+#     'x_scale': 1,
+#     'y_scale': 1,
+#     'url': None,
+#     'tip': None,
+#     'image_data': None,
+#     'positioning': None,
+# }
+worksheet.write(9, 9, '把内容写入单元格')
+workbook.close() # 别忘了完事之后删除
+```
+- 附3：用 pandas 整合信息
+```py
+writer=pd.ExcelWriter('test_excel.xlsx')
+workbook1 = writer.book
+worksheets = writer.sheets # 这是一个dict，key是sheet_name, value是一个 <xlsxwriter.worksheet.Worksheet> 对象
+# 既然是一个<xlsxwriter.worksheet.Worksheet> 对象，就可以用附2中的方法插入图片和数据
+# 例如：
+writer.sheets['test1'].insert_image(3, 9, 'me.png')
+writer.close()
+```
+
 ## 其它to
 ```py
 df.to_clipboard # 到剪切板上
