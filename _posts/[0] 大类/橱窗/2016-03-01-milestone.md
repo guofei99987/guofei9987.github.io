@@ -1,7 +1,7 @@
 ﻿---
 layout: post
 title: 小事记
-categories: 
+categories:
 tags:
 keywords:
 description:
@@ -33,6 +33,8 @@ description:
 这是第一次pr，竟然这么快通过了，颇为激动。  
 
 scipy 1.0发布了！我成了121名Author之一！[release note](https://mail.python.org/pipermail/scipy-user/2017-October/037357.html)  
+
+<!-- https://github.com/scipy/scipy-articles -->
 
 ### 》》2016-03-24
 入职中体彩。  

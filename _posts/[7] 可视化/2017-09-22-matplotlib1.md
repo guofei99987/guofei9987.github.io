@@ -187,8 +187,7 @@ plt.get(ax,'visible')
 # 第一种写法：
 ax.plot([1,2],[2,1],label='a')
 ax.legend() # 或者 plt.legend()
-
-# 第二种写法
+# 第二种写法：
 ax.plot([1,2],[2,1])
 plt.legend(['c']) # 入参用list，用以同时给多条线设定 legend
 ```
