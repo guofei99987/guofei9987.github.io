@@ -10,7 +10,7 @@ order: 92501
 
 ## 一些性质
 $Re(z)=\dfrac{z+\bar z}{2},Im(z)=\dfrac{z-\bar z}{2}$  
-幅角$Arg z$有无穷多个，主值$-\pi<\arg z\leq \pi$  
+幅角$\arg z$有无穷多个，主值$-\pi<Arg z\leq \pi$  
 
 指数表达式$\rho e^{i\theta}=\rho(\cos \theta+i\sin\theta)$  
 
@@ -23,6 +23,11 @@ $z*\rho e^{i\theta}$
 两个复数的积的模等于模的积，两个复数积的幅角等于幅角的和  
 $|x+y|\leq|x|+|y|$  
 
+
+argument 的性质
+- $\arg(\bar z)=-\arg z$
+- $\arg(1/z)=-\arg z$
+- $\arg(z_1z_2)=\arg z_1 \arg z_2$
 
 ## 平面点集
 邻域
@@ -56,9 +61,9 @@ $e^{x+iy}=e^x(\cos y+i\sin y)$
 
 
 **对数函数**  
-$Ln z=\ln \mid z\mid +iArg z=\ln \mid z\mid +i\arg z +2k\pi$  
+$Ln z=\ln \mid z\mid +i \arg z=\ln \mid z\mid +i Arg z +2k\pi$  
 也可以记为:  
-$\ln z=\ln \mid z\mid +i\arg z$  
+$\ln z=\ln \mid z\mid +iArg z$  
 $Ln z=\ln z+ 2k\pi i$  
 注意$Ln z^n \neq n Ln z$
 
