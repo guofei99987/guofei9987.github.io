@@ -2,7 +2,7 @@
 layout: post
 title: 【statsmodels】GLS广义最小二乘法
 categories:
-tags: 2_8_统计模型
+tags: 4_1_统计模型
 keywords:
 description:
 order: 409
