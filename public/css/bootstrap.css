@@ -4143,7 +4143,8 @@ select[multiple].input-group-sm>.input-group-addon, select[multiple].input-group
 }
 
 .tab-content>.active {
-    display: block
+    display: block;
+    padding-bottom: 2em;
 }
 
 .nav-tabs .dropdown-menu {

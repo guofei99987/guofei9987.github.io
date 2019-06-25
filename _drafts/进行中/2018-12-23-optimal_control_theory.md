@@ -2,7 +2,7 @@
 layout: post
 title: 【动态最优化】最优控制
 categories:
-tags: 8数值计算与最优化
+tags: 5_6_最优化
 keywords:
 description:
 order: 7403
