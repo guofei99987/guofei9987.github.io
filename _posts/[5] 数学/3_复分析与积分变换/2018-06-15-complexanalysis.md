@@ -185,13 +185,15 @@ c = -0.75 + 0.2j
 R = (1 + np.sqrt(1 + 4 * abs(c))) / 2
 
 n_grid = 1000
-z_array = np.linspace(-2, 2, n_grid).reshape(n_grid, 1) + np.linspace(-2, 2, num=n_grid).reshape(1, n_grid) * 1j
-Julia_set = np.zeros_like(z_array)
+Z = np.linspace(-2, 2, n_grid).reshape(1, n_grid) + np.linspace(2, -2, num=n_grid).reshape(n_grid, 1) * 1j
+Julia_set = np.zeros_like(Z)
+max_iter = 50
+for i in range(max_iter):
+    Z = np.where(Julia_set == 0, np.square(Z) + c, 2 * R)  # 已归入 Julia set 的点，记为大数，之后不再参与计算
+    Julia_set = np.where((Julia_set == 0) & (np.abs(Z) > R), i, Julia_set)
+    # 第一次归入Julia set，记入其迭代次数，如果不想画彩图，把i改为1
 
-for i in range(50):
-    z_array = np.where(Julia_set == 0, np.square(z_array) + c, 2 * R)  # 已归入 Julia set的点，记为大数，之后不再参与计算
-    Julia_set = np.where((Julia_set == 0) & (np.abs(z_array) > R), i, Julia_set)  # 第一次归入Julia set，记入其迭代次数，如果不想画彩图，把i改为1
-
+Julia_set = np.where(Julia_set == 0, 2 * max_iter, Julia_set)  # 到最后都没有剔除的点，赋值为 2*max_iter
 plt.imshow(np.abs(Julia_set))
 plt.show()
 ```
@@ -219,18 +221,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 n_grid = 1000
-c = np.linspace(-2, 2, n_grid).reshape(1, n_grid) + 1j * np.linspace(-2, 2, n_grid).reshape(n_grid, 1)
+c = np.linspace(-2, 2, n_grid).reshape(1, n_grid) + 1j * np.linspace(2, -2, n_grid).reshape(n_grid, 1)
 Mandelbrot = np.zeros_like(c)
 f_z = 0
+max_iter = 30
 
-for i in range(30):
+for i in range(max_iter):
     f_z = np.where(Mandelbrot == 0, np.square(f_z) + c, 1e8)  # 已经被归入 Mandelbrot set 的点，记为很大，之后不再参与计算
     Mandelbrot = np.where((Mandelbrot == 0) & (np.abs(f_z) > 2), i, Mandelbrot)  # 记录首次大于2的迭代次数，如果不想画彩图，把 i 换成 1
 
+Mandelbrot = np.where(Mandelbrot == 0, max_iter, Mandelbrot)
 plt.imshow(np.abs(Mandelbrot))
 plt.show()
 ```
 （强烈建议跑一下这段代码，缩小c的范围，同时扩大迭代次数）
+
+性质：
+- M is connected
+- $M\subset B_2(0)$
+- M的边界点叫做 Misiurewicz points，其性质是 $f^{n\odot}(0)$ is pre-periodic, but not periodic  
+（$c=i$就是一个 Misiurewicz point，以此为例形象化说明，根据定义，c使Julia set介于连通集和非连通集之间，所以Julia set更像一条线，无限放大这条线，看起来就像分形曲线。与此同时，因为Mandelbrot的稠密和花纹性质，在i周围无限放大，也得到分形曲线）
+- Misiurewicz points 这条边界线稠密
+
+**Big Open Conjecture**  
+The Mandelbrot set is locally connected, that is, for every $c\in M$ and every open set V with $c\in v$, there exists an open set U such that $c\in U\subset V$ and $U\cap M$ is connected.
 
 
 ### 极限
