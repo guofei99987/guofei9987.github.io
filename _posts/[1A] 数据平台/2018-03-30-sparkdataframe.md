@@ -327,10 +327,15 @@ df1.subtract(df2) # 差集
 ```py
 df1.join(df2) #笛卡尔积，慎用！
 df1.join(df2,on='id')
-a.join(b,on=['id','dt'],how='inner') #innner, left, right
+a.join(b,on=['id','dt'],how='inner')
+# innner, left, right, outer
+# left_semi，以左表为准，在右表中查找匹配的记录，相当于 in ，并且只返回左表的字段。如果左表的 key 中有 null，会忽略这条记录
+# left_anti， 以左表为准，找到右边不匹配的记录，相当于 not in。只返回左表的字段。如果左表的 key 中有 null，会筛选出来这条记录，无论右表中有没有 null
 
 
-#进阶用法
+
+
+# 进阶用法
 a.join(b,on=a.id==b.id,how='right').show()
 a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 ```

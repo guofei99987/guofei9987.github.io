@@ -89,7 +89,14 @@ connected(连通的，上面给出一个定义了，这里还有一个等价定�
 若A=0变成直线。  
 
 
-## Complex Functions
+
+
+
+
+
+## 极限与导数
+
+### 收敛序列
 
 Julia sets for quadratic polynomials
 Mandelbrot set
@@ -99,37 +106,133 @@ A sequence $\{ s_n \}$ of complex numbers converges to $s \in \mathbb C$ if for 
 in this case we write $\lim\limits_{n\to\infty} s_n =s$
 
 
+复数序列收敛的案例和性质也与数学分析中的一致（省略）  
+收敛序列的加减乘除性质与数学分析中的一致（省略）
+
+定理
+- $\lim\limits_{n\to\infty} s_n=0 \Longleftrightarrow \lim\limits_{n\to\infty} \mid s_n \mid=0$
+- $\lim\limits_{n\to\infty} x_n+iy_n=x+iy \Longleftrightarrow \lim\limits_{n\to\infty} x_n =x,\lim\limits_{n\to\infty} y_n =y$
+- 夹逼准则
+- 单调有界
+
+### julia set
+
+我们讨论这个迭代式 $f(z)=z^2+c$  
+
+#### 问题1
+为什么不用更一般化的迭代式呢 $p(z)=az^2+bz+d$？  
+令$\phi(z)=az+b/2, c=ad+b/2+(b/2)^2$，有$\phi(p(z))=f(\phi(z))$  
+
+也就是，有下面这个图。  
 
 
-## 解析延拓
-**指数函数**  
-$e^{x+iy}=e^x(\cos y+i\sin y)$  
+![abc](https://i.imgur.com/Uj9Dtjh.jpg)
+
+进一步的，$p=\phi^{-1} \odot f \odot \phi $  
+再进一步，$p^{n \odot } = \phi^{-1} \odot f^{n\odot} \odot \phi $  
+
+结论是，我们只需要研究 $f(z)=z^2+c$ 就可以了
+
+(本节$f^n$表示 $f^{n\odot}$)  
+#### 定义
+Julia set 是x的这样一个集合，其邻域对迭代表现出混沌性。  
+相反，Fatou set 是x的这样一个集合，其邻域对迭代不表现出混沌性。  
+Julia set 和 Fatou set 是补集  
 
 
-**对数函数**  
-$Ln z=\ln \mid z\mid +i \arg z=\ln \mid z\mid +i Arg z +2k\pi$  
-也可以记为:  
-$\ln z=\ln \mid z\mid +iArg z$  
-$Ln z=\ln z+ 2k\pi i$  
-注意$Ln z^n \neq n Ln z$
+**例子**  
+以$f(z)=z^2$为例，对应的 julia set 是 $$\{ z\mid \mid z \mid =1\}$$，对应的 Fatou set 是补集。  
 
 
-**幂函数**  
-$z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$  
-1. 当$a$是整数时，只有1中可能取值
-2. 当$a$是有理数$q/p$时，有p种可能值
-3. 当$a$是无理数或复数时，有无穷多个值
+定义$$A(\infty)=\{z: f^n(z) \to\infty \}$$，那么这个集合有如下性质：  
+- $A(\infty)$ is open, connected, unbounded
+- $A(\infty)$是 Fatou set 的子集
+- $A(\infty)$的边界是 Julia set
+
+推论：
+- Fatou set is open and unbounded
+- Julia set is closed and bounded set
+- $J(f) \cap F(f) = \varnothing$
+- completely invariant $f(J)=J, f(F)=F$
 
 
-($2^{\sqrt 2}$有1个实数值和无穷个复数值)
+**例子** $f(z)=z^2-2$  
+引入$\phi(w)=w+1/w$,就有$z^2=\phi^{-1} \odot f \odot \phi (z)$  
+可以找到$A(\infty)$, 进而找到边界 Julia set is $[-2,2]$  
+（过程不难，但有点绕，可以在纸上画一画）
 
 
-**三角函数**  
-$e^{ix}=\cos x+i\sin x,e^{-ix}=\cos x-i\sin x$,可以得到  
-$\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$  
+#### 数值方法
+我们有这个定理：  
+对于$f(z)=z^2+c, R=\dfrac{1+\sqrt{1+4\mid c\mid}}{2}$  
+如果$\mid z_0 \mid >R$，那么$z_0 \in A(\infty)$ （也就是说$\lim\limits_{n\to \infty} f^{n\odot}(z_0)=\infty$）  
 
 
-## 极限与导数
+所以，$\exists n, f^{n\odot}(z_0)>R \Longrightarrow z_0 \in A(\infty)$  
+（在迭代过程中，如果任意一次迭代，其值大于R，那么后面的值就趋近于无界）  
+
+
+这给我们一种用迭代法找 Julia set 的方法：  
+在迭代过程中，任意一次迭代值大于 R，就剔除 Julia set，到 max_iter 后画图  
+进一步，根据第一次出现R的迭代步骤的不同，可以涂上不同的颜色。  
+
+
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+c = -0.75 + 0.2j
+R = (1 + np.sqrt(1 + 4 * abs(c))) / 2
+
+n_grid = 1000
+z_array = np.linspace(-2, 2, n_grid).reshape(n_grid, 1) + np.linspace(-2, 2, num=n_grid).reshape(1, n_grid) * 1j
+Julia_set = np.zeros_like(z_array)
+
+for i in range(50):
+    z_array = np.where(Julia_set == 0, np.square(z_array) + c, 2 * R)  # 已归入 Julia set的点，记为大数，之后不再参与计算
+    Julia_set = np.where((Julia_set == 0) & (np.abs(z_array) > R), i, Julia_set)  # 第一次归入Julia set，记入其迭代次数，如果不想画彩图，把i改为1
+
+plt.imshow(np.abs(Julia_set))
+plt.show()
+```
+
+#### Mandelbrot set
+c的集合，使得 $J(f)$是连通集。  
+精确的定义：$$M=\{c\in \mathbb C: J(z^2+c) \mathrm{\ is \ connected} \}$$  
+
+
+例如，$0, -2, 0.25 \in M, 1\not \in M$
+
+**TH1**  
+$J(f) \mathrm{\ is \ connected} \Longleftrightarrow 0\not \in A(\infty)$
+
+**TH2**  
+$c\in M \Longleftrightarrow \mid f^{n\odot} \mid \leq 2, \forall n\geq 1$
+
+
+
+
+
+
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+n_grid = 1000
+c = np.linspace(-2, 2, n_grid).reshape(1, n_grid) + 1j * np.linspace(-2, 2, n_grid).reshape(n_grid, 1)
+Mandelbrot = np.zeros_like(c)
+f_z = 0
+
+for i in range(30):
+    f_z = np.where(Mandelbrot == 0, np.square(f_z) + c, 1e8)  # 已经被归入 Mandelbrot set 的点，记为很大，之后不再参与计算
+    Mandelbrot = np.where((Mandelbrot == 0) & (np.abs(f_z) > 2), i, Mandelbrot)  # 记录首次大于2的迭代次数，如果不想画彩图，把 i 换成 1
+
+plt.imshow(np.abs(Mandelbrot))
+plt.show()
+```
+（强烈建议跑一下这段代码，缩小c的范围，同时扩大迭代次数）
+
+
 ### 极限
 **定义**  
 $\forall \varepsilon>0,\exists \delta(\varepsilon)$使得$\forall z,0<\mid z-z_0\mid<\delta$，都满足$\mid f(z) -A\mid<\varepsilon$  
@@ -224,6 +327,34 @@ $f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint
 
 
 
+
+
+## 解析延拓
+**指数函数**  
+$e^{x+iy}=e^x(\cos y+i\sin y)$  
+
+
+**对数函数**  
+$Ln z=\ln \mid z\mid +i \arg z=\ln \mid z\mid +i Arg z +2k\pi$  
+也可以记为:  
+$\ln z=\ln \mid z\mid +iArg z$  
+$Ln z=\ln z+ 2k\pi i$  
+注意$Ln z^n \neq n Ln z$
+
+
+**幂函数**  
+$z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$  
+1. 当$a$是整数时，只有1中可能取值
+2. 当$a$是有理数$q/p$时，有p种可能值
+3. 当$a$是无理数或复数时，有无穷多个值
+
+
+($2^{\sqrt 2}$有1个实数值和无穷个复数值)
+
+
+**三角函数**  
+$e^{ix}=\cos x+i\sin x,e^{-ix}=\cos x-i\sin x$,可以得到  
+$\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$  
 
 
 
