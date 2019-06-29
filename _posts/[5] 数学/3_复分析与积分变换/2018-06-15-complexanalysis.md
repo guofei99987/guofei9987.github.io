@@ -94,9 +94,7 @@ connected(连通的，上面给出一个定义了，这里还有一个等价定�
 
 
 
-## 极限与导数
-
-### 收敛序列
+## 收敛序列
 
 Julia sets for quadratic polynomials
 Mandelbrot set
@@ -128,12 +126,12 @@ in this case we write $\lim\limits_{n\to\infty} s_n =s$
 
 ![abc](https://i.imgur.com/Uj9Dtjh.jpg)
 
-进一步的，$p=\phi^{-1} \odot f \odot \phi $  
-再进一步，$p^{n \odot } = \phi^{-1} \odot f^{n\odot} \odot \phi $  
+进一步的，$p=\phi^{-1} \circ f \circ \phi $  
+再进一步，$p^{n \circ } = \phi^{-1} \circ f^{n\circ} \circ \phi $  
 
 结论是，我们只需要研究 $f(z)=z^2+c$ 就可以了
 
-(本节$f^n$表示 $f^{n\odot}$)  
+(本节$f^n$表示 $f^{n\circ}$)  
 #### 定义
 Julia set 是x的这样一个集合，其邻域对迭代表现出混沌性。  
 相反，Fatou set 是x的这样一个集合，其邻域对迭代不表现出混沌性。  
@@ -157,7 +155,7 @@ Julia set 和 Fatou set 是补集
 
 
 **例子** $f(z)=z^2-2$  
-引入$\phi(w)=w+1/w$,就有$z^2=\phi^{-1} \odot f \odot \phi (z)$  
+引入$\phi(w)=w+1/w$,就有$z^2=\phi^{-1} \circ f \circ \phi (z)$  
 可以找到$A(\infty)$, 进而找到边界 Julia set is $[-2,2]$  
 （过程不难，但有点绕，可以在纸上画一画）
 
@@ -165,10 +163,10 @@ Julia set 和 Fatou set 是补集
 #### 数值方法
 我们有这个定理：  
 对于$f(z)=z^2+c, R=\dfrac{1+\sqrt{1+4\mid c\mid}}{2}$  
-如果$\mid z_0 \mid >R$，那么$z_0 \in A(\infty)$ （也就是说$\lim\limits_{n\to \infty} f^{n\odot}(z_0)=\infty$）  
+如果$\mid z_0 \mid >R$，那么$z_0 \in A(\infty)$ （也就是说$\lim\limits_{n\to \infty} f^{n\circ}(z_0)=\infty$）  
 
 
-所以，$\exists n, f^{n\odot}(z_0)>R \Longrightarrow z_0 \in A(\infty)$  
+所以，$\exists n, f^{n\circ}(z_0)>R \Longrightarrow z_0 \in A(\infty)$  
 （在迭代过程中，如果任意一次迭代，其值大于R，那么后面的值就趋近于无界）  
 
 
@@ -198,7 +196,7 @@ plt.imshow(np.abs(Julia_set))
 plt.show()
 ```
 
-#### Mandelbrot set
+### Mandelbrot set
 c的集合，使得 $J(f)$是连通集。  
 精确的定义：$$M=\{c\in \mathbb C: J(z^2+c) \mathrm{\ is \ connected} \}$$  
 
@@ -209,7 +207,7 @@ c的集合，使得 $J(f)$是连通集。
 $J(f) \mathrm{\ is \ connected} \Longleftrightarrow 0\not \in A(\infty)$
 
 **TH2**  
-$c\in M \Longleftrightarrow \mid f^{n\odot} \mid \leq 2, \forall n\geq 1$
+$c\in M \Longleftrightarrow \mid f^{n\circ} \mid \leq 2, \forall n\geq 1$
 
 
 
@@ -239,7 +237,7 @@ plt.show()
 性质：
 - M is connected
 - $M\subset B_2(0)$
-- M的边界点叫做 Misiurewicz points，其性质是 $f^{n\odot}(0)$ is pre-periodic, but not periodic  
+- M的边界点叫做 Misiurewicz points，其性质是 $f^{n\circ}(0)$ is pre-periodic, but not periodic  
 （$c=i$就是一个 Misiurewicz point，以此为例形象化说明，根据定义，c使Julia set介于连通集和非连通集之间，所以Julia set更像一条线，无限放大这条线，看起来就像分形曲线。与此同时，因为Mandelbrot的稠密和花纹性质，在i周围无限放大，也得到分形曲线）
 - Misiurewicz points 这条边界线稠密
 
@@ -247,7 +245,7 @@ plt.show()
 The Mandelbrot set is locally connected, that is, for every $c\in M$ and every open set V with $c\in v$, there exists an open set U such that $c\in U\subset V$ and $U\cap M$ is connected.
 
 
-### 极限
+## 极限
 **定义**  
 $\forall \varepsilon>0,\exists \delta(\varepsilon)$使得$\forall z,0<\mid z-z_0\mid<\delta$，都满足$\mid f(z) -A\mid<\varepsilon$  
 A就是$f(z)$在$z\to z_0$的极限，记做$\lim\limits_{z\to z_0}f(z)=A$  
@@ -272,14 +270,14 @@ $\lim\limits_{z\to z_0} [f(z) \pm g(z)]=A\pm B$
 $\lim\limits_{z\to z_0} [f(z) \cdot g(z)]=A\cdot B$  
 $\lim\limits_{z\to z_0} [f(z) / g(z)]=A/ B ,(B\neq 0)$  
 
-### 连续
+## 连续
 $\lim\limits_{z\to z_0}f(z)=f(z_0)$叫做在$z_0$ **连续**  
 $f(z)$在一个区域D内处处连续，叫做在D内连续  
 
 **TH**  
 连续函数的和、差、积、商、复合都连续  
 
-
+## 微分
 $\lim\limits_{z\to z_0}\dfrac{f(z)-f(z_0)}{z-z_0}$存在，则称为 **可导**，记为$f'(z_0)$  
 
 
@@ -287,15 +285,22 @@ $\lim\limits_{z\to z_0}\dfrac{f(z)-f(z_0)}{z-z_0}$存在，则称为 **可导**�
 $[f(z)\pm g(z)]'=f'(z)\pm g'(z)$  
 $[f(z)\cdot g(z)]'=f'(z)\cdot g'(z)$  
 $[\dfrac{f(z)}{g(z)}]'=\dfrac{f'(z)g(z)-f(z)g'(z)}{g^2(z)}$  
+$\dfrac{d f(g(z))}{dz}=f'(g(z))g'(z)$  
 
 **TH**  
 前提$f(z)=u(x,y)+iv(x,y)$在$z_0$有聚点  
 $f(z)$有极限的 **充分必要条件** 是$u,v$有极限  
 $f(z)$有连续的 **充分必要条件** 是$u,v$连续  
-$f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$  
+$f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$（Cauchy-Riemann Equations, also $f'(z_0)=f_x(z_0)=-if_y(z_0)$）  
+（用两个方向的方向导数证明）  
 
 
-### 解析
+### 常见微分
+$f(z)=z^n,f'(z)=nz^{n-1}$  
+...
+
+
+## 解析
 解析定义为在邻域内处处可导
 1. 可导未必解析
 2. 区域内可导$\Longleftrightarrow$解析
@@ -303,7 +308,7 @@ $f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{
 
 
 根据上文可导的充要条件和解析的定义，解析的充要条件是：  
-在区域D内，$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$  
+在区域D内，$u(x,y),v(x,y)$可导，并且其一阶偏导数连续，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$  
 
 
 调和函数
@@ -313,6 +318,13 @@ $f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{
 
 **TH**  
 如果$f(x,y)=u(x,y)+iv(x,y)$在D内解析，那么$u(x,y),v(x,y)$都是 **调和函数**。  
+
+### 例子
+- 多项式函数一定解析
+- 有理函数（两多项式函数的商）在定义域内解析
+- $f(z)=Re z,f(z)=Im z$都处处不解析
+- $f(z)=\mid z\mid$在非0处不可导，在0处可导。所以处处不解析。
+
 
 
 ## 积分
