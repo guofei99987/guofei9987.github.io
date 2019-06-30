@@ -291,8 +291,7 @@ $\dfrac{d f(g(z))}{dz}=f'(g(z))g'(z)$
 前提$f(z)=u(x,y)+iv(x,y)$在$z_0$有聚点  
 $f(z)$有极限的 **充分必要条件** 是$u,v$有极限  
 $f(z)$有连续的 **充分必要条件** 是$u,v$连续  
-$f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$（Cauchy-Riemann Equations, also $f'(z_0)=f_x(z_0)=-if_y(z_0)$）  
-（用两个方向的方向导数证明）  
+$f(z)$可导的 **充分必要条件** 是$u(x,y),v(x,y)$可导，并且$\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$（Cauchy-Riemann Equations, also $f'(z_0)=f_x(z_0)=-if_y(z_0)$）（两个方向的方向导数）  
 
 
 ### 常见微分
@@ -319,13 +318,57 @@ $f(z)=z^n,f'(z)=nz^{n-1}$
 **TH**  
 如果$f(x,y)=u(x,y)+iv(x,y)$在D内解析，那么$u(x,y),v(x,y)$都是 **调和函数**。  
 
-### 例子
+### 解析的例子
 - 多项式函数一定解析
 - 有理函数（两多项式函数的商）在定义域内解析
 - $f(z)=Re z,f(z)=Im z$都处处不解析
 - $f(z)=\mid z\mid$在非0处不可导，在0处可导。所以处处不解析。
 
 
+### 解析延拓
+**指数函数**  
+$e^{x+iy}=e^x(\cos y+i\sin y)$  
+性质($z=x+iy$)
+- $\mid e^z \mid =e^x$
+- $\arg e^z = y$
+- $e^{z+2\pi i}=e^z$
+- $e^{z+w}=e^z e^w$
+- $\dfrac{d e^z}{dz}=e^z$
+- $e^{\bar z}=\bar {e^z}$
+- $e^z=1\Longleftrightarrow z=2\pi ik$
+**对数函数**  
+$Ln z=\ln \mid z\mid +i \arg z=\ln \mid z\mid +i Arg z +2k\pi$  
+也可以记为:  
+$\ln z=\ln \mid z\mid +iArg z$  
+$Ln z=\ln z+ 2k\pi i$  
+注意$Ln z^n \neq n Ln z$
+
+
+**幂函数**  
+$z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$  
+1. 当$a$是整数时，只有1中可能取值
+2. 当$a$是有理数$q/p$时，有p种可能值
+3. 当$a$是无理数或复数时，有无穷多个值
+
+
+($2^{\sqrt 2}$有1个实数值和无穷个复数值)
+
+
+**三角函数**  
+$e^{ix}=\cos x+i\sin x,e^{-ix}=\cos x-i\sin x$,可以得到  
+$\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$  
+性质
+- $\cos(-z)=\cos z, \sin(-z)=-\sin z$
+- $\cos(z+w)=\cos z \cos w- \sin z \sin w, \sin(z+w)=\sin z \cos w+\cos z \sin w$
+- $\cos(z+2\pi)=\cos z,sin(z+2\pi)=\sin z$
+- $\sin^2 z+\cos^2 z=1$
+- $\sin(z+\pi/2)=\cos z$
+- $\sin z=0\Longleftrightarrow z=k\pi, \cos z=0 \Longleftrightarrow z=\pi/2+k\pi$
+- $(\sin z)'=\cos z, (\cos z)'=-\sin z$
+
+### 解析函数的性质
+TH1:  
+if f is analytic on a domain D, and if $f'(z)=0 \forall z\in D$, then f is constant in $D$  
 
 ## 积分
 $S_n=\sum f(\xi_k)\Delta z_k$,记为$\int_C f(z)dz$  
@@ -348,40 +391,6 @@ $f(z)=\dfrac{1}{\pi}\int_0^{2\pi}f(z_0+Re^{i\theta})d\theta$
 **推论2**  
 $f(z_0)$在由闭曲线$C_1,C_2$围城的二连域内解析，并在$C_1,C_2$上连续，$C_2$在$C_1$内部，$Z_0$为D内一点，则  
 $f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint_{C_2}\dfrac{f(z)}{z-z_0}dz$  
-
-
-
-
-
-
-
-## 解析延拓
-**指数函数**  
-$e^{x+iy}=e^x(\cos y+i\sin y)$  
-
-
-**对数函数**  
-$Ln z=\ln \mid z\mid +i \arg z=\ln \mid z\mid +i Arg z +2k\pi$  
-也可以记为:  
-$\ln z=\ln \mid z\mid +iArg z$  
-$Ln z=\ln z+ 2k\pi i$  
-注意$Ln z^n \neq n Ln z$
-
-
-**幂函数**  
-$z^a=e^{a Ln z}=e^{a\ln z}e^{2k\pi ia}$  
-1. 当$a$是整数时，只有1中可能取值
-2. 当$a$是有理数$q/p$时，有p种可能值
-3. 当$a$是无理数或复数时，有无穷多个值
-
-
-($2^{\sqrt 2}$有1个实数值和无穷个复数值)
-
-
-**三角函数**  
-$e^{ix}=\cos x+i\sin x,e^{-ix}=\cos x-i\sin x$,可以得到  
-$\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$  
-
 
 
 
