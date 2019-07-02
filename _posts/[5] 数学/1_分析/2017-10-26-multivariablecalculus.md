@@ -261,6 +261,10 @@ $\sum$是封闭曲面$\Gamma$围成的区域，S是$\sum$的面积
 
 - $Pdx+Qdy$是微分$\Longleftrightarrow  \dfrac{\partial Q}{\partial x}\equiv\dfrac{\partial P}{\partial y}$
 
+
+### 直观理解
+$f\equiv 1$时的第一类曲线积分，就是l弧长。（弧微分）
+
 ## 变元法
 
 ### 定理

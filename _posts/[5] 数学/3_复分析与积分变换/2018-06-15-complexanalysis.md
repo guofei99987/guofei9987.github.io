@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【复变函数1】极限、微积分、解析
+title: 【复变函数1】极限、微分、解析
 categories:
 tags: 5_3_复分析与积分变换
 keywords:
@@ -337,11 +337,16 @@ $e^{x+iy}=e^x(\cos y+i\sin y)$
 - $e^{\bar z}=\bar {e^z}$
 - $e^z=1\Longleftrightarrow z=2\pi ik$
 **对数函数**  
-$Ln z=\ln \mid z\mid +i \arg z=\ln \mid z\mid +i Arg z +2k\pi$  
+$\ln z=\ln \mid z\mid +i \arg z=Ln \mid z\mid +i Arg z +2k\pi$  
 也可以记为:  
-$\ln z=\ln \mid z\mid +iArg z$  
-$Ln z=\ln z+ 2k\pi i$  
-注意$Ln z^n \neq n Ln z$
+$\ln z=Ln \mid z\mid +iArg z$  
+$\ln z=Ln z+ 2k\pi i$  
+性质
+- $Ln z^n \neq n Ln z$
+- $Ln z$在$\mathbb C \setminus (-\infty,0]$上连续，也在这个区间上解析
+
+
+
 
 
 **幂函数**  
@@ -367,12 +372,27 @@ $\sin x=\dfrac{e^{ix}-e^{-ix}}{2i},\cos x=\dfrac{e^{ix}+e^{-ix}}{2}$
 - $(\sin z)'=\cos z, (\cos z)'=-\sin z$
 
 ### 解析函数的性质
-TH1:  
+#### TH1
 if f is analytic on a domain D, and if $f'(z)=0 \forall z\in D$, then f is constant in $D$  
+证明过程 [在这](https://www.coursera.org/learn/complex-analysis/lecture/EQY8B/first-properties-of-analytic-functions)  
+推论, Suppose that $f=u+iv$ is analytic in a domain D.：
+- if $u$ is constant, then f is constant
+- if $u$ is constant, then f is constant
+- if $\mid f \mid$ is constant, then f is constant  
+（证明过程用到解析的充要条件）
+
+
+#### TH2
+Suppose that $f : U \to C$ is an **analytic** function and there exists a continuous function $g : D \to U$ from some domain $D \subset C$ into $U$ such that $f(g(z)) = z$ for all $z \in D$. Then g is **analytic** in D, and $f'(z)=\dfrac{1}{f'(g(z))},  z\in D$
+
+
+
 
 ## 积分
 $S_n=\sum f(\xi_k)\Delta z_k$,记为$\int_C f(z)dz$  
 $\int_Cf(z)dz=\int_C(u+vi)(dx+idy)=\int_C udx-vdy+i\int_Cvdx+udy$  
+
+
 
 **TH**  
 C是一条闭曲线，$f(z)$在以C为边界的有界闭区域D上解析，那么  
@@ -392,8 +412,32 @@ $f(z)=\dfrac{1}{\pi}\int_0^{2\pi}f(z_0+Re^{i\theta})d\theta$
 $f(z_0)$在由闭曲线$C_1,C_2$围城的二连域内解析，并在$C_1,C_2$上连续，$C_2$在$C_1$内部，$Z_0$为D内一点，则  
 $f(z_0)=\dfrac{1}{2\pi i}\oint_{C_1}\dfrac{f(z)}{z-z_0}dz-\dfrac{1}{2\pi i}\oint_{C_2}\dfrac{f(z)}{z-z_0}dz$  
 
+## 积分2
+（感觉这个证明体系并不十分严谨）  
+定义，$C:z=\gamma (t), \int_C f(z) dz=\int_a^b f(r(t))r'(t)dt$   
+
+积分路径无关  
+假设有两个积分路径$\gamma :[a,b]\to \mathbb C, \beta :[c,d]\to\mathbb C$  
+...
 
 
+弧长  
+实分析的方法，先假设$x=\phi(t), y=\psi(t)$，那么$L=\lim\limits_{n\to\infty} \sum\limits_{i=1}^n \sqrt{l_x^2+l_y^2}=\dfrac{\sqrt{(x(t+\Delta t)-x(t))^2+(y(t+\Delta t)-t(t))^2}}{\Delta t}\Delta t=\sqrt{x'^2(t)+y'^2(t)}\Delta t=\int_a^b \sqrt{x'^2(t)+y'^2(t)} dt$  
+上面这个式子，恰好是$f=1$时的第一类曲线积分  
+
+复分析方法  
+弧是$\gamma :[a,b]\to \mathbb C$  
+$L=\sum\limits_{i=0}^n\mid \gamma(t_{i+1})-\gamma(t_i)\mid=\sum\limits_{i=0}^n\dfrac{\mid \gamma(t_{i+1})-\gamma(t_i)\mid}{t_{i+1}-t_i}(t_{i+1}-t_i)=\int_a^b\mid \gamma'(t)\mid dt$  
+
+
+（两个方法最后的结果其实一样）
+
+
+我们定义$\mid dr \mid=\mid r'\mid dz$，那么$L=\int_a^b\mid dz \mid=\int_a^b \mid r'\mid dz$
+
+
+### TH
+$$
 
 --------------------------------------------------------------
 
