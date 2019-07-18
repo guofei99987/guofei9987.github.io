@@ -181,8 +181,8 @@ text='a\n b \t  c'
 regex.split(text) # 返回list
 
 regex.findall(text) # 返回list
-regex.finditer(text) #迭代器,存放的是<SRE_Match object>
-m = regex.match(text) # 返回<SRE_Match object>
+regex.finditer(text) # 迭代器,存放的是<SRE_Match object>
+m = regex.match(text) # 是否精确匹配，返回<SRE_Match object>
 ```
 
 step3：使用'SRE_Match'对象
