@@ -20,12 +20,24 @@ $\lim\sum\limits_{n=1}^\infty z_n$收敛的 **充要条件** 是$\lim\sum\limits
 ## 复变函数项级数
 $S_n(z)=\sum\limits_{n=1}^\infty f_n(z)$  
 
-### 幂级数
+### power series
 $\sum\limits_{n=0}^\infty C_n(z-z_0)^n$称为幂级数  
 **TH**  
 幂级数在$z_1$收敛，那么在圆域$\mid z-z_0\mid<\mid z_1-z_0\mid$内 **绝对收敛**  
 **推论**  
 幂级数在$z_2$发散，那么在圆域$\mid z-z_0\mid>\mid z_2-z_0\mid$内发散  
+TH  
+$\exists R \in [0,+\infty]$, such that:  
+- $\sum\limits_{n=0}^\infty C_n(z-z_0)^n$ converges  absolutely in $$\{\mid z-z_0 \mid <R\}$$
+- diverges in $$\{\mid z-z_0 \mid >R\}$$
+- convergence is uniform in $$\{\mid z-z_0 \mid <r\}$$ for each $r\leq R$
+
+#### power series 的收敛域
+
+比例法则，根式法则（和微积分部分的一样）  
+有些判断不了，例如 $\sum \dfrac{(-1)^k}{2^k}z^{2k}$ 可以看成奇数位为0的序列，就无法使用这两个法则来判断了，但下面这个法则一定可以：  
+$R=\dfrac{1}{\lim\limits_{k\to\infty}\sup\sqrt[k]{\mid a_k\mid}}$
+
 
 ### 泰勒级数
 **TH**  
@@ -35,6 +47,9 @@ $f(z)=\sum\limits_{n=0}^\infty C_n(z-z_0)^n$，
 
 
 **(函数在一点解析的充分必要条件是它在这一点的邻域内可以展开为幂级数)**
+
+**如果函数在一个圆盘内解析，那么一定可以表示成泰勒级数的形式**  
+**如果函数在一个圆盘内解析，那么这个圆盘内的值完全取决于 f 在 $f^{(n)}(z_0)$**
 
 ### 洛朗级数
 （Laurent）  

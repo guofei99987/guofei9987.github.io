@@ -60,3 +60,9 @@ np.dot(a,b)
 ```
 a*b
 ```
+
+## 数据清洗
+```py
+np.where
+np.argwhere(name_data) # 矩阵中，非零元素的坐标
+```
