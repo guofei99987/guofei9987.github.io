@@ -68,11 +68,11 @@ is null            is not null
 
 group by 相关的汇总函数
 ```sql
-count([distinct|all] 字段1)      sum   avg   max   min
+count([distinct|all] 字段1)
 count(*),计算包含null行数
 count(a),计算不包含a位null的行数
 
-max, min, sum,avg
+max, min, sum, avg, sum, avg
 var_pop, var_samp 方差和样本方差
 stddev_pop, stddev_samp 偏差和样本偏差
 covar_pop(col1,col2), vovar_samp 协方差和样本协方差
@@ -230,8 +230,8 @@ Digits(arg):返回arg的字符串表示法，arg必须为decimal。
 date, time,timestamp  
 ```
 
-### 时间日期
-
+### 时间
+Mysql 中的时间
 ```sql
 year, quarter, month, week, day, hour, minute ,second  
 dayofyear(arg)  
@@ -242,15 +242,14 @@ Monthname(arg):返回arg的月份名。
 Dayname(arg):返回arg的星期。  
 ```
 
-### 字符串日期
-
+字符串时间
 ```sql
 select to_date('2008-12-29 16:25:46'); -- 返回日期
 select date_sub('2008-12-29',5); -- 日期减去一个天数
 select date_add('2008-12-29',5); -- 日期增加一个天数
 select datediff('2008-12-19','2008-12-10'); -- 两个日期之差
-
 ```
+
 ### 多列函数
 ```sql
 coalesce(arg1,arg2….) -- 返回参数集中第一个非null参数。

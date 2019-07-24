@@ -1,5 +1,5 @@
 ﻿---
-layout: post
+layout: page
 title: 小事记
 categories:
 tags:
