@@ -1,11 +1,8 @@
-﻿---
-layout: page
-title: 小事记
-categories:
-tags:
-keywords:
-description:
 ---
+layout: post
+title: 小事记
+---
+
 
 ## 2019
 

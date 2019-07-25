@@ -39,7 +39,12 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 ```
 
 
-给一个中文的例子
+给一个中文的例子：
+1. 用jieba拆词
+2. 去除数字
+3. 去除停词
+4. 用空格拼回
+
 ```py
 import jieba
 import re
@@ -67,7 +72,7 @@ class VocabularyProcessor:
     author: guofei
     site: www.guofei.site
     输入：一个列表，列表中的元素是句子，句子中的单词用空格分开。这里不提供数据清洗功能，所以应当先进行数据清洗，然后使用这个类
-    输出：一个列表的列表，每个元素是单词的序号，例如 [[1, 2, 0, -1, 3], [1, 2, 0, -1, -1, 3], [-1, 0, -1, -1], [2, 1, 0, -1, 3]]
+    输出：一个列表的列表，长度是词语个数，元素是单词的序号，例如 [[1, 2], [1, 2, 0, -1, -1, 3], [-1, 0, -1, -1], [2, 1, 0, -1, 3]]
     ```
     corpus = ['this is the first document',
               'this is the second second document',
@@ -137,8 +142,8 @@ wp.word_count, wp.dictionary, wp.reverse_dictionary
 ## 3. 词袋（Bag of Words）
 
 ### 词袋介绍
-先有一个常用词组成单词向量（其中非常用词的序号统一设定为0）  
-对于每一个句子，每个单词对应的索引设定为1  
+结果的长度等于字典的长度，结果的元素值是在这句话中单词出现的次数。  
+
 例如，我们的词袋为
 ```py
 {'tensorflow': 4, 'makes': 3, 'machine': 2, 'learning': 1, 'easy': 0}
@@ -155,7 +160,8 @@ sentence2 = [1, 1, 1, 0, 0]
 ### 代码实现
 ```py
 from sklearn.feature_extraction import text
-count_vectorizer=text.CountVectorizer()
+
+count_vectorizer = text.CountVectorizer()
 # ngram_range
 # max_df : float in range [0.0, 1.0] or int, default=1.0
 # min_df : float in range [0.0, 1.0] or int, default=1
@@ -164,25 +170,22 @@ count_vectorizer=text.CountVectorizer()
 
 
 # 源数据
-corpus = ['This is the first document.',
-          'This is the second second document.',
-          'And the third one.',
-          'Is this the first document?']
+X = ['This is the first document.',
+     'This is the second second document.',
+     'And the third one.',
+     'Is this the first document?']
 
-
-count_vectorizer.fit(corpus)
-X_transform=count_vectorizer.transform(corpus)
+count_vectorizer.fit(X)
+X_transform = count_vectorizer.transform(X)
 # 1. 不在vocabulary中的词，在transform阶段被忽略
 # 2. 返回的 numpy 的稀疏矩阵，用 X.toarray() 转换成普通矩阵
 
-X.toarray() # 是一个shape=(num_sentence,num_words) 的array
+X_transform.toarray()  # 是一个shape=(num_sentence,num_words) 的array
 
 # count_vectorizer.fit_transform(corpus) # 合并写法
 
-count_vectorizer.vocabulary_ # vocabulary向量（dict格式）
+count_vectorizer.vocabulary_  # vocabulary向量（dict格式）
 # {u'and': 0, u'document': 1, u'first': 2, u'is': 3, u'one': 4, u'second': 5, u'the': 6, u'third': 7, u'this': 8}
-
-
 ```
 其它自定义配置
 ```py

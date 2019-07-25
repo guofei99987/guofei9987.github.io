@@ -1,16 +1,12 @@
 ---
-layout: page
+layout: post
 title: 证书
-categories:
-tags:
-keywords:
-description:
 ---
 
 ## Coursera.com
 
 
-|||
+|证书|链接|
 |--|--|--|
 |![Learning How to Learn](http://www.guofei.site/pictures_for_blog/certification/coursera/Introduction%20to%20Complex%20Analysis.png)|[link](https://www.coursera.org/account/accomplishments/certificate/C9N6QDM5PUN5)|
 |![Deep Learning Specialization](http://www.guofei.site/pictures_for_blog/certification/coursera/Deep%20Learning.png)|[link1](https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6)<br>[link2](https://www.coursera.org/account/accomplishments/specialization/certificate/HGTDUMAQ3TC6)|

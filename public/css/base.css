@@ -138,7 +138,8 @@ body, html {
   border:1px solid #1ABC9C;
 }
 #content p{
-  padding-bottom: 1em;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 #content hr{
   height:10px;
