@@ -132,15 +132,23 @@ int('1')#字符转数字
 int('51',base=14)#指定进制字符转十进制
 ord("A")#字符转ascii码
 chr(97)#ascii码转字符
+```
 
+### encode & decode
+```py
+s="中文字符串" # Python3 默认的字符串是 utf-8 格式
+bs=s.encode("utf-8") # utf-8 转为 byte 格式
+bs.decode("utf-8") # byte 格式 转为 utf-8
 
-s="中文字符串"
-bs=s.encode("utf-8")#"gbk"
-bs.decode("utf-8")
+# 除此之外，还有 "utf-8", "utf-16", "ascii", "ISO-8859-1" 等格式
+# byte 格式，print出来类似 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe5\x90\x97\xef\xbc\x8c123 hello' 这样，这是utf-8的样子
+# 假如是这样的 '%u8a84%u12bc' 这是 unicode 编码，每段4位16进制数对应ascii码，例如 chr(int('12cd', base=16))
 ```
 - ascii码 7个二进制位
 - Unicode 每个字符2个字节（4位16进制）
 - UTF-8：可变长度的unicode，英文对应单字节，中文对应3字节
+
+在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
 
 ## enumerate迭代器
