@@ -36,6 +36,6 @@ active: tags
 
 # 中文本地化
 locals:
-  tags: 模型
+  tags: 知识
   about: 我
   trythis: 数据清洗
