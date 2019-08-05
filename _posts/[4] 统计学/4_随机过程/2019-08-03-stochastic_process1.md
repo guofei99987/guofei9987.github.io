@@ -16,7 +16,7 @@ order: 471
 - mathematical statistics
 - stochastic processes
 
-### 一个例子
+### an example
 在讲 mathematical statistics 的时候，举了个经典例子：
 想估计池塘里多少鱼，第一次捞上来一批，打上标签，捞q次，统计每次捞上来的比例。  
 假设：
@@ -55,13 +55,47 @@ Let, $\xi(h;h)=1, \xi(h;t)=2, \xi(t;h)=3, \xi(t;t)=4$. (Note that $$P\{\xi=k\}=1
 ### 定义：随机过程
 $X:T\times \Omega \to \mathbb R$
 
-这个复习一下
 https://www.coursera.org/learn/stochasticprocesses/lecture/mIqkz/week-1-5-trajectories-and-finite-dimensional-distributions
 
-## Renewal process
-$S_0=0,S_n=S_{n-1}+\xi_n,$  
-$\xi_1,\xi_2,...,i.i.d>0$, as  
-$P(\xi_i>0)=1$（等价于$F(0)=0$）
+
 
 ### counting process
 $N_t=\arg\max\limits_k (\xi_k\leq t)$
+
+## convolution
+两个分布X, Y的convolution，实际上就是 $X+Y$ 的分布  
+求出来就是：  
+$F_X \ast F_Y = F_{X+Y}(x) = \int_R F_X(x-y)dF(y)$  
+$P_{X+Y}(x)=\int_R P_X(x-y)P_Y(y)dy$
+
+
+we define $F^{n\ast}=F\ast ...\ast F$  
+properties：  
+- $F^{n\ast}(x)\leq F^n(x)$ if $F(0)=0$  
+这是因为 $$\{\xi_1+...+\xi_n\leq x\}\subset\{\xi_1\leq x,...,\xi_n\leq x\}$$
+- $F^{n\ast}(x) \geq F^{(n+1)\ast}(x)$ if $F(0)=0$  
+
+
+### Renewal process
+$S_0=0,S_n=S_{n-1}+\xi_n,$  
+$\xi_1,\xi_2,...,i.i.d>0$, as  
+$P(\xi_i>0)=1$ (equals to $F(0)=0$）
+
+properties:
+- define $u(t)=\sum\limits_{n=1}^\infty F^{n\ast}$  
+then $u(t)<\infty$
+- define $$N_t = ???$$  
+then $EN_t=u(t)$, because $EN_t=??$  
+这一段没太明白
+
+### laplace transform
+先去另一篇blog复习一下 laplace transform  
+
+我们研究一下 $\mathscr L_f(s) = \mathscr L[f(s)]=\int_0^{+\infty}f(t)e^{-st}dt$，其中$f$是概率密度函数  
+properties：
+- $\mathscr L_f(s) = E[e^{-s\xi}]$
+- $\mathscr L_{f_1\ast f_2}(s) = \mathscr L_{f_1}(s) \ast \mathscr L_{f_2}(s)$
+- 如果$F(0)=0$，那么$\mathscr L_f(s) = \dfrac{\mathscr L_f(s)}{s}$（证法是分部积分法）
+
+
+week 1.8 week 1.9 有几个漂亮的定理，可以再复习一下
