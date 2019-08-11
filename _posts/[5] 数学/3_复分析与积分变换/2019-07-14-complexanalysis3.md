@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【复变函数3】共形映射
+title: 【Complex Analysis3】共形映射
 categories:
 tags: 5_3_复分析与积分变换
 keywords:

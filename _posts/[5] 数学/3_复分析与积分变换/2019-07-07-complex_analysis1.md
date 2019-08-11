@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【复变函数1】极限、微分、解析
+title: 【Complex Analysis1】极限、微分、解析
 categories:
 tags: 5_3_复分析与积分变换
 keywords:

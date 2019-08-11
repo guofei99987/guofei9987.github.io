@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【复变函数2】Julia set
+title: 【Complex Analysis2】Julia set
 categories:
 tags: 5_3_复分析与积分变换
 keywords:

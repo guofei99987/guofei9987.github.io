@@ -34,7 +34,7 @@ order: 105
 
 ```python
 df.describe()
-df.describe(include='all')
+df.describe(include='all') # 对分类变量计算unique个数等，对字符串也有处理。
 ```
 返回的是DataFrame格式的描述性统计数据
 

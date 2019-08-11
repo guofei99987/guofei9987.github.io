@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【复变函数0】基本概念
+title: 【Complex Analysis0】基本概念
 categories:
 tags: 5_3_复分析与积分变换
 keywords:

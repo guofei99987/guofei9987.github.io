@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【spark】工程上的一些实践技巧
+title: 工程最佳实践
 categories:
 tags: 1_1_数据平台
 keywords:
@@ -8,8 +8,7 @@ description:
 order: 159
 ---
 
-
-记录我在工程中的一些实用方法（都是个人偏好，目前看来是最佳实践）  
+## spark 脚本提交工具
 实现功能：
 1. **submit时传入参数** 用[sys.argv](http://www.guofei.site/2018/06/05/sysos.html#title1)来读取submit时附加的参数  
 2. **脚本中调用别的包**
@@ -17,7 +16,7 @@ order: 159
 4. 提交的spark脚本全部运行完毕后，打印每个脚本的返回码、运行时间、运行开始时间、运行结束时间
 5. 如果有脚本运行失败，退出时返回错误码
 
-## 1. 被提交脚本
+### 1. 被提交脚本
 重点看一下传入参数的设计
 app_1_2_1.py（被提交的spark脚本）:
 ```py
@@ -39,7 +38,7 @@ df.write.mode('overwrite').format('orc').partitionBy('dt').saveAsTable('app.app_
 spark.sql("ALTER TABLE app.app_test_guofei8 SET TBLPROPERTIES ('author' = 'guofei8')")
 ```
 
-## 2. 串行提交
+### 2. 串行提交
 ```py
 command1 = '''
 spark-submit   --master yarn \
@@ -97,7 +96,7 @@ for i in result_code_list: print(i)
 #         exit(i[1])
 ```
 
-## 3. 并行提交
+### 3. 并行提交
 
 ```py
 # !/usr/bin/python
@@ -167,8 +166,101 @@ def paral_submit(input_arr_list, job_num=10):
 paral_submit(input_arr_list,job_num=10)
 ```
 
-## 其它实用技巧
+## 代码定时上传git
 ```py
-spark.sparkContext.uiWebUrl
-# Spark Web UI
+import os
+import subprocess
+import time
+import datetime
+from IPython.display import clear_output
+
+
+def upload(dir_name):
+    '''
+    上传git
+    '''
+    os.chdir(dir_name)
+    command_list = ['git add -A', 'git commit -m "update"', 'git push']
+    status_list = [subprocess.check_output(command, shell=True).decode('utf-8') for command in command_list]
+    return [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')] + status_list
+
+
+def make_log(dir_name):
+    '''
+    上传信息保存到txt中
+    '''
+    git_upload_log = upload(dir_name)
+    git_print_log = '\n\n' + '-' * 10 + '\n' + '\n'.join(git_upload_log)
+    with open(dir_name + '/update_log.txt', 'a') as f:
+        f.writelines(git_print_log)
+    return git_print_log
+
+# 调试
+# dir_name='/home/guofei8/project'
+# git_print_log=make_log(dir_name)
+# print(git_print_log)
+
+# 定时运行
+dir_name = '/home/guofei/project'
+for i in range(100):
+    clear_output()
+    git_print_log = make_log(dir_name)
+    print(git_print_log)
+    time.sleep(60 * 60 * 24)
+```
+
+## 文件树
+不算太美观，但是代码够短、实用
+```py
+import os
+def my_listdir(level, path, tree):
+    for i in os.listdir(path):
+        tree.append('│    ' * level + '├───' + i)
+        if os.path.isdir(path + i):
+            my_listdir(level + 1, path + i + os.sep, tree)
+
+
+path = '/work/project'
+tree = [os.path.split(path)[-1]]
+my_listdir(0, path + os.sep, tree)
+print('\n'.join(tree))
+```
+
+轻量的优点就是改动方便，例如，我不想显示 '.ipynb_checkpoints','.git' 这两类文件夹下的文件，就可以这么改：
+```py
+import os
+def my_listdir(level, path, tree):
+    for i in os.listdir(path):
+        if i in ['.ipynb_checkpoints', '.git']:
+            continue
+        tree.append('│    ' * level + '├───' + i)
+        if os.path.isdir(path + i):
+            my_listdir(level + 1, path + i + os.sep, tree)
+
+
+path = '/work/project'
+tree = ['project']
+my_listdir(0, path + os.sep, tree)
+print('\n'.join(tree))
+```
+
+## 批量处理hive表
+```py
+import subprocess
+
+tables_all=subprocess.check_output('''
+hive -e 'use app;show tables'
+''',shell=True).decode('utf-8').split('\n')
+
+table_guofei=[table for table in tables_all if table.find('guofei')>=0]
+
+a
+```
+
+```py
+for table in table_guofei:
+    drop_code=subprocess.check_output('''
+    hive -e 'drop table app.{table}'
+    '''.format(table=table),shell=True)
+    print(drop_code,table)
 ```

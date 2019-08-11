@@ -99,6 +99,7 @@ df.loc[:,['ww']].astype('float') # int
 
 ```python
 df.sort_values(by=['w','z'],ascending=[False,True],inplace=True)
+df.sort_index(axis=1, ascending=False)
 df.sort_index(ascending=True,inplace=True)
 ```
 

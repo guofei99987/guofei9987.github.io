@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【复变函数5】级数、留数
+title: 【Complex Analysis5】级数、留数
 categories:
 tags: 5_3_复分析与积分变换
 keywords:

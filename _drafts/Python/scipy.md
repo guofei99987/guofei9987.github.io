@@ -55,7 +55,7 @@ http://www.guofei.site/2017/06/06/fmin.html
 ## interpolate插值
 interp1d
 
-```
+```py
 import numpy as np
 from scipy import interpolate
 import pylab as pl
