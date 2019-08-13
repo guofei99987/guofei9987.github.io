@@ -8,6 +8,10 @@ description:
 order: 92301
 ---
 
+## 定积分求导
+$F(x)=\int_{g(x)}^{h(x)}f(t)dt$，  
+那么$F'(x)=h'(x)f[h(x)]-g'(x)f[g(x)]$  
+
 
 ## 可微的性质
 TH1：

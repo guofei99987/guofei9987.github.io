@@ -174,7 +174,7 @@ second(col) # 秒
 dayofmonth(col)
 dayofweek(col)
 dayofyear(col)
-weekofyear(col)
+weekofyear(col) # 周一到周日算是一周（）
 last_day(date) # 所在月的最后一天
 ```
 
