@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【探索】曲面上的均匀采样（随机点）
+title: 【探索】曲面上的均匀随机采样
 categories:
 tags: A蒙特卡洛方法
 keywords:
@@ -29,9 +29,10 @@ order: 10003
 - 把曲线上的均匀随机，定义为沿着曲线的长度均匀随机采样。
 - 把曲面上的均匀随机，定义为沿着曲面上的面积均匀采样。
 
-下面这个就不能定义为随机
-[random_surface1]()
+下面这个就不能定义为均匀随机采样
+![random_surface1](http://www.guofei.site/pictures_for_blog/random_sample/random_surface1.png)  
 
+（不是我们要的结果）
 
 #### 为何不涉及其它维度？
 因为都是已经解决的问题。  
@@ -54,7 +55,7 @@ sample = np.array([random_surface() for i in range(1000)])
 plt.plot(sample[:, 0], sample[:, 1], '.')
 ```
 
-[random_surface2]()
+![random_surface2](http://www.guofei.site/pictures_for_blog/random_sample/random_surface2.png)
 
 
 ## 曲线上的均匀随机
@@ -86,8 +87,9 @@ sample = np.array([random_surface() for i in range(200)])
 plt.plot(sample[:, 0], sample[:, 1], '.')
 ```
 
-[random_surface3]()
+![random_surface3](http://www.guofei.site/pictures_for_blog/random_sample/random_surface3.png)
 
+（是随机采样，所以看起来不均匀，但实际上是均匀的）
 
 ### 缺点与方案2
 以阿基米德螺旋线$x=t\cos t, y=t\sin t$为例，  
@@ -135,7 +137,7 @@ plt.show()
 - fprime 是雅克比矩阵，用于解方程时，加快迭代速度，可以省略。根据Lebniz定理，雅克比矩阵正好等于被积函数。
 
 
-[4]()
+![random_surface4](http://www.guofei.site/pictures_for_blog/random_sample/random_surface4.png)
 
 
 ### 方案3
@@ -212,11 +214,68 @@ $\int_{-\infty}^{y} f(x',y)dy/\int_{-\infty}^{+\infty} f(x',y)dy=r'$，求解$y=
 
 之后得到$(x',y')$就是我们要的结果
 
+```
+from scipy import optimize as opt
+from scipy import integrate
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
 
 
+def bound(x, y):
+    return x ** 2 + y ** 2 <= 0.9
 
 
+def func(x, y):
+    if bound(x, y):
+        return 1 / np.sqrt(1 - x ** 2 - y ** 2)
+    else:
+        return 0
 
 
+x_min, x_max, y_min, y_max = -0.9, 0.9, -0.9, 0.9
 
-end
+
+def func_g(x):
+    g = integrate.quad(lambda y: func(x, y), -np.sqrt(1 - x ** 2), np.sqrt(1 - x ** 2))
+    return g[0]
+
+
+# g(x)的最大值
+m1 = -opt.minimize(fun=lambda x: -func_g(x), x0=np.array([0.1]),
+                   bounds=((x_min, x_max),)).fun
+# f(x,y)的最大值
+# m2 = -opt.minimize(fun=lambda xy: -func(xy[0], xy[1]), x0=np.array([0.1, 0.1]),
+#                    bounds=((x_min, x_max), (y_min, y_max))).fun
+
+m2 = np.sqrt(10)
+
+result = []
+for i in range(1000):
+    x = np.random.rand() * (x_max - x_min) + x_min
+    if func_g(x) / m1 > np.random.rand():
+        not_find = True
+        while not_find:
+            y = np.random.rand() * (y_max - y_min) + y_min
+            if func(x, y) / m2 > np.random.rand():
+                result.append([x, y])
+                not_find = False
+
+# 整理并绘图
+result = np.array(result)
+
+X = result[:, 0]
+Y = result[:, 1]
+Z = np.sqrt(1 - X ** 2 - Y ** 2)
+surf = ax.scatter(X, Y, Z)
+plt.show()
+
+# %%
+np.array([func_g(i) for i in np.arange(-1, 1, 0.1)])
+```
+
+
+![random_surface5](http://www.guofei.site/pictures_for_blog/random_sample/random_surface5.png)
