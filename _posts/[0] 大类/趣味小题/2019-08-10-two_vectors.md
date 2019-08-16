@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【民科向】n维空间上随机向量的投影与现实3维空间
+title: 【民科向】随机向量的投影问题
 categories: 趣文
 tags:
 keywords:

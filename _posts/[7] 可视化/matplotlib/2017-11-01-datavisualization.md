@@ -168,8 +168,49 @@ kind='reg'
 
 [去seaborn官网查看](http://seaborn.pydata.org/tutorial/axis_grids.html#plotting-pairwise-relationships-in-a-dataset)  
 
+```Python
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-<img src='http://seaborn.pydata.org/_images/axis_grids_50_0.png'>
+iris = sns.load_dataset("iris")
+
+# 1. 用什么数据
+g = sns.PairGrid(iris, vars=["sepal_length", "sepal_width"], hue="species")
+# vars：指定画哪几个变量。默认全画
+# hue：按照这一列分组
+
+
+# 2. 在哪画图
+# g.map = g.map_diag（对角线） + g.map_offdiag（非对角线）
+# g.map_offdiag = g.map_upper + g.map_lower
+
+# 3. 画什么图
+# g.map_diag(plt.hist)
+g.map_diag(sns.kdeplot, lw=3, legend=False)
+# 主对角线，可以画的图有：
+# a) plt.scatter（默认）
+# b) plt.hist
+# c) g.map_diag(sns.kdeplot, lw=3, legend=False)
+
+g.map_upper(plt.scatter)
+g.map_lower(sns.kdeplot)
+# 可以画的图有：
+# plt.scatter（默认）
+# sns.kdeplot：对角线上就是kde，其它地方是二维kde，所以画成等高线图
+# sns.regplot：带回归线和预测范围的 scatter
+
+
+# 4. 美化：针对有分类 hue 的情况，会在右边显示 label
+g.add_legend()
+```
+<img src='http://www.guofei.site/pictures_for_blog/data_visualization/pair_grid_1.png'>
+
+<img src='http://www.guofei.site/pictures_for_blog/data_visualization/pair_grid_2.png'>
+
+另外，还可以更精细地指定画哪些图
+```py
+g = sns.PairGrid(iris, x_vars=['petal_length','sepal_width'], y_vars=['petal_length'], hue="species")
+```
 
 ### clustermap
 [去seaborn官网查看](http://seaborn.pydata.org/examples/structured_heatmap.html)

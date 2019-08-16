@@ -142,31 +142,31 @@ exp in x#返回逻辑值，判断exp是否在x中
 ```py
 helloString='hello world'
 helloString[1:3]
-helloString[4:]#4到末尾
+helloString[4:] # 4到末尾
 helloString[:-2]
-helloString[::2]#按照步长取字符
+helloString[::2] # 按照步长取字符
 helloString[::-1]
 ```
 
 以下几个方法，直接改变list，而是不返回list
 ```py
-<list>.append(x)   #把x作为一个元素放到<list>的末尾
-<list>.extend(c)   #把c中的元素添加到list中，c是集合、list、tuple等
-<list>.insert(i,x) #在i位置插入x
+<list>.append(x)   # 把x作为一个元素放到<list>的末尾
+<list>.extend(c)   # 把c中的元素添加到list中，c是集合、list、tuple等
+<list>.insert(i,x) # 在i位置插入x
 
-del x[1]           #直接删除
+del x[1]           # 直接删除
 del x[::-2]
-<list>.remove(x)  #删除list中第一次出现的元素x，如果没找到会抛出异常
-<list>.pop(i)     #返回list中第i个元素，并从list中删除，如果不给参数，指的是最后一个
+<list>.remove(x)  # 删除list中第一次出现的元素x，如果没找到会抛出异常
+<list>.pop(i)     # 返回list中第i个元素，并从list中删除，如果不给参数，指的是最后一个
 
 
-<list>.sort()     #排序，返回none
+<list>.sort()     # 排序，返回none
 #b=['123','2','33']
 #b.sort(key=int,reverse=False)
 
-<list>.reverse()  #元素反转,返回none
-<list>.index(x)   #返回第一次出现x的索引位置
-<list>.count(x)   #返回x在列表中的数量
+<list>.reverse()  # 元素反转,返回none
+<list>.index(x)   # 返回第一次出现x的索引位置
+<list>.count(x)   # 返回x在列表中的数量
 ```
 
 ### enumerate迭代器
@@ -175,7 +175,7 @@ String1 ='hello world'
 for index,letter in enumerate(String1):
     print(index,letter)
 for i in enumerate(String1)
-    print(i)#i是tuple类型
+    print(i) # i是tuple类型
 ```
 此外，enumerate也可以用于list
 
@@ -187,6 +187,7 @@ a=[1,2,3]
 b=list('abc')
 list(zip(a,b))
 dict(zip(a,b))
+# a, b的长度可以不一样，这样就是取最短的
 ```
 
 
