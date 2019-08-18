@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python标准库】【str】字符串.
+title: 【string】字符串，编码，正则表达式
 categories:
 tags: Python语法
 keywords:

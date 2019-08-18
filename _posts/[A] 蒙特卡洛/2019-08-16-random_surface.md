@@ -214,7 +214,7 @@ $\int_{-\infty}^{y} f(x',y)dy/\int_{-\infty}^{+\infty} f(x',y)dy=r'$，求解$y=
 
 之后得到$(x',y')$就是我们要的结果
 
-```
+```python
 from scipy import optimize as opt
 from scipy import integrate
 import numpy as np

@@ -11,29 +11,38 @@ order: 180
 ## 方式1：query方式
 ```py
 from sqlalchemy import create_engine
-engine=create_engine("sqlite:///:memory:", echo=True)
+engine=create_engine("sqlite://", echo=False)
 ```
 
 ```py
 engine.execute("create table users(userid char(10), username char(50))")
 resultProxy=engine.execute("insert into users (userid,username) values('user1','tony')")
 
+# 批量插入
+data=[(str(i),'user'+str(i)) for i in range(5)]
+engine.execute("insert into users (userid,username) values(?,?)", data)
+
+
 
 resultProxy=engine.execute("select * from users")
-resultProxy.fetchall()
-resultProxy.fetchmany()
-resultProxy.fetchone()
-resultProxy.first()
-resultProxy.scalar()# 可以返回一个标量查询的值
-
-resultProxy.close()# resultProxy 用完之后, 需要close
+resultProxy.fetchall() # fetch 类的语句，只有 select 才可以用，其它报错
+resultProxy.fetchmany(size=1)
 
 
-resultProxy.rowcount  #return rows affected by an UPDATE or DELETE statement
-resultProxy.returns_rows  #True if this ResultProxy returns rows.
+resultProxy.close() # resultProxy 用完之后, 需要close
+
+
+resultProxy.rowcount  # return rows affected by an UPDATE or DELETE statement
+resultProxy.returns_rows  # True if this ResultProxy returns rows.
 ```
 
 
+其它不常用
+```python
+resultProxy.fetchone()
+resultProxy.first() # 返回第一行，然后关闭这次查询
+resultProxy.scalar() # 返回第一行第一列，然后关闭这次查询
+```
 
 
 ## 方式2：借助pandas
