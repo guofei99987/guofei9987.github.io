@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【探索】曲面上的均匀随机采样
+title: 【探索】曲面上均匀随机采样
 categories:
 tags: A蒙特卡洛方法
 keywords:
 description:
-order: 10003
+order: 10103
 ---
 
 ## 描述

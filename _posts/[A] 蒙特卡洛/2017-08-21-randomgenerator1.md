@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Mento Carlo 3】生成指定分布随机数的方法.
+title: 【Mento Carlo 3】给定分布生成随机数
 categories:
 tags: A蒙特卡洛方法
 keywords:

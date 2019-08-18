@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】去重、填充、排序、变换
 categories:
-tags: 1_2_Pandas
+tags: 1_2_Pandas与numpy
 keywords:
 description:
 order: 103
@@ -220,58 +220,62 @@ method说明：
 - 'first': 按照原始数据中出现的顺序分配排名
 
 
-## 变换
-### transfrom：按列变换
+
+
+
+
+
+## apply：最好用的转化工具
+生成样例
 ```py
+import pandas as pd
+import numpy as np
+from scipy import stats
+rv=stats.uniform()
+df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
+```
+### apply 后接 func：接受1行/列
+```py
+# 生成新的两列
+df_new = df.apply(lambda x:pd.Series({'new_a':x['a']+x['b'],'new_b':x['a']+x['b']}),axis=1)
+```
+详细解析：
+- axis=1时，每次给func一行，df_new 是一个相同高度的DataFrame。apply 后面的函数（记为func）是这样的：
+    - func接受df的一行。进入到函数后，数据是Series格式（记为s），s.index是df的列名，s.name是df的index
+    - func返回一个Series（记为s_new），最后组成df_new。数据情况同上，s_new.index是df_new的列名，s_new.name是df_new的index。额外的，如果不指定s_new.name，那么df_new.index 会与 df.index 保持一致。
+- axis=0 （默认） 时，是按列计算，每次给func一列，df_new 是一个相同宽度的DataFrame。apply函数对应关系与上面类似
+- 如果func的return的是数字、列表等，那么返回的 df_new 是一个 Series
+
+### applymap：对每个单元格独立操作
+```python
+pd_1.applymap(lambda x:x+1)
+```
+### apply 后接 dict
+```python
 df = pd.DataFrame([['about', 'a|b|cc'], ['cool', 'x|yy|z']], columns=['col1', 'col2'], index=['a', 'b'])
 
 def func(x):
     return x.upper()
-
-df.transform({'col1': func})
-
-# 1. transform返回一个DataFrame
-# 2. func每次接收一个单元格。如果不能运行，常识接收整列作为 <Series>
-# 3_1. 如果 func 返回一个 Series，那么把这个Series展开为多列
-# 3_2. 如果 func 返回其它对象（数字、list等），那么把这个对象塞到新 DataFrame 的单元格内
+df_new = df.apply({'col1':func, 'col2':func})
 ```
-例子：
-```py
-df = pd.DataFrame([['a|b|cc'], ['x|yy|z']], columns=['col1'])
-
-# 用字符串方法做一切操作
-df.transform({'col1': lambda x: x.upper()})
-df.transform({'col1': lambda x: len(x)})
-df.transform({'col1': lambda x: 'a' in x})
-
-df.transform({'col2': lambda x: x.split('|')})
-df.transform({'col2': lambda x: ','.join(x.split('|'))})
-
-# 可以直接加减乘
-df.col1 + df.col2 * 2
-```
-
-## agg
-
+详细解析：
+1. col1 是 df 某列的列名
+2. 每次输入一个单元格
+    - func 每次接受 df.col1 的1个单元格作为输入。
+    - df_new 是一个DataFrame，列名是col1（所以这个方法的缺陷是，你不能对一列做两种操作，例如你想做一列大写和一列小写，就得多写几行了，但是用 apply后接func可以一行解决）
+3. 每次输入一列。如果 func 报错，就会尝试输入整个列作为 Series
+    - 如果 func 返回 Series/list等，df_new 是一个对应的DataFrame（列不变，变成多个）
+    - 如果 func 返回 一个元素，df_new 是一个对应的 Series （相当于agg操作）
+    - 例子：
+    ```
+    df = pd.DataFrame([['about', 'a|b|cc'], ['cool', 'x|yy|z']], columns=['col1', 'col2'], index=['a', 'b'])
+    def func(x):
+      x.shape # 如果输入一个元素，令其报错
+      return x.shape[0]
+    df.apply({'col1':func, 'col2':func})
+    ```
 
 
-### apply：更灵活的变换
-
-```python
-data.apply(func1,axis=0) # 返回Series
-# axis=0，输入一列
-# axis=1，输入一行
-
-def func(series):
-
-
-# 1. apply 返回 Series
-# 2. func 的输入是 原 DataFrame 的一行/一列，格式为 <Series>
-# 3. 如果return数字、列表等其它对象，那么把其它对象作为每一个元素塞到一个单元格内
-    # return内容就是data.apply这个series中的元素
-    # 如果return一个 <Series> ,那么把这个 Series 作为新列
-
-```
 
 ## 其它
 
@@ -290,21 +294,6 @@ df.index = df.index.map(str.upper)
 ```
 
 
-## 非groupby的agg
-生成样例
-```py
-import pandas as pd
-import numpy as np
-from scipy import stats
-rv=stats.uniform()
-df=pd.DataFrame(rv.rvs(size=(100,5)),columns=list('abcde'))
-```
-
-### apply：按行计算
-```py
-# 生成新的两列
-df.apply(lambda x:pd.Series({'new_a':x['a']+x['b'],'new_b':x['a']+x['b']}),axis=1)
-```
 ### agg：汇总计算
 ```py
 import pandas as pd
@@ -328,4 +317,34 @@ def func(data):
     return data+1
 
 df.transform({'a':func,'b':func}) # func需要接受df每一列作为Series，返回同样大小的Series
+```
+
+transfrom：按列变换
+```py
+df = pd.DataFrame([['about', 'a|b|cc'], ['cool', 'x|yy|z']], columns=['col1', 'col2'], index=['a', 'b'])
+
+def func(x):
+    return x.upper()
+
+df.transform({'col1': func})
+
+# 1. transform返回一个DataFrame
+# 2. func每次接收一个单元格。如果不能运行，尝试接收整列作为 <Series>
+# 3_1. 如果 func 返回一个 Series，那么把这个Series展开为多列
+# 3_2. 如果 func 返回其它对象（数字、list等），那么把这个对象塞到新 DataFrame 的单元格内
+```
+例子：
+```py
+df = pd.DataFrame([['a|b|cc'], ['x|yy|z']], columns=['col1'])
+
+# 用字符串方法做一切操作
+df.transform({'col1': lambda x: x.upper()})
+df.transform({'col1': lambda x: len(x)})
+df.transform({'col1': lambda x: 'a' in x})
+
+df.transform({'col2': lambda x: x.split('|')})
+df.transform({'col2': lambda x: ','.join(x.split('|'))})
+
+# 可以直接加减乘
+df.col1 + df.col2 * 2
 ```

@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】合并数据表
 categories:
-tags: 1_2_Pandas
+tags: 1_2_Pandas与numpy
 keywords:
 description:
 order: 107
@@ -176,7 +176,7 @@ result = pd.merge(left, right, on='k', suffixes=['_l', '_r'])
 <img src='http://www.guofei.site/public/postimg2/merge5.jpg'>
 
 
-## +
+## 3. 加减乘除
 
 ```py
 df1+df2  

@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】读入与读出
 categories:
-tags: 1_2_Pandas
+tags: 1_2_Pandas与numpy
 keywords:
 description:
 order: 101
