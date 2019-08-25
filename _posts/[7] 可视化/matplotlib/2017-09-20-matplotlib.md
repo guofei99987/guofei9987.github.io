@@ -33,6 +33,7 @@ plt.rcParams['figure.dpi'] = 200 # jupyter中调大dpi可以让图更大，同�
 plt.rcParams['savefig.dpi'] = 100
 
 plt.rcParams['font.sans-serif'] = ['SimHei'] # 中文支持
+plt.rcParams['axes.unicode_minus'] = False # 解决中文支持时，负号为方块的问题
 ```
 保存已经plot过的图像：
 ```py

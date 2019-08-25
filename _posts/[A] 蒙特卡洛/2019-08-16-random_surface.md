@@ -198,7 +198,7 @@ plt.show()
 $\iint_D 1d\sigma=\iint_{\Omega_{xy}}\sqrt{1+(\dfrac{\partial z}{\partial x})^2+(\dfrac{\partial z}{\partial y})^2}dxdy=r$  
 
 
-## 案例：球面
+### 案例：球面
 $z=\sqrt{1-x^2-y^2}$  
 
 $f(x,y)=\sqrt{1+(\dfrac{\partial z}{\partial x})^2+(\dfrac{\partial z}{\partial y})^2}=\sqrt{1/(1-x^2-y^2)}$  
@@ -279,3 +279,114 @@ np.array([func_g(i) for i in np.arange(-1, 1, 0.1)])
 
 
 ![random_surface5](http://www.guofei.site/pictures_for_blog/random_sample/random_surface5.png)
+
+
+### 缺点与改进
+上面的程序warning很多，这是因为边缘太陡峭了，导致偏导数很大。另外如果边缘陡峭，算法效率也很低，因为大多数区域内的取样大概率被剔除，然后重新取样。
+
+
+为了解决这个问题，考虑把曲面方程变成参数形式（曲线线的情况就是这么干的）。
+
+
+假设我们的曲面方程式这个形式 $\vec r=\vec r(u,v)$  
+曲面积分为 $\iint_{D}=\mid\vec r_u\times\vec r_v\mid dudv$
+
+
+
+推导过程就不写了，直接上算法流程
+1. 对于通常的曲面可以（并不）轻松地找到上述参数表示形式，使得：
+    - $\vec r_u\times\vec r_v \neq 0$
+    - $u,v$的边界都是常数（而不是互相有关）
+2. 计算 $I(u,v)=\mid\vec r_u\times\vec r_v\mid$
+3. 计算 $m=\max I+\delta$（其中$\delta\geq0$可以自行制定，如果对m的计算没有信心，可以指定为一个正数，这个数如果太大，算法效率会有所降低。）
+4. 对$u,v$在其边界内均匀采样，并且以$I(u,v)/m$的概率丢弃这次采样结果
+
+
+
+
+以球面为例$\vec r=(\sin u\cos v,\sin u\sin v,\cos u)$  
+
+```Python
+import numpy as np
+import scipy.optimize as opt
+from scipy.misc import derivative
+
+
+# 参数方程$r=r(u,v)$
+def func(u, v):
+    x = np.sin(u) * np.cos(v)
+    y = np.sin(u) * np.sin(v)
+    z = np.cos(u)
+    return x, y, z
+
+
+# r对u的偏导数，可以手算，这里用数值方法
+def func_r_u(u, v):
+    return derivative(lambda u: func(u, v)[0], u), \
+           derivative(lambda u: func(u, v)[1], u), \
+           derivative(lambda u: func(u, v)[2], u)
+
+
+# r对v的偏导数
+def func_r_v(u, v):
+    return derivative(lambda v: func(u, v)[0], v), \
+           derivative(lambda v: func(u, v)[1], v), \
+           derivative(lambda v: func(u, v)[2], v)
+
+
+def func_I(u, v):
+    r_u = func_r_u(u, v)
+    r_v = func_r_v(u, v)
+    E = np.linalg.norm(r_u, ord=2)
+    G = np.linalg.norm(r_v, ord=2)
+    F = np.dot(r_u, r_v)
+    return np.sqrt(E * G - F ** 2)
+
+
+left, right = 0, 2 * np.pi
+m = -opt.minimize(fun=lambda t: -func_I(t[0], t[1]), x0=np.array([0.1, 0.1]),
+                  bounds=((left, right), (left, right))).fun
+
+m = m + 0.1
+# %%
+points = np.random.rand(3000, 2) * np.pi * 2
+result = []
+for point in points:
+    if func_I(point[0], point[1]) / m > np.random.rand():
+        result.append(point)
+
+# %%画图
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+
+X, Y, Z = [], [], []
+for point in result:
+    u, v = point
+    x, y, z = func(u, v)
+    X.append(x)
+    Y.append(y)
+    Z.append(z)
+
+X = np.array(X)
+Y = np.array(Y)
+Z = np.array(Z)
+
+surf = ax.scatter(X, Y, Z, '.')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+优点：
+1. 参数的边界是方形的，用$z(x,y)$表示的球面，其x-y边界不是方形的。
+2. 参数可以尽量避免偏导数过大，甚至无穷大的情况

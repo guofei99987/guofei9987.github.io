@@ -47,6 +47,7 @@ itertools.starmap(func,seq)
 ```py
 itertools.product([1,2,3,4],repeat=2)
 # 相当于有放回抽样repeat次，返回 len^repeat 个结果
+# 进一步，可以指定多个数列，product('ab', range(3),repeat=2)
 
 itertools.permutations([1,2,3,4],r=2)
 # 所有的排列 ,有 $A_{len}^r$ 种结果
