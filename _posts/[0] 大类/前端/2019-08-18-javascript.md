@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【JavaScript】入门
-categories: 文档
+categories: 前端
 tags:
 keywords:
 description:
@@ -67,6 +67,11 @@ Math.log(10)//自然对数
 Math.log10(10)
 Math.log2(10)
 Math.exp(3)
+
+Math.sqrt(64)
+
+Math.E
+Math.PI
 ```
 - overflow 会返回一个 Infinity或-Infinity
 - underflow 会返回负0
@@ -81,13 +86,34 @@ var now = new Date();
 
 var elapsed = now - then; //以毫秒计算的时间差
 
-later.getFullYear();
-later.getMonth();
-later.getDate();
+//新建：数值日期
+//Date以毫秒计，以1970 年 1 月 1 日为0毫秒
+var d = new Date(-100000000000);
+
+//字符串日期
+d = new Date("December 25, 2019 12:46:00");
+
+
+later.getFullYear();//年 yyyy
+later.getMonth();//月 0-11
+later.getDate();//日 1-31
 later.getDay();//星期几，0代表星期日
-later.getHours();
+later.getHours();//时0-23
+getMinutes();//分0-59
+getSeconds();//秒0-59
+getMilliseconds()//毫秒0-999
+getTime();// 1970 年 1 月 1 日以来的毫秒数
+//! 以上get全都有对应的set，表示设定时间
+
+
 
 later.getUTCDate();//基于时区，还有Month，Hour等，不重复写了
+```
+
+```JavaScript
+
+
+
 ```
 
 
@@ -228,8 +254,9 @@ x[4]=11; //改变 一个元素
 
 数组和对象可以相互嵌套
 
-```JavaScript
 
+增、删
+```JavaScript
 x.push([13,19]);//添加多个元素，等价于x.push(13,19);
 x.pop();//返回最后一个元素，并删除
 
@@ -239,6 +266,25 @@ x.shift();//返回第一个元素，并删除
 delete fruits[0]//这样删除会留下一个洞，这跟python不一样
 
 x.join(" * ")//相当于python的'*'.join(x)
+```
+
+排序、翻转
+```JavaScript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();
+fruits.reverse();
+
+//js的排序是按照字符串排序（即使是数字）
+//这样写可以按照数值排序
+lst.sort(function(a, b){return a - b})
+//随机排序
+lst.sort(function(a, b){return 0.5 - Math.random()});
+```
+
+
+concat:不会修改原数组
+```JavaScript
+[1,2,3].concat([4,5,6],[7,8,9]);
 ```
 
 
@@ -282,101 +328,4 @@ x >= y;
 (x == 2) && (y == 3) //与
 (x == 2) || (y == 3) //或
 !(x == y) //非
-```
-
-
-
-
-## 函数
-```JavaScript
-function plus1(x) {
-    return x + 1;
-}
-```
-
-
-
-
-
-
-### 方法的使用
-```JavaScript
-var a = [];
-a.push(1, 2, 3); //添加新元素
-a.reverse();//反转，a变化了
-```
-
-
-### 自定义方法
-
-定义
-```JavaScript
-points.dist = function () {
-    var p1 = this[0];
-    var p2 = this[1];
-    var a = p2.x - p1.x;
-    var b = p2.y - p1.y;
-    return Math.sqrt(a * a + b * b);
-};
-
-//使用
-points.dist();
-```
-
-
-
-## 控制语句
-if
-```JavaScript
-function abs(x) {
-    if (x >= 0) {
-        return x;
-    } else {
-        return -x;
-    }
-}
-```
-
-while
-```JavaScript
-function factorial(n) {
-    var product = 1;
-    while (n > 1) {
-        product *= n;
-        n--;
-    }
-    return product
-}
-```
-
-for
-```JavaScript
-function factorial2(n) {
-    var i, product = 1;
-    for (i = 2; i <= n; i++) {
-        product *= i;
-    }
-    return product;
-}
-```
-
-## 面向对象
-
-```JavaScript
-function Point(x, y) {//惯例：构造函数均以大写字母开头
-    this.x = x;
-    this.y = y;
-//不需要return
-}
-
-//生成对象
-var p = new Point(1, 1);
-
-//定义方法
-Point.prototype.r = function () {
-    return Math.sqrt(this.x * this.x + this.y * this.y);
-};
-
-//使用方法
-p.r()
 ```
