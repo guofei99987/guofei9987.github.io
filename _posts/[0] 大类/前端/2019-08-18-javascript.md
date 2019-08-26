@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【JavaScript】入门
+title: 【JavaScript】基本数据结构
 categories: 前端
 tags:
 keywords:
@@ -257,13 +257,15 @@ x[4]=11; //改变 一个元素
 
 增、删
 ```JavaScript
-x.push([13,19]);//添加多个元素，等价于x.push(13,19);
+x.push(13,19);
 x.pop();//返回最后一个元素，并删除
 
-x.unshift([1,2]);//在开头添加元素，返回新数组的长度，等价于x.unshift(1,2);
+x.unshift(1,2);
 x.shift();//返回第一个元素，并删除
 
 delete fruits[0]//这样删除会留下一个洞，这跟python不一样
+
+[1,2,3].concat([4,5,6],[7,8,9]); //不会修改原数组
 
 x.join(" * ")//相当于python的'*'.join(x)
 ```
@@ -281,11 +283,6 @@ lst.sort(function(a, b){return a - b})
 lst.sort(function(a, b){return 0.5 - Math.random()});
 ```
 
-
-concat:不会修改原数组
-```JavaScript
-[1,2,3].concat([4,5,6],[7,8,9]);
-```
 
 
 ## 运算符
@@ -329,3 +326,17 @@ x >= y;
 (x == 2) || (y == 3) //或
 !(x == y) //非
 ```
+
+### 位运算符
+```JavaScript
+& //AND
+| //OR
+^ //XOR
+~ //NOT
+<< //左移位
+>> //有符号右移位（左边推入最左边的拷贝）
+>>>//零填充右移位（左边推入零）
+```
+
+### 正则表达式
+https://www.w3school.com.cn/js/js_regexp.asp
