@@ -7,4 +7,15 @@ keywords:
 description:
 ---
 
-[点击这里](https://github.com/guofei9987/star_counter)
+
+一个统计某个账号下 github 的 star 数量的在线小应用。  
+
+[应用地址](http://www.guofei.site/star_counter/main.html)  
+输入账号，然后点击`Calculate` 按钮  
+
+[源代码地址](https://github.com/guofei9987/star_counter)  
+
+
+
+
+![demo](https://github.com/guofei9987/star_counter/blob/master/demo.png?raw=true)
