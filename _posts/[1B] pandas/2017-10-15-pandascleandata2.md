@@ -8,6 +8,35 @@ description:
 order: 102
 ---
 
+## sql风格
+
+简单测了一下，sql的where语句基本都支持
+
+```python
+df.query('x not in ("1","2") or y>0.1', inplace=True)
+```
+
+补充两点
+```python
+# 1. 前面定义好的变量，可以在语句里用，加一个@
+k=3
+df.query('x>@k')
+
+# 2. 对于带空格的字段名，用``括起来
+# (不过好像会报错)
+df.query('x>`a a`')
+```
+
+### eval
+```python
+df.eval('C = A + B', inplace=True)
+
+df.eval('A+B') # 返回 Series
+# （貌似）不能同时产生多个字段，所以用起来还是不太方便
+```
+
+
+
 ## 用切片、下标筛选
 
 ### 通过下标选取数据：

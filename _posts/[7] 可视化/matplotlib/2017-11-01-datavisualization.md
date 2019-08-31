@@ -126,27 +126,43 @@ plt.show()
 
 散点图
 
-### jointplot
-数据准备
-```py
-import pandas as pd
-import scipy.stats as stats
+### regplot
 
-df=pd.DataFrame({'a':stats.norm(loc=0,scale=1).rvs(size=200),'b':stats.uniform(loc=3,scale=4).rvs(size=200)})
+```python
+df = pd.DataFrame(np.random.rand(200).reshape(-1, 2), columns=['x', 'resid'])
+df.loc[:, 'y'] = df.loc[:, 'x'] + df.loc[:, 'resid'] + 1
+
+sns.regplot(x=df.x, y=df.y,
+            scatter=True,  # 画散点图
+            fit_reg=True,  # 回归并画回归线
+            ci=95,  # 置信区间 [0,100]
+            color='r',  # 颜色
+            marker='^',  # 点的形状
+            ax=None  # 使用哪个 axes
+            )
+
+# 另一种用法
+# sns.regplot(x='x', y='y', data=df)
 ```
+<img src='http://www.guofei.site/public/postimg/regplot.png'>
 
-画图有2种方法[^jointplot]
+还有些其它用法：
+- order=2, 多项式回归
+- sns.lmplot 可以分组把多个图画下来
+- jointplot, pairplot 这两个画图方法可以设定 `kind="reg"`，从而调用 regplot
+
+
+### jointplot
 
 ```py
-import pandas as pd
-import scipy.stats as stats
-df = pd.DataFrame({'a': stats.norm(loc=0, scale=1).rvs(size=200), 'b': stats.uniform(loc=3, scale=4).rvs(size=200)})
+df = pd.DataFrame(np.random.rand(200).reshape(-1, 2), columns=['x', 'resid'])
+df.loc[:, 'y'] = df.loc[:, 'x'] + df.loc[:, 'resid'] + 1
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.jointplot(x='a', y='b', data=df, kind="kde", size=5, space=0)# 方法1
-# sns.jointplot(x=df.a, y=df.b, kind="kde", size=5, space=0)# 方法2
-plt.show()
+sns.jointplot(x=df.x, y=df.y, kind='kde', space=0)
+# sns.jointplot(x='x', y='y', data=df, kind='hex', space=0)
+
+# space 是三个子图之间的空隙
+# kind='kde', 'hex', 'scatter', 'reg'
 ```
 
 kind='kde':  

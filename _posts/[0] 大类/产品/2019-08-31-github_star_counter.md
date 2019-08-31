@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【小工具】github star数量统计
-categories: 前端
+categories: 产品
 tags:
 keywords:
 description:
@@ -17,8 +17,8 @@ description:
 
 
 
-
-![demo](https://github.com/guofei9987/star_counter/blob/master/demo.png?raw=true)
+<!--
+![demo](https://github.com/guofei9987/star_counter/blob/master/demo.png?raw=true) -->
 
 ## 试试吧：
 <iframe src="http://www.guofei.site/star_counter/main.html" width="100%" height="1000em" marginwidth="10%"></iframe>
