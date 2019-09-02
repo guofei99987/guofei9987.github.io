@@ -25,14 +25,13 @@ description:
 
 
 
-<script src="star_counter.js"></script> <!--引用js代码-->
+<script src="http://www.guofei.site/star_counter/star_counter.js"></script> <!--引用js代码-->
 <script>
     function func_1() {
         document.getElementById("demo").innerHTML = 'If not print for seconds, please refresh';
         github_id = document.getElementById("user").value;
         document.getElementById("star_counter").innerHTML = func(github_id);
     }
-
 </script>
 
 
