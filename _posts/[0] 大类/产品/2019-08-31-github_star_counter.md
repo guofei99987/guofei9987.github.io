@@ -21,4 +21,22 @@ description:
 ![demo](https://github.com/guofei9987/star_counter/blob/master/demo.png?raw=true) -->
 
 ## 试试吧：
-<iframe src="http://www.guofei.site/star_counter/main.html" width="100%" height="1000em" marginwidth="10%"></iframe>
+<!-- <iframe src="http://www.guofei.site/star_counter/main.html" width="100%" height="1000em" marginwidth="10%"></iframe> -->
+
+
+
+<script src="star_counter.js"></script> <!--引用js代码-->
+<script>
+    function func_1() {
+        document.getElementById("demo").innerHTML = 'If not print for seconds, please refresh';
+        github_id = document.getElementById("user").value;
+        document.getElementById("star_counter").innerHTML = func(github_id);
+    }
+
+</script>
+
+
+Input github id: <input name="user" value="guofei9987" type="text" id="user">
+<input name="Button" type="button" value="Calculate" onClick="func_1()">
+
+<p id="star_counter"></p>

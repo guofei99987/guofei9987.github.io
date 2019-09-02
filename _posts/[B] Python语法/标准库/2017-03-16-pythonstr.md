@@ -191,6 +191,8 @@ regex.split(text) # 返回list
 regex.findall(text) # 返回list
 regex.finditer(text) # 迭代器,存放的是<SRE_Match object>
 m = regex.match(text) # 是否精确匹配，返回<SRE_Match object>
+
+regex.sub(sentence, replace_char, 2) # 把 sentence 前2个符合的语句，替换成replace_char
 ```
 
 step3：使用'SRE_Match'对象
