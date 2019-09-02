@@ -8,6 +8,9 @@ description:
 ---
 
 ## demo
+**因为博客架构的问题，如果点击按钮没反应，刷新一次就好了**
+
+
 <script src="http://www.guofei.site/vulgar_language_generator/amazing_title/amazing_title.js"></script>
 <script>
 function myFunction1() {

@@ -16,13 +16,7 @@ description:
 [源代码地址](https://github.com/guofei9987/star_counter)  
 
 
-
-<!--
-![demo](https://github.com/guofei9987/star_counter/blob/master/demo.png?raw=true) -->
-
 ## 试试吧：
-<!-- <iframe src="http://www.guofei.site/star_counter/main.html" width="100%" height="1000em" marginwidth="10%"></iframe> -->
-
 
 
 <script src="http://www.guofei.site/star_counter/star_counter.js"></script> <!--引用js代码-->
