@@ -1,0 +1,36 @@
+## MarshalSerializer
+faster than PickleSerializer but supports fewer datatypes
+
+##  PickleSerializer
+
+准备你的模型
+```python
+from sklearn import linear_model
+
+lm=linear_model.LinearRegression()
+x=np.random.rand(1000,1)
+y=x+0.1*np.random.rand(1000,1)
+lm.fit(x,y)
+```
+
+模型转为文本
+```python
+ps=PickleSerializer()
+model_str=ps.dumps(obj=lm)
+# 是一个 byte 类型的数据，然后可以存到hive了
+# 存hive略
+```
+
+文本转模型
+```
+model_load=ps.loads(model_str)
+model_load.predict([[0.1]])
+```
+
+## 另外
+这个可以序列化 iterator，不过还没试过
+
+```
+ps.dump_stream
+ps.load_stream
+```

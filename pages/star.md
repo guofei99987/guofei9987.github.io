@@ -1,11 +1,37 @@
 ---
 layout: post
 title: 收藏夹
-categories: 前端
-tags:
-keywords:
-description:
 ---
+
+## star
+<script src="http://www.guofei.site/star_counter/star_counter.js"></script> <!--引用js代码-->
+<script>
+function func_1(github_id){
+  document.getElementById("star_counter").innerHTML = cal_github_star(github_id)
+}
+</script>
+
+
+
+<input name="Button" type="button" value="guofei9987" onClick="func_1('guofei9987')"><input name="Button" type="button" value="scikit-opt" onClick="func_1('scikit-opt')">
+
+<p id="star_counter"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,3 +113,6 @@ http://www.sioe.cn/yingyong/yanse-rgb-16/
 ## 编程
 一个编程练习题网站：  
 https://projecteuler.net/archives
+
+## 一个emoji网站
+https://www.webfx.com/tools/emoji-cheat-sheet/
