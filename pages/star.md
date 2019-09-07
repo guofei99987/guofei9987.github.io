@@ -3,6 +3,11 @@ layout: post
 title: 收藏夹
 ---
 
+## 收藏夹
+[收藏夹](https://github.com/guofei9987/guofei9987.github.io/issues/3)
+
+
+
 ## star
 <script src="http://www.guofei.site/star_counter/star_counter.js"></script> <!--引用js代码-->
 <script>
@@ -19,23 +24,12 @@ function func_1(github_id){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <hr style="height:10px;border:none;border-top:10px groove skyblue;" />
+
+## 常用工具
+[文本比较工具](http://www.guofei.site/pictures_for_blog/text_compare/main.html)
+
+
 
 一些Python库
 - GUI（WxPython）
@@ -68,6 +62,10 @@ atom上好用的插件
 
 
 ----------------------
+
+
+
+
 ## jupyter notebook好用的快捷键
 - Enter : 转入编辑模式
 - Shift-Enter : 运行本单元，选中下个单元

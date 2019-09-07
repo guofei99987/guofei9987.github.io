@@ -32,7 +32,7 @@ setup(name='scikit-opt',
       packages=['sko'],
       zip_safe=False)
 ```
-- name: 包的名字，？也是将来用户使用 `pip install` 时的名字
+- name: 包的名字，也是将来用户使用 `pip install` 时的名字
 - version： 每次上传的版本号应该不一样
 - install_requires: 指定此包的依赖
 - url：随意填写，一般是项目的 github 地址
@@ -42,7 +42,7 @@ setup(name='scikit-opt',
 ```bash
 $pip install .
 ```
-这样你就可以在自己的电脑上导入包了
+这样你就可以在自己的电脑上的任何目录中导入包了
 ```py
 import sko
 ```
