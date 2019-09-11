@@ -2,7 +2,7 @@
 layout: post
 title: 【SQL】SELECT专题.
 categories:
-tags: 1_1_数据平台
+tags: 1_1_算法平台
 keywords:
 description:
 order: 150
@@ -147,7 +147,7 @@ where  e.mgr=l.empno and l.deptno=d.deptno;
 
 ## 子查询
 单行子查询
-```
+```sql
 select enamel,sal,job
     from t_employee
     where(sal,job)=(
@@ -157,7 +157,7 @@ select enamel,sal,job
 ```
 
 多行单列
-```
+```sql
 in（select...）
 not in(select...)
 ```
@@ -277,10 +277,10 @@ initcap(col) -- 每个单词的首字母大写（一个字符串中可以有多�
 ```sql
 Abs
 
-ln,log10,log2,log(base,arg)
-exp(d),power(a,b)
+ln, log10, log2, log(base,arg)
+exp(d), power(a,b)
 
-Mod(arg1,arg2):返回arg1除以arg2的余数，符号与arg1相同。
+Mod(arg1,arg2) --返回arg1除以arg2的余数，符号与arg1相同。
 Rand():返回1到1之间的随机数。
 Power(arg1,arg2):返回arg1的arg2次方。
 
@@ -367,7 +367,7 @@ percentile_approx(col_name,0.25) # 求0.25分位数
 ## 查询案例
 
 ### 找出重复的记录
-```
+```sql
 SELECT id,COUNT(id)
 FROM table1
 WHERE dt = '2018-02-16'
@@ -379,7 +379,7 @@ GROUP BY id HAVING COUNT(id) > 2;
 ## 分析函数
 
 一般语法是：
-```
+```sql
 function() OVER([partition_clause]  order_by_clause)
 ```
 
@@ -407,12 +407,12 @@ over(order by col3 rows between 2 preceding and 2 following)：窗口范围为�
 ### function部分
 #### 1. 排名函数
 
-**row_number()**: 会对所有数值输出不同的序号，序号唯一连续；  
-**rank()**: 相同的值排名相同，并且排名数字靠前，（例如，排名可能是这样的：1,1,3,3,5,6,7）  
+**ROW_NUMBER()**: 会对所有数值输出不同的序号，序号唯一连续；  
+**RANK()**: 相同的值排名相同，并且排名数字靠前，（例如，排名可能是这样的：1,1,3,3,5,6,7）  
 <!-- 公司hive里面不太对   -->
 
-**DENSE_RANK**：排名序号连续(例如：1,1,2,2,3,3,4)
-**ntile(n)**： 全部数据n等分，序号就是等分数(1到n),如果不能平均分配，那么序号靠后的组的数量不多于序号靠前的(例如，ntile(3)分5条记录，就是2,2,1)  
+**DENSE_RANK**：排名序号连续(例如：1,1,2,2,3,3,4)  
+**NTILE(n)**： 全部数据n等分，序号就是等分数(1到n),如果不能平均分配，那么序号靠后的组的数量不多于序号靠前的(例如，ntile(3)分5条记录，就是2,2,1)  
 
 
 **PERCENT_RANK()**：计算当前行的百分比排名 ——（当前行排名 - 1）/（窗口分区中的行数 - 1）  
@@ -427,7 +427,57 @@ https://jingyan.baidu.com/article/9989c74604a644f648ecfef3.html
 select * from app.app_temp_test where row_number(id)<=1;
 ```
 
-#### 2. 层次查询函数
+#### 2. 描述统计函数
+
+根据有无 order/partition 分为4种，细心体会：
+
+```py
+pd_df=pd.DataFrame(np.random.randint(low=0,high=3,size=(20,2)),columns=['a','b'])
+df=spark.createDataFrame(pd_df).cache()
+df.createOrReplaceTempView('df')
+spark.sql('''
+select *,
+count(*) over() as c1, -- 总行数
+count(*) over(order by a asc) as c2, -- 递加行数，例如，a=[0,0,0,1,1], 那么结果就是[3,3,3,5,5]
+count(*) over(partition by b) as c3, -- 分组行数，就是每个分组有多少行
+count(*) over(partition by b order by a asc) as c4 --分组递加计数，先分组，对每组求递加行数
+from
+df
+''').show()
+```
+（看起来 order by 的应用场景应该比较少）
+
+
+**COUNT(*)** 4种都支持，但不支持 COUNT(distinct * )  
+**SUM(col1)**  
+**AVG(col1)**  
+**MIN(col1)**, **MAX(col1)**
+
+**FIRST(col1)**, **LAST(col1)** 【貌似】又可以写成FIRST_VALUE(col1), LAST_VALUE(col1)
+
+lag()???
+
+
+**stddev(col1)**, 样本标准差，只有一行数据时返回0  
+**stddev_samp(col1)**, 样本标准差，只有一行数据时返回null  
+**stddev_pop(col1)**, 总体标准差
+
+
+**variance(col1)**：计算样本方差，只有一行数据时返回0  
+**var_samp(col1)**：计算样本方差，只有一行数据时返回null  
+**var_pop(col1)**：计算总体方差
+
+注：*stddev()=sqrt( variance() ),
+stddev_samp()=sqrt( var_samp() ),
+stddec_pop=sqrt( var_pop() )*
+
+
+**covar_samp(col1, col2)**：样本协方差  
+**covar_pop(col1, col2)**： 总体协方差  
+**corr(col1, col2)**： 相关系数  
+
+
+[分析函数参考资料](https://blog.csdn.net/weixin_43274226/article/details/83304836)
 
 ## 表生成函数
 ```sql

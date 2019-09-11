@@ -32,7 +32,7 @@ jobs:
 ```
 on: push
 
-on: [push, pull_request] # 或者的关系，任意一个满足条件，即可处罚
+on: [push, pull_request] # 或者的关系，任意一个满足条件，即可触发
 ```
 
 
@@ -61,6 +61,9 @@ on:
     - '*'    
     - '!*.js'
 ```
+
+### 其它
+https://help.github.com/en/articles/events-that-trigger-workflows#scheduled-events
 
 ## job
 ```
@@ -108,6 +111,7 @@ jobs:
         echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
 ```
 
+- jobs.<job_id>.steps.name
 - jobs.<job_id>.steps.id
 - jobs.<job_id>.steps.if
 - jobs.<job_id>.steps.uses

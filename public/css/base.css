@@ -140,6 +140,8 @@ a.title_in_contend{
   border:1px solid #1ABC9C;
 }
 #content p{
+  padding-top: 10px;
+  margin-top: 10px;
   padding-bottom: 0;
   margin-bottom: 0;
 }

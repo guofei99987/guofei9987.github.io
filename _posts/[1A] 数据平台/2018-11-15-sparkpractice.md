@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 工程最佳实践
+title: 【spark】实践
 categories:
-tags: 1_1_数据平台
+tags: 1_1_算法平台
 keywords:
 description:
 order: 159
@@ -263,4 +263,44 @@ for table in table_guofei:
     hive -e 'drop table app.{table}'
     '''.format(table=table),shell=True)
     print(drop_code,table)
+```
+
+## 串行循环
+调研数据时，往往需要循环写表。
+```python
+import datetime
+right_dt = datetime.datetime(year=2019, month=8, day=1)
+left_dt = datetime.datetime(year=2019, month=2, day=1)
+pyfile = 'long_1.py'
+step = 1  # 运行间隔
+job_num = 1
+IsFirstLoop=True
+oneday=datetime.timedelta(days=1)
+# paral_run.paral_submit(left_dt=left_dt, right_dt=right_dt, pyfile=pyfile, step=step, job_num=job_num)
+
+cal_dt = left_dt if step > 0 else right_dt
+while True:
+    if cal_dt>right_dt or cal_dt<left_dt:break
+    cal_dt_str=cal_dt.strftime('%Y-%m-%d')
+    submit(cal_dt_str,spark,IsFirstLoop)
+    print(cal_dt_str+' done@'+datetime.datetime.now().strftime('%H:%M:%S')+',  ')
+    IsFirstLoop=False
+    cal_dt+=step*oneday
+
+print('All done!')
+```
+
+你的脚本
+```python
+def submit(cal_dt_str, spark, IsFirstLoop):
+    if IsFirstLoop:
+        write_mode='overwrite'
+    else:
+        write_mode='append'
+
+    # 这里是你的脚本
+    # 然后写表：
+    df.write.mode(write_mode).format('orc').partitionBy('dt').saveAsTable('app.app_guofei8_test')
+    if IsFirstLoop:
+        spark.sql("ALTER TABLE app.app_guofei8_test_data_0909 SET TBLPROPERTIES ('author' = 'guofei8')")
 ```
