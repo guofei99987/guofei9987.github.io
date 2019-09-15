@@ -1,4 +1,5 @@
 
+## GitHub action研究
 
 ```
 name: CI
@@ -115,3 +116,29 @@ jobs:
 - jobs.<job_id>.steps.id
 - jobs.<job_id>.steps.if
 - jobs.<job_id>.steps.uses
+
+
+
+
+
+## API
+
+
+
+[![Stars](https://img.shields.io/github/stars/guofei9987/scikit-opt.svg?label=Stars&style=social)](https://github.com/guofei9987/scikit-opt/stargazers)
+[![Forks](https://img.shields.io/github/forks/guofei9987/scikit-opt.svg?label=Fork&style=social)](https://github.com/guofei9987/scikit-opt/network/members)
+![Watchers](https://img.shields.io/github/watchers/guofei9987/scikit-opt?style=social)
+
+![](https://img.shields.io/sourcegraph/rrc/github.com/guofei9987/scikit-opt)
+[![Contributors](https://img.shields.io/github/contributors/guofei9987/scikit-opt.svg)](https://github.com/guofei9987/scikit-opt/graphs/contributors)
+[![License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+
+
+
+个人的：
+[![Followers](https://img.shields.io/github/followers/guofei9987?style=social)](https://github.com/guofei9987)
+
+
+
+github.com/guofei9987/scikit-opt
