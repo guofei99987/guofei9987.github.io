@@ -14,14 +14,28 @@
       </table>
       <!-- 下面是一级侧边栏 -->
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a></li>
+        <li>
+          <a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a>
+        </li>
         {% for category in site.categories %}
-          <li><a href="#{{ category | first }}" data-toggle="tab">{{ category[0] }}</a></li>
+          <li>
+            <a href="#{{ category | first }}" data-toggle="tab">
+              {{ category[0] }}
+            </a>
+          </li>
         {% endfor %}
-        <li><a class="pjaxlink" href="/pages/reading.html">读书</a></li>
-        <li><a class="pjaxlink" href="/pages/matlab.html">Matlab</a></li>
-        <li><a class="pjaxlink" href="/pages/course.html">听课</a></li>
-        <li><a class="pjaxlink" href="/pages/about.html">{{ site.locals.about }}</a></li>
+        <li>
+          <a class="pjaxlink" href="/pages/reading.html">读书</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/matlab.html">Matlab</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/course.html">听课</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/about.html">{{ site.locals.about }}</a>
+        </li>
       </ul>
       <div class="aside1_bottom">
         <!-- 这里是一级侧边栏的底部，目前放空 -->
