@@ -105,12 +105,51 @@ body, html {
 #content {
   font-size: 18px;
 }
-#content h2, h3 {
+
+#content h2{
+  line-height: 2;
+  color:black;
+  font-size: 36px;
+  background: #c0cda5;
+}
+
+#content h3{
+  font-size: 24px;
+}
+#content h4{
+  font-size: 16px;
+}
+#content h5{
+    font-size: 14px;
+}
+#content h6{
+    font-size: 12px;
+}
+
+#content h3, #content h4, #content h5, #content h6{
+  background: #e5f7f3;
+  color:black;
   line-height: 2;
 }
+
+a.title_in_contend{
+  color: black
+}
+
 #content td, th{
   border:1px solid #1ABC9C;
-  }
+}
+#content p{
+  padding-top: 10px;
+  margin-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#content hr{
+  height:10px;
+  border:none;
+  border-top:10px groove skyblue;
+}
 blockquote p {
   font-size: 20px;
 }

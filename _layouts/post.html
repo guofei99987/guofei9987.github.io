@@ -7,7 +7,7 @@ layout: base
     <br>
     <h2 id="#identifier">{{ page.title }}</h2>
     {{ page.date | date:"%Y年%m月%d日" }}
-    <p>Author:Guofei</p>
+    <p>Author:{{site.author.name}}</p>
   </div>
   <div class="col-md-13 aside3-content">
     <hr>
@@ -17,17 +17,20 @@ layout: base
     </a>
     </i>
   <br>
-    <i>如有逻辑、算法或其它错误，请批评指正，在此提前感谢！。
+    <i>如有逻辑、算法或其它错误，请批评指正，在此提前感谢！
     </i>
+    <br>
+    <i>文章编号order: {{page.order}}</i>
   <br>
   <br>
     <div id="content">
       {{ content }}
     </div>
     <hr>
+    <center><font size="4px">满分是10分的话，这篇文章你给几分，您的支持将鼓励我继续创作！</font></center>
     {% include disqus.html %}
   </div>
-  <!-- 目录 -->
+  <!-- 目录：右上角的加号，点击可以展示或隐藏 -->
   <div id="content_table" style="position:fixed;right:20px;top:120px;display:none;">
     <div class="panel panel-success">
       <div class="panel-body" id="nav"></div>

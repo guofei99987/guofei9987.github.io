@@ -2,45 +2,79 @@
   <div class="row">
     <div class="col-md-2 col-xs-2 aside1">
       <br>
-      <a class="pjaxlink" href="/"><img src="{{ site.gavatar }}" class="img-ronuded avatar" style="border-width:0px; border-color:#000"></a>
+      <a class="pjaxlink" href="{{ site.author.github }}" target='GitHub'>
+        <img src="{{ site.gavatar }}" class="img-ronuded avatar" style="border-width:0px; border-color:#000">
+      </a>
       <table class="table table-condensed">
         <tr>
-          <td><a href="{{ site.author.github }}" target="_blank"><i class="fa fa-github fa-lg" style="color:#fff;"></i></a></td>
-          <td><a href="mailto:{{ site.author.email }}"><i class="fa fa-envelope-o fa-lg" style="color:#fff;"></i></a></td>
+          <td>
+            <a href="{{ site.author.github }}" target='GitHub'>
+              <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
+            </a>
+          </td>
         </tr>
       </table>
+      <!-- 下面是一级侧边栏 -->
       <ul class="nav nav-pills nav-stacked">
+        <li>
+          <a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a>
+        </li>
         {% for category in site.categories %}
-         <li><a href="#{{ category | first }}" data-toggle="tab">{{ category[0] }}</a></li>
+          <li>
+            <a href="#{{ category | first }}" data-toggle="tab">
+              {{ category[0] }}
+            </a>
+          </li>
         {% endfor %}
-        <li><a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a></li>
-        <li><a class="pjaxlink" href="/pages/archive.html">{{ site.locals.archive }}</a></li>
-        <li><a class="pjaxlink" href="/pages/about.html">{{ site.locals.about }}</a></li>
-
-
-
+        <li>
+          <a class="pjaxlink" href="/pages/reading.html">读书</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/matlab.html">Matlab</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/course.html">听课</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/about.html">{{ site.locals.about }}</a>
+        </li>
       </ul>
       <div class="aside1_bottom">
-
+        <!-- 这里是一级侧边栏的底部，目前放空 -->
       </div>
     </div>
+
+    <!-- 下面是二级侧边栏 -->
     <div class="col-md-10 col-xs-10 aside2">
       <div class="row">
         <div class="tab-content">
           {% for category in site.categories %}
             <div class="tab-pane" id="{{ category[0] }}">
               <div class="list-group">
-                <!--<h2 class="center">{{ category[0] }}</h2>-->     <!--原来aside2上面的大标题-->
+
+                {% if category[0] == '橱窗' %}
+                  <a class="list-group-item-lay pjaxlink" href="/pages/reading.html">读书笔记库</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/course.html">听课笔记库</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/matlab.html">Matlab笔记库</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/certification.html">证书陈列柜</a>
+                {% endif %}
+
                 {% for post in category[1] %}
                   <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                 {% endfor %}
+                {% if category[0] == '橱窗' %}
+                  <a class="list-group-item-lay pjaxlink" href="/pages/milestone.html">小事记</a>
+                {% endif %}
               </div>
             </div>
           {% endfor %}
+
+          <!-- 下面这个是“模型”下面的条目 -->
           <div class="tab-pane" id="tags">
             <div class="panel-group" id="accordion">
-              <!--<h2 class="center">{{ site.locals.tags }}</h2>-->
-              {% for tag in site.tags %}
+              {% assign sorted_tags = site.tags | sort %}
+              {% for tag in sorted_tags %}
+
                 <div class="panel panel-info">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -49,9 +83,10 @@
                     </h4>
                   </div>
                   <div id="{{ tag[0] }}" class="panel-collapse collapse">
-                    {% for post in tag[1] %}
+                    {% assign sorted_tag = tag[1] | sort:"order" %}
+                    {% for post in sorted_tag %}
                       <a  href='{{ post.url }}' class="list-group-item pjaxlink">
-                        {{post.title}}
+                        <font color="#FF9224">【{{post.order}}】</font>{{post.title}}
                       </a>
                     {% endfor %}
                   </div>

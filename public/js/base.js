@@ -82,10 +82,13 @@ function contentEffects(){
   $('.row-offcanvas').removeClass('active');
   if($("#nav").length > 0){
     $("#content > h2,#content > h3,#content > h4,#content > h5,#content > h6").each(function(i) {
+        // i是从0开始的整数，以前是title0这种格式，我给改成标题了
         var current = $(this);
-        current.attr("id", "title" + i);
+        var title_name=current.html();
+        current.attr("id", title_name);
+        current.html("<a class='title_in_contend' href='#" + title_name + "'>" + title_name + "</a>");
         tag = current.prop('tagName').substr(-1);
-        $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
+        $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
     });
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     $("pre").addClass("prettyprint");

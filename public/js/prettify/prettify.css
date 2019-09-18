@@ -1,11 +1,11 @@
-pre.prettyprint { display: block; background-color: #333 }
+pre.prettyprint { display: block; background-color: #282C34 }
 pre .nocode { background-color: none; color: #000 }
-pre .str { color: #ffa0a0 } /* string  - pink */
+pre .str { color: #A8FF60 } /* string  - pink */
 pre .kwd { color: #f0e68c; font-weight: bold }
-pre .com { color: #87ceeb } /* comment - skyblue */
+pre .com { color: #7C7C7C  } /* comment - skyblue */
 pre .typ { color: #98fb98 } /* type    - lightgreen */
-pre .lit { color: #cd5c5c } /* literal - darkred */
-pre .pun { color: #fff }    /* punctuation */
+pre .lit { color: #FF73FD } /* literal - darkred 数字*/
+pre .pun { color: #fff }    /* punctuation 符号*/
 pre .pln { color: #fff }    /* plaintext */
 pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
 pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */

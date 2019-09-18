@@ -4,8 +4,8 @@
 
 ```py
 from scipy import constants
-constants.c#真空光速
-constants.h#普朗克常亮
+constants.c #真空光速
+constants.h #普朗克常亮
 ```
 
 ### 常数2
@@ -55,7 +55,7 @@ http://www.guofei.site/2017/06/06/fmin.html
 ## interpolate插值
 interp1d
 
-```
+```py
 import numpy as np
 from scipy import interpolate
 import pylab as pl

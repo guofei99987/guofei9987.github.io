@@ -1244,25 +1244,6 @@ h1, .h1 {
     font-size: 40px
 }
 
-h2, .h2 {
-    font-size: 36px
-}
-
-h3, .h3 {
-    font-size: 24px
-}
-
-h4, .h4 {
-    font-size: 22px
-}
-
-h5, .h5 {
-    font-size: 14px
-}
-
-h6, .h6 {
-    font-size: 12px
-}
 
 p {
     margin: 0 0 10px
@@ -1461,7 +1442,7 @@ dt {
 }
 
 dd {
-    margin-left: 5em
+    margin-left: 3em
 }
 
 @media (min-width:768px){.dl-horizontal dt {
@@ -4162,7 +4143,8 @@ select[multiple].input-group-sm>.input-group-addon, select[multiple].input-group
 }
 
 .tab-content>.active {
-    display: block
+    display: block;
+    padding-bottom: 2em;
 }
 
 .nav-tabs .dropdown-menu {
